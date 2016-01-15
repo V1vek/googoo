@@ -1,0 +1,405 @@
+{% include 'partials/header.html' %}
+  <div class="container">
+
+      <div class="checkout-steps text-center">
+        <span class="active cS-num step-1" data-type="checkout_container">1</span>
+        <span class="cS-after">
+          <hr>
+        </span>
+        <span class="cS-num step-2" data-type="shipment_container">2</span>
+        <span class="cS-after">
+          <hr>
+        </span>
+        <span class="cS-num step-3" data-type="payment_container">3</span>
+      </div>
+
+      <!-- Checkout items -->
+        <div class="checkout checkout_container">
+      <div class="checkout-content-left">
+        <div class="checkout-Books-head">
+          <span>Shopping Bag</span> <span class="cBH-count">(<span class="cart_count">{{cart_count}}</span> Item)</span>
+          <span class="cBH-amount">Total: <i class="fa fa-rupee"></i> {{cart_total}}</span>
+        </div>
+
+
+          <h4 class="empty-cart {%if cart_total%}hide{%endif %}">Your shopping cart is empty. <a href="/books/search/">Click here to continue shopping</a></h4>
+
+        {%for cart in cart_books %}
+          <div class="checkout-BD-holder">
+          <div class="check-bookImg">
+            <a href="">
+              <img src="{{cart.book.image_url}}" alt="TextNook old new textbook"?>
+            </a>
+          </div>
+          <div class="check-bookInfo">
+            <div class="cBook-title"><a href="/books/details/{{cart.book.id}}">{{cart.book.title}}</a></div>
+            <div>
+              <span class="cBook-author">by {% for author in cart.book.authors.all%} {{author.name }} | {%endfor%}</span>
+              <span class="cBook-quantity"> Quantity:
+               <input type="text" class="book_quantity" value="{{cart.c.quantity}}">
+                  <button data-seller-book-condition-id="{{cart.seller_book_condition.id}}" data-cart-id="{{cart.c.id}}" type="button" class="btn save_quantity">Save</button>
+              </span>
+            </div>
+              <div class="cBook-seller">Type:<span>{% if cart.c.renting_options == "1" %} Rent {% else %} Buy {%endif%}</span></div>
+
+            <div class="cBook-seller">Seller: <span>{{ cart.seller.seller_name }}</span></div>
+            <div class="cBook-seller">Deliver Estimate: <span>{{ cart.seller.estimate_from }} - {{ cart.seller.estimate_to }} days</span></div>
+            <div class="cBook-rate">
+              <span class="cBook-sp"><i class="fa fa-rupee"></i> {{ cart.selling_price}}</span>
+              <div class="cBook-discount">
+                <span class="off-clr">({{cart.offer}}% off)</span>
+                <span class="orgnl-rate"><i class="fa fa-rupee"></i> {{cart.mrp_price }}</span>
+              </div>
+            </div>
+            <div class="cBook-collap">
+              <img src="/midway/static/main/images/checkout/elp.png">
+            </div>
+            <div class="cBook-footer" data-open="false">
+              <a href="" class="add_to_wishlist" data-to-do="move" data-book-id="{{cart.book.id}}"><i class="fa fa-heart"></i> Move to wishlist</a>
+              <a href="" class="cBook-remove" data-cart-id="{{cart.c.id}}"><img src="/midway/static/main/images/checkout/remove.png" alt="X"> Remove</a>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+
+      </div> <!-- checkout-content-left -->
+       {%if cart_count %}
+      <div class="checkout-content-right ">
+        <form class="discount_coupon">
+            <div class="coupon_code {%if not coupon_code %}hide{%endif%}"><span class="applied_coupon">{{coupon_code}}</span><span class="remove_coupon">X</span></div>
+        <div class="cBook-coupon {%if coupon_code%}hide{%endif%}">
+          <input type="text" name="coupon_code" class="form-control" id="coupon_code" placeholder="Coupon code">
+          <button type="submit" class="btn btn-coupon">Apply</button>
+            <label id="coupon_code-error" class="error hide" for="coupon_code">This field is required.</label>
+        </div>
+        </form>
+        <div class="cBook-priceDetails">
+          <h4>Price details</h4>
+          <table class="table">
+            <tbody>
+              <tr>
+                <td>Bag Total</td>
+                <td><i class="fa fa-rupee"></i> <span class="cart_total">{{cart_total}}</span></td>
+              </tr>
+
+              <tr class="pD-divider">
+                <td></td>
+                <td></td>
+              </tr>
+              <!--<tr>
+                <td>Service Tax</td>
+                <td><i class="fa fa-rupee"> 14</td>
+              </tr>-->
+              <tr>
+                <td>Coupons Discount</td>
+                <td ><i class="fa fa-rupee"></i> <span class="discount_price">
+                    {% if discount_price %}{{discount_price}}{%else%}0{%endif%}</span></td>
+              </tr>
+              <tr>
+                <td>Delivery Charge</td>
+                <td><i class="fa fa-rupee"></i> <span class="shipping_price">{{shipping_price}}</span></td>
+              </tr>
+              <tr class="pD-divider">
+                <td></td>
+                <td></td>
+              </tr>
+              <tr class="pd-oT">
+                <td>Order Total</td>
+                <td><i class="fa fa-rupee"></i> <span class="total_value">{{total}}</span></td>
+              </tr>
+            </tbody>
+          </table>
+          <button class="btn btn-placeOrder placeOrder">Place Order</button>
+        </div>
+      </div>
+        {% endif %}
+      </div>
+      <!-- Checkout Items -->
+
+      <!-- Shipment address -->
+       <div class="checkout shipment_container hide">
+        <div class="checkout-content-left width-56 ">
+        <div class="checkout-Books-head">
+          <span class="shp-dO">Verify Delivery Address</span>
+        </div>
+        <div class="shipment-address-holder">
+          <div class="shipment-address">
+            <div class="shp-tick"><img src="/midway/static/main/images/checkout/addrs-tick.png"></div>
+           {% if shipping_address %}
+              <div class="shp-address" data-type="shipping_address" data-valid="{%if shipping_address.zip_code %} true {%else %} false {%endif%}">
+
+              <h5 class="details" data-id="name">{% if shipping_address.name %} {{shipping_address.name }} {%endif %}</h5>
+                <span class="address details" data-id="address">{%if shipping_address.address %} {{shipping_address.address}}{%endif%}</span>
+                  <span class="address1 details" data-id="address1">{%if shipping_address.address1 %} {{shipping_address.address1}}{%endif%}</span>
+                 <span class="city details" data-id="city">{%if shipping_address.city %}{{shipping_address.city}}{%endif%}</span>
+                 <span class="state details" data-id="state">{%if shipping_address.state %}{{shipping_address.state}}{%endif%}</span>
+               <span class="zip_code details" data-id="zip_code"> {%if shipping_address.zip_code %}  {{shipping_address.zip_code}}{%endif%}</span>
+              <span>
+                Phone : <span class="shp-num contact_number details" data-id="contact_number"> {%if shipping_address.zip_code %}
+                  {{shipping_address.contact_number}}{% endif %}</span>
+              </span>
+              <div class="shp-footer">
+                <!--<a href="">-->
+                  <!--<img src="/static/main/images/checkout/remove.png"> Remove-->
+                <!--</a>-->
+                <a href="" class="shp-edit">Edit Item</a>
+              </div>
+            </div>
+
+           {% else %}
+            <div class="shp-address" data-type="buyer_address" data-valid="{%if buyer.zip_code %}true{%else %}false{%endif%}">
+              <h5 class="details" data-id="name">{% if buyer %} {{user.first_name }} {{user.last_name }} {%endif %}</h5>
+                <span class="address details" data-id="address">{%if buyer.address %} {{buyer.address}}{%endif%}</span>
+                  <span class="address1 details" data-id="address1">{%if buyer.address1 %} {{buyer.address1}}{%endif%}</span>
+                 <span class="city details" data-id="city">{%if buyer.city %}{{buyer.city}}{%endif%}</span>
+                 <span class="state details" data-id="state">{%if buyer.state %}{{buyer.state}}{%endif%}</span>
+               <span class="zip_code details" data-id="zip_code"> {%if buyer.zip_code %}  {{buyer.zip_code}}{%endif%}</span>
+              <span>
+                Phone : <span class="shp-num contact_number details" data-id="contact_number">{{buyer.contact_number}}</span>
+              </span>
+              <div class="shp-footer">
+                <!--<a href="">-->
+                  <!--<img src="/static/main/images/checkout/remove.png"> Remove-->
+                <!--</a>-->
+                <a href="" class="shp-edit">Edit Item</a>
+              </div>
+            </div>
+          {% endif %}
+          </div>
+        </div>
+      </div>
+        <div class="checkout-content-right width-37 ">
+        <div class="shp-delivery-col">
+          <h5 class="shp-dO">Order Summary</h5>
+
+          <div class="shp-delCharg">
+            <table class="table">
+              <tbody>
+                <tr>
+                  <td>Order Total</td>
+                  <td><i class="fa fa-rupee"></i> <span class="checkout_cart_total">{{cart_total}}</span></td>
+                </tr>
+                <tr>
+                  <td>Delivery Charge</td>
+                  <td><i class="fa fa-rupee"></i> <span class="checkout_shipping_price">{{shipping_price}}</span></td>
+                </tr>
+                <tr class="pD-divider">
+                  <td></td>
+                  <td></td>
+                </tr>
+                <tr class="pd-oT">
+                  <td>Order Total</td>
+                  <td><i class="fa fa-rupee total"> </i><span class="checkout_total_value">{{total}}</span></td>
+                </tr>
+              </tbody>
+            </table>
+            <div>
+                <button class="btn btn-placeOrder continuePayment payment-btn">Continue to Payment</button>
+                <div class="or-txt text-center">OR</div>
+                <button class="btn btn-placeOrder cod-btn" {%if disable_cod%} disabled="disabled"{%endif%}>Cash on Delivery</button>
+                    <p class="cod-text">Cash on Deliver disabled by Seller</p>
+                <button class="btn btn-placeOrder free-btn hide">Confirm Order</button>
+            </div>
+          </div>
+        </div>
+      </div>
+       </div>
+      <!-- Shipment address -->
+
+      <!-- Payment Method -->
+      <div class="checkout payment_container hide">
+      <div class="checkout-content-left shp-BR ">
+        <div class="checkout-Books-head">
+          <span>Choose Payment Mode</span>
+          <span class="cBH-amount">You Pay: <i class="fa fa-rupee"></i> <span class="payable_total">{{total}}</span></span>
+        </div>
+          <div class="shp-payment-form">
+              <iframe src="https://www.instamojo.com/textnook/old-man-and-the-sea/?embed=form" style="width:100%;height:700px;">
+
+                </iframe>
+          </div>
+
+      </div>
+      <div class="checkout-content-right">
+        <div class="pay-del-addrs-holder">
+          <table class="table">
+            <tbody>
+              <tr>
+                <td>ORDER SUMMARY</td>
+                <td></td>
+              </tr>
+              <tr>
+                <td>Total</td>
+                <td><i class="fa fa-rupee "> <span class="checkout_total_value">{{total}}</span></td>
+              </tr>
+              <tr class="pD-divider">
+                <td></td>
+                <td></td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="pay-del-addrs">
+            <div class="pda-title">Deliver To</div>
+            <div class="pda-content">
+
+                {% if shipping_address %}
+              <div class="shp-address" data-type="shipping_address" data-valid="{%if shipping_address.zip_code %} true {%else %} false {%endif%}">
+              <h5 class="details" data-id="name">{% if shipping_address.name %} {{shipping_address.name }} {%endif %}</h5>
+                <span class="address details" data-id="address">{%if shipping_address.address %} {{shipping_address.address}}{%endif%}</span>
+                  <span class="address1 details" data-id="address1">{%if shipping_address.address1 %} {{shipping_address.address1}}{%endif%}</span>
+                 <span class="city details" data-id="city">{%if shipping_address.city %}{{shipping_address.city}}{%endif%}</span>
+                 <span class="state details" data-id="state">{%if shipping_address.state %}{{shipping_address.state}}{%endif%}</span>
+               <span class="zip_code details" data-id="zip_code"> {%if shipping_address.zip_code %}  {{shipping_address.zip_code}}{%endif%}</span>
+              <span>
+                Phone : <span class="shp-num contact_number details" data-id="contact_number"> {%if shipping_address.zip_code %}
+                  {{shipping_address.contact_number}}{% endif %}</span>
+              </span>
+
+            </div>
+
+           {% else %}
+            <div class="shp-address" data-type="buyer_address" data-valid="{%if buyer.zip_code %}true{%else %}false{%endif%}">
+              <h5 class="details" data-id="name">{% if buyer %} {{user.first_name }} {{user.last_name }} {%endif %}</h5>
+                <span class="address details" data-id="address">{%if buyer.address %} {{buyer.address}}{%endif%}</span>
+                  <span class="address1 details" data-id="address1">{%if buyer.address1 %} {{buyer.address1}}{%endif%}</span>
+                 <span class="city details" data-id="city">{%if buyer.city %}{{buyer.city}}{%endif%}</span>
+                 <span class="state details" data-id="state">{%if buyer.state %}{{buyer.state}}{%endif%}</span>
+               <span class="zip_code details" data-id="zip_code"> {%if buyer.zip_code %}  {{buyer.zip_code}}{%endif%}</span>
+              <span>
+                Phone : <span class="shp-num contact_number details" data-id="contact_number">{{buyer.contact_number}}</span>
+              </span>
+
+            </div>
+          {% endif %}
+            </div>
+          </div>
+        </div>
+        <!-- Payment Method -->
+      </div>
+      </div>
+      <!-- Payment Method -->
+    </div><!-- Checkout Page -->
+
+  </div> <!-- Container -->
+<div class="modal fade" id="wishlist_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+					<div class="modal-title" id="myModalLabel">Add to Wish List</div>
+				</div>
+                    <div class="modal-body">
+        </div>
+				<div class="modal-footer">
+				</div>
+			</div>
+		</div>
+	</div>
+
+       <div class="login-modal">
+    {% csrf_token %}
+    <div class="modal fade pl-zero" id="shipping_address" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+              <span class="error_display"></span>
+                              <h4>Shipping Address</h4>
+
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+
+          <div class="modal-body">
+              <form class="shipping_address">
+                  <input type="hidden" id="user_id" name="user_id" class="form-control" value="{{user.id}}" placeholder="Name">
+                  <input type="hidden" id="order_id" name="order_id" class="form-control" placeholder="Name">
+                <div class="edit_item_input">
+                    <div>
+
+                      <input type="text" name="name" class="form-control" placeholder="Name">
+                    </div>
+                    <div >
+
+                      <input type="text" name="address" class="form-control" placeholder="Address">
+                    </div>
+                    <div>
+
+                      <input type="text" name="address1" id="address1" class="form-control" placeholder="Address1(optional)">
+                    </div>
+                      <div>
+
+                      <input type="text" name="city" class="form-control" placeholder="City">
+                    </div>
+                      <div >
+
+                      <input type="text" name="state" class="form-control" placeholder="State">
+                    </div>
+                      <div>
+
+                      <input type="text" name="zip_code" class="form-control" placeholder="Zip Code">
+                    </div>
+                    <div >
+
+                      <input type="text" name="contact_number" class="form-control" placeholder="Contact Number">
+                    </div>
+                </div>
+
+                <div class="signupBtn">
+                  <button type="submit" class="btn btn-signup btn-save-address">Save Shipping Address</button>
+                </div>
+              </form>
+
+          </div>
+        </div>
+      </div>
+    </div>
+</div>
+<div class="modal fade" id="codValid" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">Cash on Delivery</h4>
+      </div>
+      <div class="modal-body font-14">
+         You ar placing the order and approve to pay by cash on Delivery
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-yes confirmCod" data-dismiss="modal">Confirm Order</button>
+        <button type="button" class="btn btn-no" data-dismiss="modal">Cancel Order</button>
+      </div>
+    </div>
+  </div>
+</div>
+<script type="text/x-underscore" id="wishlist_added">
+        <p class="mwL_msg"> This item was already in <a href="/wishlist/">WishList</a>&nbsp;&nbsp;
+            </p>
+        <div class="mwL_item">
+            <div class="mwL_image">
+                <img src="<%= image_url %>" alt="Book">
+            </div>
+            <div class="mwL_itemInfo">
+                <span>
+                    <a href="/books/details/<%= id %>"> <%= title %> </a> by
+                    	<% _.each(authors, function(author,key,list){%>
+                    	<%= author.name %>
+                        <% }) %>
+                </span>
+                <div class="color-D21">Rs <%= price %></div>
+                <button class="btn btn-vwl">View Wishlist</button>
+            </div>
+        </div>
+    </script>
+    <script type="text/javascript" src="/midway/static/main/js/script.js"></script>
+    <script type="text/javascript" src="/midway/static/app/checkout/js/shipping_address.js"></script>
+     <script type="text/javascript" src="/midway/static/app/books/js/search.js"></script>
+
+<script type="text/javascript" src="/midway/static/app/wishlists/js/index.js"></script>
+<script type="text/javascript" src="/midway/static/app/checkout/js/cart.js"></script>
+
+<script>
+
+
+</script>
+{% include 'partials/footer-home.html' %}

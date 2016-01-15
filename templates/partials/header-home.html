@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="keywords" content="Buy books online in India, Buy books online, Sell books online in India, Sell books online, Rent books online in India, Rent books online, India's Exclusive online Market Place for New or Used Textbooks" />
+    <meta name="description" content="Buy | Sell | Rent your books at India’s exclusive online market place for new or used textbooks – TextNook.com.  Free shipping, cash on delivery at TextNook.com."/>
+	    <!-- Open Graph data -->
+
+    <meta property="og:title" content="title of page " />
+    <meta property="og:type" content="Website" />
+    <meta property="og:url" content="http://www.textnook.com/" />
+    <meta property="og:description" content="{{description}}" />
+    <meta property="og:site_name" content="TextNook" />
+    <meta property="fb:admins" content="100008157123170" />
+    <meta property="fb:page_id" content="744625135570074"/>
+
+    <!-- Schema.org markup for Google+ -->
+    <meta itemprop="name" content="{{page_title}}">
+
+    <meta itemprop="description" content="Buy, Sell, Rent or Hire your textbook at best price in India on TextNook.com">
+
+    <meta itemprop="image" content={% if book.image_url %}"{{book.image_url}}"{%else%}"http://www.textnook.com/static/main/images/logo.png"{%endif%}>
+
+<!-- Twitter Card data -->
+
+    <meta name="twitter:card" content="product">
+    <meta name="twitter:site" content="@TextNookBooks">
+    <meta name="twitter:creator" content="@TextNookBooks">
+    <meta name="twitter:title" content="{{page_title}}">
+    <meta name="twitter:image" content={% if book.image_url %}"{{book.image_url}}"{%else%}"http://www.textnook.com/static/main/images/logo.png"{%endif%}>
+    <meta name="twitter:label1" content="Category">
+    <meta name="twitter:data1" content= {%if book.category.name %}"{{book.category.name}}"{%else%}"Engineering, Management, Mathematics and Sciences, Humanities"{%endif%}>
+
+
+
+    <title>TextNook Online Marketplace for old new textbook. Buy rent and sell your books on textnook.com</title>
+
+	
+
+	<link href="static/main/css/bootstrap.min.css" rel="stylesheet">
+	<link rel="stylesheet" href="static/main/css/style.css">
+	<link rel="stylesheet" href="static/main/css/fonts.css">
+  	<script src="static/main/js/jquery-2.1.1.min.js"> </script>  
+    <script src="/midway/static/main/js/jquery.validate.min.js"></script>
+     <script src="/midway/static/main/js/bootstrap.min.js"></script>
+
+</head>
+<body>
+     {% include 'partials/authentication.html' %}
+<section id="banner">
+
+	<section id="header">
+		<div class="header container-fluid">
+			<div class="header-logo"></div>
+			<div class="header-signup">
+				<a href="#" class="toll-free">
+					<img src="/midway/static/main/images/toll.png" alt ="Call textnook at toll free number" height="14" width="14">
+					Toll free: 1800-200-6353
+				</a>
+			   {% if user and not user.is_anonymous %}
+			       <a href="/accounts/profile/"><p>Hello {{ user.first_name|default:user.username }}</p></a>
+			       <a href="{% url 'auth:logout' %}?next={{ request.path }}"><p>Logout</p></a>
+			     
+			   {% else %}
+			   	 <a href="#" class="authentication" data-type="signin"><p>SIGN IN</p></a>
+				 <a href="#" class="authentication" data-type="signup"><p>SIGN UP</p></a>
+			   {% endif %}
+			</div>
+		</div>
+	</section>

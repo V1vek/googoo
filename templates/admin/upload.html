@@ -1,0 +1,46 @@
+{% extends "admin/base_site.html" %}
+{% load i18n admin_urls admin_static admin_modify %}
+
+{% block extrahead %}{{ block.super }}
+<script type="text/javascript" src="{% url 'admin:jsi18n' %}"></script>
+{{ media }}
+{% endblock %}
+
+{% block extrastyle %}{{ block.super }}<link rel="stylesheet" type="text/css" href="{% static "admin/css/forms.css" %}" />{% endblock %}
+
+
+
+{% block content %}
+
+<div id="content-main">
+
+    <a href="{{seller_books.file_url}}" target="_blank"> Download Excel</a>
+    <input type="file" id="file_input" style="display:none">
+    <input type="button" id="upload_excel" value="Upload Corrected Excel">
+
+</div>
+
+<script type="text/javascript" src="/midway/static/main/js/jquery-2.1.1.min.js"></script>
+<script type="text/javascript" src="/midway/static/main/js/script.js"></script>
+
+<script>
+    $('#upload_excel').on('click', function(){
+        $('#file_input').trigger('click')
+    })
+
+    $('#file_input').on('change', function(){
+        var file = document.getElementById('file_input').files[0]
+        var file_name = file.name
+        var ext = file_name.substr(file_name.lastIndexOf('.')+1)
+
+        var fd = new FormData();
+        var url = base_url+'/sellers/upload_books/'
+        fd.append("books_file", file);
+        fd.append("ext", ext);
+        fd.append("id", {{seller_books.id}});
+        helperMethods.secureHTTPRequestHandlerImage(url,'POST',fd)
+    })
+
+</script>
+{% endblock %}
+

@@ -1,0 +1,602 @@
+[27/Jul/2015 11:06:45] ERROR [django.request:256] Internal Server Error: /api/sellers/
+Traceback (most recent call last):
+  File "/Users/vinod/workspace/djenv/lib/python2.7/site-packages/django/core/handlers/base.py", line 132, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/vinod/workspace/djenv/lib/python2.7/site-packages/django/views/decorators/csrf.py", line 58, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/Users/vinod/workspace/djenv/lib/python2.7/site-packages/django/views/generic/base.py", line 71, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/Users/vinod/workspace/djenv/lib/python2.7/site-packages/rest_framework/views.py", line 452, in dispatch
+    response = self.handle_exception(exc)
+  File "/Users/vinod/workspace/djenv/lib/python2.7/site-packages/rest_framework/views.py", line 449, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/Users/vinod/workspace/djenv/lib/python2.7/site-packages/rest_framework/decorators.py", line 50, in handler
+    return func(*args, **kwargs)
+  File "/Users/vinod/workspace/textnookmarketplace/app/sellers/views.py", line 458, in sellers_list
+    seller_serializer.save()
+  File "/Users/vinod/workspace/djenv/lib/python2.7/site-packages/rest_framework/serializers.py", line 165, in save
+    self.instance = self.create(validated_data)
+  File "/Users/vinod/workspace/textnookmarketplace/app/sellers/serializers.py", line 64, in create
+    profile = Seller.objects.create(profile=user, **validated_data)
+  File "/Users/vinod/workspace/djenv/lib/python2.7/site-packages/django/db/models/manager.py", line 127, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/Users/vinod/workspace/djenv/lib/python2.7/site-packages/django/db/models/query.py", line 348, in create
+    obj.save(force_insert=True, using=self.db)
+  File "/Users/vinod/workspace/djenv/lib/python2.7/site-packages/django/db/models/base.py", line 710, in save
+    force_update=force_update, update_fields=update_fields)
+  File "/Users/vinod/workspace/djenv/lib/python2.7/site-packages/django/db/models/base.py", line 738, in save_base
+    updated = self._save_table(raw, cls, force_insert, force_update, using, update_fields)
+  File "/Users/vinod/workspace/djenv/lib/python2.7/site-packages/django/db/models/base.py", line 822, in _save_table
+    result = self._do_insert(cls._base_manager, using, fields, update_pk, raw)
+  File "/Users/vinod/workspace/djenv/lib/python2.7/site-packages/django/db/models/base.py", line 861, in _do_insert
+    using=using, raw=raw)
+  File "/Users/vinod/workspace/djenv/lib/python2.7/site-packages/django/db/models/manager.py", line 127, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/Users/vinod/workspace/djenv/lib/python2.7/site-packages/django/db/models/query.py", line 920, in _insert
+    return query.get_compiler(using=using).execute_sql(return_id)
+  File "/Users/vinod/workspace/djenv/lib/python2.7/site-packages/django/db/models/sql/compiler.py", line 963, in execute_sql
+    cursor.execute(sql, params)
+  File "/Users/vinod/workspace/djenv/lib/python2.7/site-packages/django/db/backends/utils.py", line 79, in execute
+    return super(CursorDebugWrapper, self).execute(sql, params)
+  File "/Users/vinod/workspace/djenv/lib/python2.7/site-packages/django/db/backends/utils.py", line 64, in execute
+    return self.cursor.execute(sql, params)
+  File "/Users/vinod/workspace/djenv/lib/python2.7/site-packages/django/db/utils.py", line 97, in __exit__
+    six.reraise(dj_exc_type, dj_exc_value, traceback)
+  File "/Users/vinod/workspace/djenv/lib/python2.7/site-packages/django/db/backends/utils.py", line 64, in execute
+    return self.cursor.execute(sql, params)
+  File "/Users/vinod/workspace/djenv/lib/python2.7/site-packages/django/db/backends/mysql/base.py", line 124, in execute
+    return self.cursor.execute(query, args)
+  File "/Users/vinod/workspace/djenv/lib/python2.7/site-packages/MySQLdb/cursors.py", line 205, in execute
+    self.errorhandler(self, exc, value)
+  File "/Users/vinod/workspace/djenv/lib/python2.7/site-packages/MySQLdb/connections.py", line 36, in defaulterrorhandler
+    raise errorclass, errorvalue
+IntegrityError: (1062, "Duplicate entry '5' for key 'profile_id'")
+[27/Jul/2015 11:08:14] ERROR [django.request:256] Internal Server Error: /api/sellers/
+Traceback (most recent call last):
+  File "/Users/vinod/workspace/djenv/lib/python2.7/site-packages/django/core/handlers/base.py", line 132, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/vinod/workspace/djenv/lib/python2.7/site-packages/django/views/decorators/csrf.py", line 58, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/Users/vinod/workspace/djenv/lib/python2.7/site-packages/django/views/generic/base.py", line 71, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/Users/vinod/workspace/djenv/lib/python2.7/site-packages/rest_framework/views.py", line 452, in dispatch
+    response = self.handle_exception(exc)
+  File "/Users/vinod/workspace/djenv/lib/python2.7/site-packages/rest_framework/views.py", line 449, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/Users/vinod/workspace/djenv/lib/python2.7/site-packages/rest_framework/decorators.py", line 50, in handler
+    return func(*args, **kwargs)
+  File "/Users/vinod/workspace/textnookmarketplace/app/sellers/views.py", line 458, in sellers_list
+    seller_serializer.save()
+  File "/Users/vinod/workspace/djenv/lib/python2.7/site-packages/rest_framework/serializers.py", line 165, in save
+    self.instance = self.create(validated_data)
+  File "/Users/vinod/workspace/textnookmarketplace/app/sellers/serializers.py", line 64, in create
+    profile = Seller.objects.create(profile=user, **validated_data)
+  File "/Users/vinod/workspace/djenv/lib/python2.7/site-packages/django/db/models/manager.py", line 127, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/Users/vinod/workspace/djenv/lib/python2.7/site-packages/django/db/models/query.py", line 348, in create
+    obj.save(force_insert=True, using=self.db)
+  File "/Users/vinod/workspace/djenv/lib/python2.7/site-packages/django/db/models/base.py", line 710, in save
+    force_update=force_update, update_fields=update_fields)
+  File "/Users/vinod/workspace/djenv/lib/python2.7/site-packages/django/db/models/base.py", line 738, in save_base
+    updated = self._save_table(raw, cls, force_insert, force_update, using, update_fields)
+  File "/Users/vinod/workspace/djenv/lib/python2.7/site-packages/django/db/models/base.py", line 822, in _save_table
+    result = self._do_insert(cls._base_manager, using, fields, update_pk, raw)
+  File "/Users/vinod/workspace/djenv/lib/python2.7/site-packages/django/db/models/base.py", line 861, in _do_insert
+    using=using, raw=raw)
+  File "/Users/vinod/workspace/djenv/lib/python2.7/site-packages/django/db/models/manager.py", line 127, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/Users/vinod/workspace/djenv/lib/python2.7/site-packages/django/db/models/query.py", line 920, in _insert
+    return query.get_compiler(using=using).execute_sql(return_id)
+  File "/Users/vinod/workspace/djenv/lib/python2.7/site-packages/django/db/models/sql/compiler.py", line 963, in execute_sql
+    cursor.execute(sql, params)
+  File "/Users/vinod/workspace/djenv/lib/python2.7/site-packages/django/db/backends/utils.py", line 79, in execute
+    return super(CursorDebugWrapper, self).execute(sql, params)
+  File "/Users/vinod/workspace/djenv/lib/python2.7/site-packages/django/db/backends/utils.py", line 64, in execute
+    return self.cursor.execute(sql, params)
+  File "/Users/vinod/workspace/djenv/lib/python2.7/site-packages/django/db/utils.py", line 97, in __exit__
+    six.reraise(dj_exc_type, dj_exc_value, traceback)
+  File "/Users/vinod/workspace/djenv/lib/python2.7/site-packages/django/db/backends/utils.py", line 64, in execute
+    return self.cursor.execute(sql, params)
+  File "/Users/vinod/workspace/djenv/lib/python2.7/site-packages/django/db/backends/mysql/base.py", line 124, in execute
+    return self.cursor.execute(query, args)
+  File "/Users/vinod/workspace/djenv/lib/python2.7/site-packages/MySQLdb/cursors.py", line 205, in execute
+    self.errorhandler(self, exc, value)
+  File "/Users/vinod/workspace/djenv/lib/python2.7/site-packages/MySQLdb/connections.py", line 36, in defaulterrorhandler
+    raise errorclass, errorvalue
+IntegrityError: (1062, "Duplicate entry '1' for key 'profile_id'")
+[27/Jul/2015 11:21:36] INFO [app.accounts.views:175] <QueryDict: {u'confirm_password': [u'passwd1'], u'first_name': [u'vinod'], u'password': [u'passwd1'], u'email': [u'vinodkannan1@me.com'], u'last_name': [u'kannan']}>
+[27/Jul/2015 11:41:09] ERROR [django.request:256] Internal Server Error: /api/sellers/books/
+Traceback (most recent call last):
+  File "/Users/vinod/workspace/djenv/lib/python2.7/site-packages/django/core/handlers/base.py", line 132, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/vinod/workspace/djenv/lib/python2.7/site-packages/django/views/decorators/csrf.py", line 58, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/Users/vinod/workspace/djenv/lib/python2.7/site-packages/django/views/generic/base.py", line 71, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/Users/vinod/workspace/djenv/lib/python2.7/site-packages/rest_framework/views.py", line 452, in dispatch
+    response = self.handle_exception(exc)
+  File "/Users/vinod/workspace/djenv/lib/python2.7/site-packages/rest_framework/views.py", line 449, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/Users/vinod/workspace/djenv/lib/python2.7/site-packages/rest_framework/decorators.py", line 50, in handler
+    return func(*args, **kwargs)
+  File "/Users/vinod/workspace/djenv/lib/python2.7/site-packages/django/contrib/auth/decorators.py", line 22, in _wrapped_view
+    return view_func(request, *args, **kwargs)
+  File "/Users/vinod/workspace/textnookmarketplace/app/sellers/views.py", line 276, in add_books
+    category_id=int(data['category_id']))
+  File "/Users/vinod/workspace/djenv/lib/python2.7/site-packages/django/db/models/manager.py", line 127, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/Users/vinod/workspace/djenv/lib/python2.7/site-packages/django/db/models/query.py", line 422, in update_or_create
+    obj, created = self._create_object_from_params(lookup, params)
+  File "/Users/vinod/workspace/djenv/lib/python2.7/site-packages/django/db/models/query.py", line 447, in _create_object_from_params
+    six.reraise(*exc_info)
+  File "/Users/vinod/workspace/djenv/lib/python2.7/site-packages/django/db/models/query.py", line 439, in _create_object_from_params
+    obj = self.create(**params)
+  File "/Users/vinod/workspace/djenv/lib/python2.7/site-packages/django/db/models/query.py", line 348, in create
+    obj.save(force_insert=True, using=self.db)
+  File "/Users/vinod/workspace/djenv/lib/python2.7/site-packages/django/db/models/base.py", line 710, in save
+    force_update=force_update, update_fields=update_fields)
+  File "/Users/vinod/workspace/djenv/lib/python2.7/site-packages/django/db/models/base.py", line 738, in save_base
+    updated = self._save_table(raw, cls, force_insert, force_update, using, update_fields)
+  File "/Users/vinod/workspace/djenv/lib/python2.7/site-packages/django/db/models/base.py", line 822, in _save_table
+    result = self._do_insert(cls._base_manager, using, fields, update_pk, raw)
+  File "/Users/vinod/workspace/djenv/lib/python2.7/site-packages/django/db/models/base.py", line 861, in _do_insert
+    using=using, raw=raw)
+  File "/Users/vinod/workspace/djenv/lib/python2.7/site-packages/django/db/models/manager.py", line 127, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/Users/vinod/workspace/djenv/lib/python2.7/site-packages/django/db/models/query.py", line 920, in _insert
+    return query.get_compiler(using=using).execute_sql(return_id)
+  File "/Users/vinod/workspace/djenv/lib/python2.7/site-packages/django/db/models/sql/compiler.py", line 963, in execute_sql
+    cursor.execute(sql, params)
+  File "/Users/vinod/workspace/djenv/lib/python2.7/site-packages/django/db/backends/utils.py", line 79, in execute
+    return super(CursorDebugWrapper, self).execute(sql, params)
+  File "/Users/vinod/workspace/djenv/lib/python2.7/site-packages/django/db/backends/utils.py", line 64, in execute
+    return self.cursor.execute(sql, params)
+  File "/Users/vinod/workspace/djenv/lib/python2.7/site-packages/django/db/utils.py", line 97, in __exit__
+    six.reraise(dj_exc_type, dj_exc_value, traceback)
+  File "/Users/vinod/workspace/djenv/lib/python2.7/site-packages/django/db/backends/utils.py", line 64, in execute
+    return self.cursor.execute(sql, params)
+  File "/Users/vinod/workspace/djenv/lib/python2.7/site-packages/django/db/backends/mysql/base.py", line 124, in execute
+    return self.cursor.execute(query, args)
+  File "/Users/vinod/workspace/djenv/lib/python2.7/site-packages/MySQLdb/cursors.py", line 205, in execute
+    self.errorhandler(self, exc, value)
+  File "/Users/vinod/workspace/djenv/lib/python2.7/site-packages/MySQLdb/connections.py", line 36, in defaulterrorhandler
+    raise errorclass, errorvalue
+IntegrityError: (1452, 'Cannot add or update a child row: a foreign key constraint fails (`textnook_app`.`books_book`, CONSTRAINT `books_book_category_id_d9784c533c2c0d6_fk_categories_category_id` FOREIGN KEY (`category_id`) REFERENCES `categories_category` (`id`))')
+[27/Jul/2015 11:41:33] INFO [gunicorn.error:222] Worker reloading: /Users/vinod/workspace/textnookmarketplace/app/sellers/views.py modified
+[27/Jul/2015 11:41:33] INFO [gunicorn.error:222] Worker reloading: /Users/vinod/workspace/textnookmarketplace/app/sellers/views.py modified
+[27/Jul/2015 11:41:33] INFO [gunicorn.error:222] Worker exiting (pid: 1305)
+[27/Jul/2015 11:41:33] INFO [gunicorn.error:222] Worker exiting (pid: 1305)
+[27/Jul/2015 11:41:36] ERROR [django.request:256] Internal Server Error: /api/sellers/books/
+Traceback (most recent call last):
+  File "/Users/vinod/workspace/djenv/lib/python2.7/site-packages/django/core/handlers/base.py", line 132, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/vinod/workspace/djenv/lib/python2.7/site-packages/django/views/decorators/csrf.py", line 58, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/Users/vinod/workspace/djenv/lib/python2.7/site-packages/django/views/generic/base.py", line 71, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/Users/vinod/workspace/djenv/lib/python2.7/site-packages/rest_framework/views.py", line 452, in dispatch
+    response = self.handle_exception(exc)
+  File "/Users/vinod/workspace/djenv/lib/python2.7/site-packages/rest_framework/views.py", line 449, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/Users/vinod/workspace/djenv/lib/python2.7/site-packages/rest_framework/decorators.py", line 50, in handler
+    return func(*args, **kwargs)
+  File "/Users/vinod/workspace/textnookmarketplace/app/sellers/views.py", line 275, in add_books
+    category_id=int(data['category_id']))
+  File "/Users/vinod/workspace/djenv/lib/python2.7/site-packages/django/db/models/manager.py", line 127, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/Users/vinod/workspace/djenv/lib/python2.7/site-packages/django/db/models/query.py", line 422, in update_or_create
+    obj, created = self._create_object_from_params(lookup, params)
+  File "/Users/vinod/workspace/djenv/lib/python2.7/site-packages/django/db/models/query.py", line 447, in _create_object_from_params
+    six.reraise(*exc_info)
+  File "/Users/vinod/workspace/djenv/lib/python2.7/site-packages/django/db/models/query.py", line 439, in _create_object_from_params
+    obj = self.create(**params)
+  File "/Users/vinod/workspace/djenv/lib/python2.7/site-packages/django/db/models/query.py", line 348, in create
+    obj.save(force_insert=True, using=self.db)
+  File "/Users/vinod/workspace/djenv/lib/python2.7/site-packages/django/db/models/base.py", line 710, in save
+    force_update=force_update, update_fields=update_fields)
+  File "/Users/vinod/workspace/djenv/lib/python2.7/site-packages/django/db/models/base.py", line 738, in save_base
+    updated = self._save_table(raw, cls, force_insert, force_update, using, update_fields)
+  File "/Users/vinod/workspace/djenv/lib/python2.7/site-packages/django/db/models/base.py", line 822, in _save_table
+    result = self._do_insert(cls._base_manager, using, fields, update_pk, raw)
+  File "/Users/vinod/workspace/djenv/lib/python2.7/site-packages/django/db/models/base.py", line 861, in _do_insert
+    using=using, raw=raw)
+  File "/Users/vinod/workspace/djenv/lib/python2.7/site-packages/django/db/models/manager.py", line 127, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/Users/vinod/workspace/djenv/lib/python2.7/site-packages/django/db/models/query.py", line 920, in _insert
+    return query.get_compiler(using=using).execute_sql(return_id)
+  File "/Users/vinod/workspace/djenv/lib/python2.7/site-packages/django/db/models/sql/compiler.py", line 963, in execute_sql
+    cursor.execute(sql, params)
+  File "/Users/vinod/workspace/djenv/lib/python2.7/site-packages/django/db/backends/utils.py", line 79, in execute
+    return super(CursorDebugWrapper, self).execute(sql, params)
+  File "/Users/vinod/workspace/djenv/lib/python2.7/site-packages/django/db/backends/utils.py", line 64, in execute
+    return self.cursor.execute(sql, params)
+  File "/Users/vinod/workspace/djenv/lib/python2.7/site-packages/django/db/utils.py", line 97, in __exit__
+    six.reraise(dj_exc_type, dj_exc_value, traceback)
+  File "/Users/vinod/workspace/djenv/lib/python2.7/site-packages/django/db/backends/utils.py", line 64, in execute
+    return self.cursor.execute(sql, params)
+  File "/Users/vinod/workspace/djenv/lib/python2.7/site-packages/django/db/backends/mysql/base.py", line 124, in execute
+    return self.cursor.execute(query, args)
+  File "/Users/vinod/workspace/djenv/lib/python2.7/site-packages/MySQLdb/cursors.py", line 205, in execute
+    self.errorhandler(self, exc, value)
+  File "/Users/vinod/workspace/djenv/lib/python2.7/site-packages/MySQLdb/connections.py", line 36, in defaulterrorhandler
+    raise errorclass, errorvalue
+IntegrityError: (1452, 'Cannot add or update a child row: a foreign key constraint fails (`textnook_app`.`books_book`, CONSTRAINT `books_book_category_id_d9784c533c2c0d6_fk_categories_category_id` FOREIGN KEY (`category_id`) REFERENCES `categories_category` (`id`))')
+[27/Jul/2015 11:42:42] ERROR [django.request:256] Internal Server Error: /api/sellers/books/
+Traceback (most recent call last):
+  File "/Users/vinod/workspace/djenv/lib/python2.7/site-packages/django/core/handlers/base.py", line 132, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/vinod/workspace/djenv/lib/python2.7/site-packages/django/views/decorators/csrf.py", line 58, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/Users/vinod/workspace/djenv/lib/python2.7/site-packages/django/views/generic/base.py", line 71, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/Users/vinod/workspace/djenv/lib/python2.7/site-packages/rest_framework/views.py", line 452, in dispatch
+    response = self.handle_exception(exc)
+  File "/Users/vinod/workspace/djenv/lib/python2.7/site-packages/rest_framework/views.py", line 449, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/Users/vinod/workspace/djenv/lib/python2.7/site-packages/rest_framework/decorators.py", line 50, in handler
+    return func(*args, **kwargs)
+  File "/Users/vinod/workspace/textnookmarketplace/app/sellers/views.py", line 275, in add_books
+    category_id=int(data['category_id']))
+  File "/Users/vinod/workspace/djenv/lib/python2.7/site-packages/django/db/models/manager.py", line 127, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/Users/vinod/workspace/djenv/lib/python2.7/site-packages/django/db/models/query.py", line 422, in update_or_create
+    obj, created = self._create_object_from_params(lookup, params)
+  File "/Users/vinod/workspace/djenv/lib/python2.7/site-packages/django/db/models/query.py", line 447, in _create_object_from_params
+    six.reraise(*exc_info)
+  File "/Users/vinod/workspace/djenv/lib/python2.7/site-packages/django/db/models/query.py", line 439, in _create_object_from_params
+    obj = self.create(**params)
+  File "/Users/vinod/workspace/djenv/lib/python2.7/site-packages/django/db/models/query.py", line 348, in create
+    obj.save(force_insert=True, using=self.db)
+  File "/Users/vinod/workspace/djenv/lib/python2.7/site-packages/django/db/models/base.py", line 710, in save
+    force_update=force_update, update_fields=update_fields)
+  File "/Users/vinod/workspace/djenv/lib/python2.7/site-packages/django/db/models/base.py", line 738, in save_base
+    updated = self._save_table(raw, cls, force_insert, force_update, using, update_fields)
+  File "/Users/vinod/workspace/djenv/lib/python2.7/site-packages/django/db/models/base.py", line 822, in _save_table
+    result = self._do_insert(cls._base_manager, using, fields, update_pk, raw)
+  File "/Users/vinod/workspace/djenv/lib/python2.7/site-packages/django/db/models/base.py", line 861, in _do_insert
+    using=using, raw=raw)
+  File "/Users/vinod/workspace/djenv/lib/python2.7/site-packages/django/db/models/manager.py", line 127, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/Users/vinod/workspace/djenv/lib/python2.7/site-packages/django/db/models/query.py", line 920, in _insert
+    return query.get_compiler(using=using).execute_sql(return_id)
+  File "/Users/vinod/workspace/djenv/lib/python2.7/site-packages/django/db/models/sql/compiler.py", line 963, in execute_sql
+    cursor.execute(sql, params)
+  File "/Users/vinod/workspace/djenv/lib/python2.7/site-packages/django/db/backends/utils.py", line 79, in execute
+    return super(CursorDebugWrapper, self).execute(sql, params)
+  File "/Users/vinod/workspace/djenv/lib/python2.7/site-packages/django/db/backends/utils.py", line 64, in execute
+    return self.cursor.execute(sql, params)
+  File "/Users/vinod/workspace/djenv/lib/python2.7/site-packages/django/db/utils.py", line 97, in __exit__
+    six.reraise(dj_exc_type, dj_exc_value, traceback)
+  File "/Users/vinod/workspace/djenv/lib/python2.7/site-packages/django/db/backends/utils.py", line 64, in execute
+    return self.cursor.execute(sql, params)
+  File "/Users/vinod/workspace/djenv/lib/python2.7/site-packages/django/db/backends/mysql/base.py", line 124, in execute
+    return self.cursor.execute(query, args)
+  File "/Users/vinod/workspace/djenv/lib/python2.7/site-packages/MySQLdb/cursors.py", line 205, in execute
+    self.errorhandler(self, exc, value)
+  File "/Users/vinod/workspace/djenv/lib/python2.7/site-packages/MySQLdb/connections.py", line 36, in defaulterrorhandler
+    raise errorclass, errorvalue
+IntegrityError: (1452, 'Cannot add or update a child row: a foreign key constraint fails (`textnook_app`.`books_book`, CONSTRAINT `books_book_category_id_d9784c533c2c0d6_fk_categories_category_id` FOREIGN KEY (`category_id`) REFERENCES `categories_category` (`id`))')
+[27/Jul/2015 11:43:17] ERROR [django.request:256] Internal Server Error: /api/sellers/books/
+Traceback (most recent call last):
+  File "/Users/vinod/workspace/djenv/lib/python2.7/site-packages/django/core/handlers/base.py", line 132, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/vinod/workspace/djenv/lib/python2.7/site-packages/django/views/decorators/csrf.py", line 58, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/Users/vinod/workspace/djenv/lib/python2.7/site-packages/django/views/generic/base.py", line 71, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/Users/vinod/workspace/djenv/lib/python2.7/site-packages/rest_framework/views.py", line 452, in dispatch
+    response = self.handle_exception(exc)
+  File "/Users/vinod/workspace/djenv/lib/python2.7/site-packages/rest_framework/views.py", line 449, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/Users/vinod/workspace/djenv/lib/python2.7/site-packages/rest_framework/decorators.py", line 50, in handler
+    return func(*args, **kwargs)
+  File "/Users/vinod/workspace/textnookmarketplace/app/sellers/views.py", line 310, in add_books
+    authors = re.split(",", data['authors'].decode('utf-8'))
+AttributeError: 'list' object has no attribute 'decode'
+[27/Jul/2015 12:19:12] INFO [gunicorn.error:222] Worker reloading: /Users/vinod/workspace/textnookmarketplace/app/sellers/views.py modified
+[27/Jul/2015 12:19:12] INFO [gunicorn.error:222] Worker reloading: /Users/vinod/workspace/textnookmarketplace/app/sellers/views.py modified
+[27/Jul/2015 12:19:12] INFO [gunicorn.error:222] Worker exiting (pid: 1333)
+[27/Jul/2015 12:19:12] INFO [gunicorn.error:222] Worker exiting (pid: 1333)
+[27/Jul/2015 13:40:05] WARNING [django.request:170] Not Found: /favicon.ico
+[27/Jul/2015 13:40:05] WARNING [django.request:170] Not Found: /favicon.ico
+[27/Jul/2015 13:59:42] INFO [gunicorn.error:222] Worker reloading: /Users/vinod/workspace/textnookmarketplace/app/accounts/views.py modified
+[27/Jul/2015 13:59:42] INFO [gunicorn.error:222] Worker reloading: /Users/vinod/workspace/textnookmarketplace/app/accounts/views.py modified
+[27/Jul/2015 13:59:42] INFO [gunicorn.error:222] Worker exiting (pid: 1386)
+[27/Jul/2015 13:59:42] INFO [gunicorn.error:222] Worker exiting (pid: 1386)
+[27/Jul/2015 14:12:58] INFO [gunicorn.error:222] Worker exiting (pid: 1688)
+[27/Jul/2015 14:12:58] INFO [gunicorn.error:222] Worker exiting (pid: 1688)
+[27/Jul/2015 15:48:01] INFO [gunicorn.error:222] Worker exiting (pid: 1768)
+[27/Jul/2015 15:48:01] INFO [gunicorn.error:222] Worker exiting (pid: 1768)
+[27/Jul/2015 16:13:37] INFO [gunicorn.error:222] Worker exiting (pid: 1813)
+[27/Jul/2015 16:13:37] INFO [gunicorn.error:222] Worker exiting (pid: 1813)
+[27/Jul/2015 21:34:45] INFO [gunicorn.error:222] Worker exiting (pid: 1892)
+[27/Jul/2015 21:34:45] INFO [gunicorn.error:222] Worker exiting (pid: 1892)
+[28/Jul/2015 04:26:04] INFO [gunicorn.error:222] Worker exiting (pid: 1993)
+[28/Jul/2015 04:26:04] INFO [gunicorn.error:222] Worker exiting (pid: 1993)
+[28/Jul/2015 05:38:16] INFO [gunicorn.error:222] Worker exiting (pid: 2122)
+[28/Jul/2015 05:38:16] INFO [gunicorn.error:222] Worker exiting (pid: 2122)
+[28/Jul/2015 05:50:30] INFO [gunicorn.error:222] Worker exiting (pid: 2149)
+[28/Jul/2015 05:50:30] INFO [gunicorn.error:222] Worker exiting (pid: 2149)
+[28/Jul/2015 06:20:26] ERROR [django.request:256] Internal Server Error: /sellers/dashboard/
+Traceback (most recent call last):
+  File "/Users/vinod/workspace/djenv/lib/python2.7/site-packages/django/core/handlers/base.py", line 119, in get_response
+    resolver_match = resolver.resolve(request.path_info)
+  File "/Users/vinod/workspace/djenv/lib/python2.7/site-packages/django/core/urlresolvers.py", line 368, in resolve
+    sub_match = pattern.resolve(new_path)
+  File "/Users/vinod/workspace/djenv/lib/python2.7/site-packages/django/core/urlresolvers.py", line 368, in resolve
+    sub_match = pattern.resolve(new_path)
+  File "/Users/vinod/workspace/djenv/lib/python2.7/site-packages/django/core/urlresolvers.py", line 240, in resolve
+    return ResolverMatch(self.callback, args, kwargs, self.name)
+  File "/Users/vinod/workspace/djenv/lib/python2.7/site-packages/django/core/urlresolvers.py", line 247, in callback
+    self._callback = get_callable(self._callback_str)
+  File "/Users/vinod/workspace/djenv/lib/python2.7/site-packages/django/utils/lru_cache.py", line 101, in wrapper
+    result = user_function(*args, **kwds)
+  File "/Users/vinod/workspace/djenv/lib/python2.7/site-packages/django/core/urlresolvers.py", line 106, in get_callable
+    mod = import_module(mod_name)
+  File "/usr/local/Cellar/python/2.7.9/Frameworks/Python.framework/Versions/2.7/lib/python2.7/importlib/__init__.py", line 37, in import_module
+    __import__(name)
+  File "/Users/vinod/workspace/textnookmarketplace/app/sellers/views.py", line 17, in <module>
+    from app.sellers.serializers import SellerSerializer
+  File "/Users/vinod/workspace/textnookmarketplace/app/sellers/serializers.py", line 68
+    +               msg.send()
+                             ^
+IndentationError: unexpected unindent
+[28/Jul/2015 06:33:41] ERROR [django.request:256] Internal Server Error: /
+Traceback (most recent call last):
+  File "/Users/vinod/workspace/djenv/lib/python2.7/site-packages/django/core/handlers/base.py", line 132, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/vinod/workspace/textnookmarketplace/app/home/views.py", line 13, in index
+    return render(request, 'home/index.html', {'context': context})
+  File "/Users/vinod/workspace/djenv/lib/python2.7/site-packages/django/shortcuts.py", line 67, in render
+    template_name, context, request=request, using=using)
+  File "/Users/vinod/workspace/djenv/lib/python2.7/site-packages/django/template/loader.py", line 99, in render_to_string
+    return template.render(context, request)
+  File "/Users/vinod/workspace/djenv/lib/python2.7/site-packages/django/template/backends/django.py", line 74, in render
+    return self.template.render(context)
+  File "/Users/vinod/workspace/djenv/lib/python2.7/site-packages/django/template/base.py", line 209, in render
+    return self._render(context)
+  File "/Users/vinod/workspace/djenv/lib/python2.7/site-packages/django/template/base.py", line 201, in _render
+    return self.nodelist.render(context)
+  File "/Users/vinod/workspace/djenv/lib/python2.7/site-packages/django/template/base.py", line 903, in render
+    bit = self.render_node(node, context)
+  File "/Users/vinod/workspace/djenv/lib/python2.7/site-packages/django/template/debug.py", line 79, in render_node
+    return node.render(context)
+  File "/Users/vinod/workspace/djenv/lib/python2.7/site-packages/django/template/loader_tags.py", line 159, in render
+    return template.render(context)
+  File "/Users/vinod/workspace/djenv/lib/python2.7/site-packages/django/template/base.py", line 211, in render
+    return self._render(context)
+  File "/Users/vinod/workspace/djenv/lib/python2.7/site-packages/django/template/base.py", line 201, in _render
+    return self.nodelist.render(context)
+  File "/Users/vinod/workspace/djenv/lib/python2.7/site-packages/django/template/base.py", line 903, in render
+    bit = self.render_node(node, context)
+  File "/Users/vinod/workspace/djenv/lib/python2.7/site-packages/django/template/debug.py", line 79, in render_node
+    return node.render(context)
+  File "/Users/vinod/workspace/djenv/lib/python2.7/site-packages/django/template/loader_tags.py", line 159, in render
+    return template.render(context)
+  File "/Users/vinod/workspace/djenv/lib/python2.7/site-packages/django/template/base.py", line 211, in render
+    return self._render(context)
+  File "/Users/vinod/workspace/djenv/lib/python2.7/site-packages/django/template/base.py", line 201, in _render
+    return self.nodelist.render(context)
+  File "/Users/vinod/workspace/djenv/lib/python2.7/site-packages/django/template/base.py", line 903, in render
+    bit = self.render_node(node, context)
+  File "/Users/vinod/workspace/djenv/lib/python2.7/site-packages/django/template/debug.py", line 79, in render_node
+    return node.render(context)
+  File "/Users/vinod/workspace/djenv/lib/python2.7/site-packages/django/template/defaulttags.py", line 493, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+  File "/Users/vinod/workspace/djenv/lib/python2.7/site-packages/django/core/urlresolvers.py", line 550, in reverse
+    app_list = resolver.app_dict[ns]
+  File "/Users/vinod/workspace/djenv/lib/python2.7/site-packages/django/core/urlresolvers.py", line 352, in app_dict
+    self._populate()
+  File "/Users/vinod/workspace/djenv/lib/python2.7/site-packages/django/core/urlresolvers.py", line 308, in _populate
+    for name in pattern.reverse_dict:
+  File "/Users/vinod/workspace/djenv/lib/python2.7/site-packages/django/core/urlresolvers.py", line 338, in reverse_dict
+    self._populate()
+  File "/Users/vinod/workspace/djenv/lib/python2.7/site-packages/django/core/urlresolvers.py", line 326, in _populate
+    lookups.appendlist(pattern.callback, (bits, p_pattern, pattern.default_args))
+  File "/Users/vinod/workspace/djenv/lib/python2.7/site-packages/django/core/urlresolvers.py", line 247, in callback
+    self._callback = get_callable(self._callback_str)
+  File "/Users/vinod/workspace/djenv/lib/python2.7/site-packages/django/utils/lru_cache.py", line 101, in wrapper
+    result = user_function(*args, **kwds)
+  File "/Users/vinod/workspace/djenv/lib/python2.7/site-packages/django/core/urlresolvers.py", line 106, in get_callable
+    mod = import_module(mod_name)
+  File "/usr/local/Cellar/python/2.7.9/Frameworks/Python.framework/Versions/2.7/lib/python2.7/importlib/__init__.py", line 37, in import_module
+    __import__(name)
+  File "/Users/vinod/workspace/textnookmarketplace/app/order_sellers/views.py", line 13, in <module>
+    from app.sellers.serializers import SellerSerializer
+  File "/Users/vinod/workspace/textnookmarketplace/app/sellers/serializers.py", line 68
+    +               msg.send()
+                             ^
+IndentationError: unexpected unindent
+[28/Jul/2015 06:33:42] WARNING [django.request:170] Not Found: /favicon.ico
+[28/Jul/2015 06:33:42] WARNING [django.request:170] Not Found: /favicon.ico
+[28/Jul/2015 06:34:18] ERROR [django.request:256] Internal Server Error: /
+Traceback (most recent call last):
+  File "/Users/vinod/workspace/djenv/lib/python2.7/site-packages/django/core/handlers/base.py", line 132, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/vinod/workspace/textnookmarketplace/app/home/views.py", line 13, in index
+    return render(request, 'home/index.html', {'context': context})
+  File "/Users/vinod/workspace/djenv/lib/python2.7/site-packages/django/shortcuts.py", line 67, in render
+    template_name, context, request=request, using=using)
+  File "/Users/vinod/workspace/djenv/lib/python2.7/site-packages/django/template/loader.py", line 99, in render_to_string
+    return template.render(context, request)
+  File "/Users/vinod/workspace/djenv/lib/python2.7/site-packages/django/template/backends/django.py", line 74, in render
+    return self.template.render(context)
+  File "/Users/vinod/workspace/djenv/lib/python2.7/site-packages/django/template/base.py", line 209, in render
+    return self._render(context)
+  File "/Users/vinod/workspace/djenv/lib/python2.7/site-packages/django/template/base.py", line 201, in _render
+    return self.nodelist.render(context)
+  File "/Users/vinod/workspace/djenv/lib/python2.7/site-packages/django/template/base.py", line 903, in render
+    bit = self.render_node(node, context)
+  File "/Users/vinod/workspace/djenv/lib/python2.7/site-packages/django/template/debug.py", line 79, in render_node
+    return node.render(context)
+  File "/Users/vinod/workspace/djenv/lib/python2.7/site-packages/django/template/loader_tags.py", line 159, in render
+    return template.render(context)
+  File "/Users/vinod/workspace/djenv/lib/python2.7/site-packages/django/template/base.py", line 211, in render
+    return self._render(context)
+  File "/Users/vinod/workspace/djenv/lib/python2.7/site-packages/django/template/base.py", line 201, in _render
+    return self.nodelist.render(context)
+  File "/Users/vinod/workspace/djenv/lib/python2.7/site-packages/django/template/base.py", line 903, in render
+    bit = self.render_node(node, context)
+  File "/Users/vinod/workspace/djenv/lib/python2.7/site-packages/django/template/debug.py", line 79, in render_node
+    return node.render(context)
+  File "/Users/vinod/workspace/djenv/lib/python2.7/site-packages/django/template/loader_tags.py", line 159, in render
+    return template.render(context)
+  File "/Users/vinod/workspace/djenv/lib/python2.7/site-packages/django/template/base.py", line 211, in render
+    return self._render(context)
+  File "/Users/vinod/workspace/djenv/lib/python2.7/site-packages/django/template/base.py", line 201, in _render
+    return self.nodelist.render(context)
+  File "/Users/vinod/workspace/djenv/lib/python2.7/site-packages/django/template/base.py", line 903, in render
+    bit = self.render_node(node, context)
+  File "/Users/vinod/workspace/djenv/lib/python2.7/site-packages/django/template/debug.py", line 79, in render_node
+    return node.render(context)
+  File "/Users/vinod/workspace/djenv/lib/python2.7/site-packages/django/template/defaulttags.py", line 493, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+  File "/Users/vinod/workspace/djenv/lib/python2.7/site-packages/django/core/urlresolvers.py", line 550, in reverse
+    app_list = resolver.app_dict[ns]
+  File "/Users/vinod/workspace/djenv/lib/python2.7/site-packages/django/core/urlresolvers.py", line 352, in app_dict
+    self._populate()
+  File "/Users/vinod/workspace/djenv/lib/python2.7/site-packages/django/core/urlresolvers.py", line 308, in _populate
+    for name in pattern.reverse_dict:
+  File "/Users/vinod/workspace/djenv/lib/python2.7/site-packages/django/core/urlresolvers.py", line 338, in reverse_dict
+    self._populate()
+  File "/Users/vinod/workspace/djenv/lib/python2.7/site-packages/django/core/urlresolvers.py", line 326, in _populate
+    lookups.appendlist(pattern.callback, (bits, p_pattern, pattern.default_args))
+  File "/Users/vinod/workspace/djenv/lib/python2.7/site-packages/django/core/urlresolvers.py", line 247, in callback
+    self._callback = get_callable(self._callback_str)
+  File "/Users/vinod/workspace/djenv/lib/python2.7/site-packages/django/utils/lru_cache.py", line 101, in wrapper
+    result = user_function(*args, **kwds)
+  File "/Users/vinod/workspace/djenv/lib/python2.7/site-packages/django/core/urlresolvers.py", line 106, in get_callable
+    mod = import_module(mod_name)
+  File "/usr/local/Cellar/python/2.7.9/Frameworks/Python.framework/Versions/2.7/lib/python2.7/importlib/__init__.py", line 37, in import_module
+    __import__(name)
+  File "/Users/vinod/workspace/textnookmarketplace/app/order_sellers/views.py", line 13, in <module>
+    from app.sellers.serializers import SellerSerializer
+  File "/Users/vinod/workspace/textnookmarketplace/app/sellers/serializers.py", line 68
+    +               msg.send()
+                             ^
+IndentationError: unexpected unindent
+[28/Jul/2015 07:05:59] INFO [gunicorn.error:222] Worker reloading: /Users/vinod/workspace/textnookmarketplace/app/accounts/views.py modified
+[28/Jul/2015 07:05:59] INFO [gunicorn.error:222] Worker reloading: /Users/vinod/workspace/textnookmarketplace/app/accounts/views.py modified
+[28/Jul/2015 07:05:59] INFO [gunicorn.error:222] Worker exiting (pid: 575)
+[28/Jul/2015 07:05:59] INFO [gunicorn.error:222] Worker exiting (pid: 575)
+[28/Jul/2015 07:25:35] INFO [gunicorn.error:222] Worker exiting (pid: 653)
+[28/Jul/2015 07:25:35] INFO [gunicorn.error:222] Worker exiting (pid: 653)
+[28/Jul/2015 07:40:47] INFO [gunicorn.error:222] Worker exiting (pid: 666)
+[28/Jul/2015 07:40:47] INFO [gunicorn.error:222] Worker exiting (pid: 666)
+[28/Jul/2015 07:49:35] INFO [app.books.views:245] {'publishers': u'AEW Press', 'sub_category_id': 1L, 'description': u'N/A', 'title': u'Bioinformatics: The Machine Learning Approach', 'price': 425.0, 'isbn_13': u'9788176710367', 'isbn_10': u'8176710369', 'image_url': u'https://s3-ap-southeast-1.amazonaws.com/staging-textnook/bookimages/9788176710367.png', 'authors': u'Baldi', 'category_id': 1L, 'pages': None}
+[28/Jul/2015 07:50:29] INFO [gunicorn.error:222] Worker exiting (pid: 751)
+[28/Jul/2015 07:50:29] INFO [gunicorn.error:222] Worker exiting (pid: 751)
+[28/Jul/2015 07:50:35] INFO [requests.packages.urllib3.connectionpool:203] Starting new HTTP connection (1): isbndb.com
+[28/Jul/2015 07:50:37] DEBUG [requests.packages.urllib3.connectionpool:383] "GET /api/v2/json/9YGR2AOP/book/324234234 HTTP/1.1" 200 46
+[28/Jul/2015 07:50:37] INFO [app.books.views:245] None
+[28/Jul/2015 07:52:45] INFO [app.orders.helpers:33] mrp : 425.0, quantity : 9
+[28/Jul/2015 07:52:45] INFO [app.orders.helpers:100] Order object
+[28/Jul/2015 07:54:12] INFO [gunicorn.error:222] Worker reloading: /Users/vinod/workspace/textnookmarketplace/app/sellers/views.py modified
+[28/Jul/2015 07:54:12] INFO [gunicorn.error:222] Worker reloading: /Users/vinod/workspace/textnookmarketplace/app/sellers/views.py modified
+[28/Jul/2015 07:54:12] INFO [gunicorn.error:222] Worker exiting (pid: 767)
+[28/Jul/2015 07:54:12] INFO [gunicorn.error:222] Worker exiting (pid: 767)
+[28/Jul/2015 07:54:15] INFO [app.orders.helpers:33] mrp : 425.0, quantity : 9
+[28/Jul/2015 07:54:15] INFO [app.orders.helpers:100] Order object
+[28/Jul/2015 08:42:29] INFO [gunicorn.error:222] Worker exiting (pid: 786)
+[28/Jul/2015 08:42:29] INFO [gunicorn.error:222] Worker exiting (pid: 786)
+[28/Jul/2015 08:46:15] INFO [requests.packages.urllib3.connectionpool:203] Starting new HTTP connection (1): isbndb.com
+[28/Jul/2015 08:46:30] ERROR [django.request:256] Internal Server Error: /api/books/search/
+Traceback (most recent call last):
+  File "/Users/vinod/workspace/djenv/lib/python2.7/site-packages/django/core/handlers/base.py", line 132, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/vinod/workspace/djenv/lib/python2.7/site-packages/django/views/decorators/csrf.py", line 58, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/Users/vinod/workspace/djenv/lib/python2.7/site-packages/django/views/generic/base.py", line 71, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/Users/vinod/workspace/djenv/lib/python2.7/site-packages/rest_framework/views.py", line 452, in dispatch
+    response = self.handle_exception(exc)
+  File "/Users/vinod/workspace/djenv/lib/python2.7/site-packages/rest_framework/views.py", line 449, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/Users/vinod/workspace/djenv/lib/python2.7/site-packages/rest_framework/decorators.py", line 50, in handler
+    return func(*args, **kwargs)
+  File "/Users/vinod/workspace/djenv/lib/python2.7/site-packages/django/contrib/auth/decorators.py", line 22, in _wrapped_view
+    return view_func(request, *args, **kwargs)
+  File "/Users/vinod/workspace/textnookmarketplace/app/books/views.py", line 244, in get_books_by_isbn
+    book = get_books_by_isbn_and_return_details(keyword)
+  File "/Users/vinod/workspace/textnookmarketplace/app/books/helpers.py", line 184, in get_books_by_isbn_and_return_details
+    headers={"content-type": "application/json"})
+  File "/Users/vinod/workspace/djenv/lib/python2.7/site-packages/requests/api.py", line 68, in get
+    return request('get', url, **kwargs)
+  File "/Users/vinod/workspace/djenv/lib/python2.7/site-packages/requests/api.py", line 50, in request
+    response = session.request(method=method, url=url, **kwargs)
+  File "/Users/vinod/workspace/djenv/lib/python2.7/site-packages/requests/sessions.py", line 464, in request
+    resp = self.send(prep, **send_kwargs)
+  File "/Users/vinod/workspace/djenv/lib/python2.7/site-packages/requests/sessions.py", line 576, in send
+    r = adapter.send(request, **kwargs)
+  File "/Users/vinod/workspace/djenv/lib/python2.7/site-packages/requests/adapters.py", line 415, in send
+    raise ConnectionError(err, request=request)
+ConnectionError: ('Connection aborted.', BadStatusLine("''",))
+[28/Jul/2015 08:46:30] INFO [requests.packages.urllib3.connectionpool:203] Starting new HTTP connection (1): isbndb.com
+[28/Jul/2015 08:46:43] DEBUG [requests.packages.urllib3.connectionpool:383] "GET /api/v2/json/9YGR2AOP/book/4234234 HTTP/1.1" 200 44
+[28/Jul/2015 08:46:43] INFO [app.books.views:245] None
+[28/Jul/2015 08:47:13] INFO [gunicorn.error:222] Worker exiting (pid: 792)
+[28/Jul/2015 08:47:13] INFO [gunicorn.error:222] Worker exiting (pid: 792)
+[28/Jul/2015 08:48:55] INFO [app.orders.helpers:33] mrp : 425.0, quantity : 9
+[28/Jul/2015 08:48:55] INFO [app.orders.helpers:100] Order object
+[28/Jul/2015 08:49:18] WARNING [django.request:170] Not Found: /favicon.ico
+[28/Jul/2015 08:49:45] INFO [gunicorn.error:222] Worker exiting (pid: 810)
+[28/Jul/2015 08:49:45] INFO [gunicorn.error:222] Worker exiting (pid: 810)
+[28/Jul/2015 08:50:51] INFO [gunicorn.error:222] Worker reloading: /Users/vinod/workspace/textnookmarketplace/app/sellers/views.py modified
+[28/Jul/2015 08:50:51] INFO [gunicorn.error:222] Worker reloading: /Users/vinod/workspace/textnookmarketplace/app/sellers/views.py modified
+[28/Jul/2015 08:50:51] INFO [gunicorn.error:222] Worker exiting (pid: 833)
+[28/Jul/2015 08:50:51] INFO [gunicorn.error:222] Worker exiting (pid: 833)
+[28/Jul/2015 08:50:54] INFO [app.orders.helpers:33] mrp : 425.0, quantity : 9
+[28/Jul/2015 08:50:54] INFO [app.orders.helpers:100] Order object
+[28/Jul/2015 08:51:10] INFO [app.books.views:245] None
+[28/Jul/2015 08:51:11] INFO [app.books.views:245] None
+[28/Jul/2015 08:51:42] INFO [app.orders.helpers:33] mrp : 425.0, quantity : 9
+[28/Jul/2015 08:51:42] INFO [app.orders.helpers:100] Order object
+[28/Jul/2015 08:52:03] INFO [gunicorn.error:222] Worker exiting (pid: 849)
+[28/Jul/2015 08:52:03] INFO [gunicorn.error:222] Worker exiting (pid: 849)
+[04/Aug/2015 09:50:58] INFO [app.sellers.views:205] 0
+[04/Aug/2015 10:11:21] INFO [gunicorn.error:222] Worker exiting (pid: 5848)
+[04/Aug/2015 10:11:21] INFO [gunicorn.error:222] Worker exiting (pid: 5848)
+[04/Aug/2015 10:12:27] INFO [app.sellers.views:205] 0
+[04/Aug/2015 10:13:25] INFO [app.sellers.views:205] 0
+[04/Aug/2015 10:18:00] INFO [app.sellers.views:205] 0
+[04/Aug/2015 10:20:32] INFO [app.sellers.views:205] 0
+[04/Aug/2015 10:31:44] INFO [gunicorn.error:222] Worker exiting (pid: 5863)
+[04/Aug/2015 10:31:44] INFO [gunicorn.error:222] Worker exiting (pid: 5863)
+[04/Aug/2015 11:23:54] INFO [gunicorn.error:222] Worker exiting (pid: 5909)
+[04/Aug/2015 11:23:54] INFO [gunicorn.error:222] Worker exiting (pid: 5909)
+[04/Aug/2015 12:45:39] INFO [gunicorn.error:222] Worker exiting (pid: 6047)
+[04/Aug/2015 12:45:39] INFO [gunicorn.error:222] Worker exiting (pid: 6047)
+[04/Aug/2015 17:06:44] INFO [gunicorn.error:222] Worker exiting (pid: 6321)
+[04/Aug/2015 17:06:44] INFO [gunicorn.error:222] Worker exiting (pid: 6321)
+[04/Aug/2015 17:25:13] INFO [gunicorn.error:222] Worker exiting (pid: 6460)
+[04/Aug/2015 17:25:13] INFO [gunicorn.error:222] Worker exiting (pid: 6460)
+[04/Aug/2015 17:41:00] INFO [gunicorn.error:222] Worker exiting (pid: 6469)
+[04/Aug/2015 17:41:00] INFO [gunicorn.error:222] Worker exiting (pid: 6469)
+[04/Aug/2015 21:45:14] INFO [gunicorn.error:222] Worker exiting (pid: 6484)
+[04/Aug/2015 21:45:14] INFO [gunicorn.error:222] Worker exiting (pid: 6484)
+[05/Aug/2015 05:01:43] INFO [gunicorn.error:222] Worker exiting (pid: 6521)
+[05/Aug/2015 05:01:43] INFO [gunicorn.error:222] Worker exiting (pid: 6521)
+[05/Aug/2015 06:37:03] INFO [app.sellers.views:205] 0
+[05/Aug/2015 06:58:25] INFO [gunicorn.error:222] Worker reloading: /Users/vinod/workspace/textnookmarketplace/app/sellers/views.py modified
+[05/Aug/2015 06:58:25] INFO [gunicorn.error:222] Worker reloading: /Users/vinod/workspace/textnookmarketplace/app/sellers/views.py modified
+[05/Aug/2015 06:58:25] INFO [gunicorn.error:222] Worker exiting (pid: 6585)
+[05/Aug/2015 06:58:25] INFO [gunicorn.error:222] Worker exiting (pid: 6585)
+[05/Aug/2015 06:58:35] INFO [app.sellers.views:206] 0
+[05/Aug/2015 06:58:50] INFO [gunicorn.error:222] Worker reloading: /Users/vinod/workspace/textnookmarketplace/app/sellers/views.py modified
+[05/Aug/2015 06:58:50] INFO [gunicorn.error:222] Worker reloading: /Users/vinod/workspace/textnookmarketplace/app/sellers/views.py modified
+[05/Aug/2015 06:58:50] INFO [gunicorn.error:222] Worker exiting (pid: 6760)
+[05/Aug/2015 06:58:50] INFO [gunicorn.error:222] Worker exiting (pid: 6760)
+[05/Aug/2015 06:58:52] INFO [app.sellers.views:206] None
+[05/Aug/2015 06:59:26] INFO [gunicorn.error:222] Worker reloading: /Users/vinod/workspace/textnookmarketplace/app/sellers/views.py modified
+[05/Aug/2015 06:59:26] INFO [gunicorn.error:222] Worker reloading: /Users/vinod/workspace/textnookmarketplace/app/sellers/views.py modified
+[05/Aug/2015 06:59:26] INFO [gunicorn.error:222] Worker exiting (pid: 6765)
+[05/Aug/2015 06:59:26] INFO [gunicorn.error:222] Worker exiting (pid: 6765)
+[05/Aug/2015 06:59:29] INFO [app.sellers.views:206] None
+[05/Aug/2015 06:59:54] INFO [app.sellers.views:206] None
+[05/Aug/2015 07:01:45] INFO [gunicorn.error:222] Worker reloading: /Users/vinod/workspace/textnookmarketplace/app/sellers/views.py modified
+[05/Aug/2015 07:01:45] INFO [gunicorn.error:222] Worker reloading: /Users/vinod/workspace/textnookmarketplace/app/sellers/views.py modified
+[05/Aug/2015 07:01:45] INFO [gunicorn.error:222] Worker exiting (pid: 6774)
+[05/Aug/2015 07:01:45] INFO [gunicorn.error:222] Worker exiting (pid: 6774)
+[05/Aug/2015 07:01:49] INFO [app.sellers.views:206] None
+[05/Aug/2015 07:01:49] INFO [app.sellers.views:207] None
+[05/Aug/2015 07:02:06] INFO [gunicorn.error:222] Worker reloading: /Users/vinod/workspace/textnookmarketplace/app/sellers/views.py modified

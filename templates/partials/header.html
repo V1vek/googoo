@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>{{page_title}}</title>
+    <meta name="keywords" content="{{keywords}}" />
+    <meta name="description" content="{{description}}" />
+
+    <!-- Open Graph data -->
+
+    <meta property="og:title" content="title of page " />
+    <meta property="og:type" content="Website" />
+    <meta property="og:url" content="http://www.textnook.com/" />
+    <meta property="og:description" content="{{description}}" />
+    <meta property="og:site_name" content="TextNook" />
+    <meta property="fb:admins" content="100008157123170" />
+    <meta property="fb:page_id" content="744625135570074"/>
+
+    <!-- Schema.org markup for Google+ -->
+    <meta itemprop="name" content="{{page_title}}">
+
+    <meta itemprop="description" content="Buy, Sell or Rent your textbook at best price in India on TextNook.com">
+
+    <meta itemprop="image" content={% if book.image_url %}"{{book.image_url}}"{%else%}"http://www.textnook.com/static/main/images/logo.png"{%endif%}>
+
+<!-- Twitter Card data -->
+
+    <meta name="twitter:card" content="product">
+    <meta name="twitter:site" content="@TextNookBooks">
+    <meta name="twitter:creator" content="@TextNookBooks">
+    <meta name="twitter:title" content={{page_title}}>
+    <meta name="twitter:image" content={% if book.image_url %}"{{book.image_url}}"{%else%}"http://www.textnook.com/static/main/images/logo.png"{%endif%}>
+    <meta name="twitter:label1" content="Category">
+    <meta name="twitter:data1" content= {%if book.category.name %}"{{book.category.name}}"{%else%}"Engineering, Management, Mathematics and Sciences, Humanities"{%endif%}>
+
+
+	<link href="/midway/static/main/css/bootstrap.min.css" rel="stylesheet">
+	<link rel="stylesheet" href="/midway/static/main/css/style.css">
+	<link rel="stylesheet" href="/midway/static/main/css/fonts.css">
+	<link rel="stylesheet" href="/midway/static/main/css/font-awesome.min.css">
+	<link rel="stylesheet" href="/midway/static/main/css/bootstrap-slider.css">
+	<link rel="stylesheet" href="/midway/static/main/css/jquery-ui.min.css">
+	<link rel="stylesheet" href="/midway/static/main/css/jquery.mCustomScrollbar.css">
+	<script src="/midway/static/main/js/jquery-2.1.1.min.js"></script>
+	<script src="/midway/static/main/js/jquery-ui.min.js"></script>
+	<script src="/midway/static/main/js/underscore-min.js"></script>
+	<script src="/midway/static/main/js/bootstrap.min.js"></script>
+	<script src="/midway/static/main/js/screw-default.js"></script>
+	<script src="/midway/static/main/js/jquery.nicescroll.js"></script>
+	<script src="/midway/static/main/js/modernizr.custom.87232.js"></script>
+	<script src="/midway/static/main/js/bootstrap-slider.min.js"></script>
+    <script src="/midway/static/main/js/jquery.validate.min.js"></script>
+
+
+</head>
+<body>
+     {% include 'partials/authentication.html' %}
+
+	<section id="header">
+		<div class="header-green">
+			<div class="container">
+				<div class="header-top">
+					<div class="header-logo-white col-lg-2 col-md-2 col-sm-2 col-xs-4 pull-left">
+						<a href="/"><img src="/midway/static/main/images/logo-inner.png" alt="Textnook.com logo" class="img-responsive"></a>
+					</div>
+					<div class="header-user pull-right col-lg-3 col-md-3 col-sm-3 col-xs-5">
+                        {% if cart_count %}
+                        <a href="/orders/checkout/">
+						<li class="shop-cart"><img src="/midway/static/main/images/shopping.png" alt="Textnook.com shopping cart">
+							<div class="shopping-item"> {{cart_count }} </div>
+						</li>
+                        </a>
+                        {%else %}
+                        <li class="shop-cart"><img src="/midway/static/main/images/shopping.png" alt="Textnook.com shopping bag">
+							<div class="shopping-item"> 0 </div>
+						</li>
+                        {%endif %}
+                            {% if user and not user.is_anonymous %}
+                            <li class="dropdown fs">
+
+                               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                                <p>HI {{ user.first_name }}</p> <span class="caret caret-white"></span>
+                               </a>
+                                <ul class="dropdown-menu pull-right" role="menu">
+                                    <li><a href="/sellers/dashboard">My Dashboard</a></li>
+                                    <li><a href="/accounts/profile/">My ProfileS</a></li>
+                                    <li><a href="/wishlist/">My Wishlist</a></li>
+
+
+                                    <li><a href="{% url 'auth:logout' %}?next=/">Logout</a></li>
+                                </ul>
+                            </li>
+                                <li>
+                                    <div class="avatar-pic">
+                                    <a href=""><img
+                                                    src="{% if buyer.profile_image_url %}{{buyer.profile_image_url}}{% else %}/static/main/images/user-avatar.png{% endif %}" alt="Textnook.com Username"></a></li>
+                                    </div>
+
+                           {% else %}
+                             <a href="#" class="authentication authentication_inner" data-type="signin"><p>SIGN IN</p></a>
+                             <a href="#" class="authentication authentication_inner" data-type="signup"><p>SIGN UP</p></a>
+
+                           {% endif %}
+
+					</div>
+					
+					<div class="search-bar pull-left col-lg-offset-1 col-md-offset-1 col-sm-offset-1 col-lg-6 col-md-6 col-sm-6 col-xs-4">
+						<div>
+							<input class="filter_value" id="query" type="text" value="{%if query %} {{query}} {% endif %}" placeholder="Search" name=""><span id="search_books"><label class="srch1">Search</label><img class="srch" src="/midway/static/main/images/search-icon.png"></span>
+						</div>
+					</div>
+					<div class="clearfix"></div>
+				</div>
+			</div>
+		</div>
+		<div class="header-navigation">
+			<nav class="navbar navbar-default products-navbar">
+				<div class="container-fluid header-navigation-fluid">
+					<div class="navbar-header">
+						<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+							<span class="sr-only">Toggle navigation</span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+						</button>
+					</div>
+					<div class="filter navbar-toggle collapsed"><img src="/midway/static/main/images/filter.png" alt="" width="20" height="20"></i></div>
+
+					<div class="filter-search" id="Msearch">
+						<div role="tabpanel" class="tap-left pull-left">
+							<!-- Nav tabs -->
+							<ul class="nav nav-tabs" role="tablist">
+								{%if sub_categories%}
+								<li role="presentation">
+									<a href="#SubCategory" aria-controls="SubCategory" role="tab" data-toggle="tab">Sub Category</a>
+									<input type="hidden" value="{{request_params.category_id}}" class="m_filter" id="m_category_id">
+									<input type="hidden" class="m_filter" id="m_sub_category_id">
+								</li>
+								{%endif%}
+								<li role="presentation"><a href="#Binding" aria-controls="Language" role="tab" data-toggle="tab">Binding</a>
+									<input type="hidden" class="m_filter" id="m_binding_id">
+								</li>
+								<!-- <li role="presentation"><a href="#Author" aria-controls="Language" role="tab" data-toggle="tab">Author</a>
+									<input type="hidden" class="m_filter" id="m_author_id">
+								</li> -->
+								<li role="presentation"><a href="#Publisher" aria-controls="Publisher" role="tab" data-toggle="tab">Publisher</a>
+									<input type="hidden" class="m_filter" id="m_publisher_id">
+								</li>
+							</ul>
+						</div>
+						<div class="tap-right pull-left">
+							<div class="tab-content mobile-filters">
+								{%if sub_categories%}
+
+								<div role="tabpanel" class="tab-pane" id="SubCategory">
+									<div class="p-search-cat-list" tabindex="5000" style="overflow: hidden; outline: none;">
+										<ul class="p-search-var-items fa-ul">
+											{% for sub_category in sub_categories %}
+											<li><i class="radiodemo fa-circle fa-li fa"></i><span class="m_apply_filter" data-type="sub_category" data-is-selected="false" data-id="{{sub_category.id}}">{{ sub_category.name }}</span></li>
+											{% endfor %}															
+										</ul>
+									</div>
+								</div>
+								{%endif%}
+
+								<div role="tabpanel" class="tab-pane" id="Binding">
+									<div class="p-search-cat-list" tabindex="5000" style="overflow: hidden; outline: none;">
+										<ul class="p-search-var-items fa-ul">
+											<li><i class="radiodemo"></i><span class="m_apply_filter" data-is-selected="false" data-type="binding" data-id="1">Hard Cover</span></li>
+											<li><i class="radiodemo"></i><span class="m_apply_filter" data-is-selected="false" data-type="binding" data-id="2">Paper Back</span></li>
+													
+										</ul>
+									</div>
+								</div>
+								<!-- <div role="tabpanel" class="tab-pane" id="Author">
+									<div class="p-search-cat-list" tabindex="5000" style="overflow: hidden; outline: none;">
+										<ul class="p-search-var-items fa-ul">
+										{% for author in authors %}
+											<li><i class="radiodemo"></i><span class="m_apply_filter" data-type="author" data-is-selected="false" data-id="{{author.id}}">{{author.name}}</span></li>
+										{%endfor %}
+										</ul>
+									</div>
+								</div> -->
+								<div role="tabpanel" class="tab-pane" id="Publisher">
+									<div class="p-search-cat-list" tabindex="5000" style="overflow: hidden; outline: none;">
+										<ul class="p-search-var-items fa-ul">
+											{% for publisher in publishers %}
+											<li><i class="radiodemo"></i><span class="m_apply_filter" data-type="publisher" data-is-selected="false" data-id="{{publisher.id}}">{{publisher.name}}</span></li>
+											{%endfor %}
+										</ul>
+										</ul>
+									</div>
+								</div>						    
+							</div>
+						</div>
+						<div class="clearfix"></div>
+						<div class="apply"><a href="#">APPLY FILTER</a></div>
+						<div class="clearfix"></div>
+					</div>
+
+					<div class="collapse navbar-collapse " id="bs-example-navbar-collapse-1">
+						
+						<ul class="nav navbar-nav products-nav">
+							
+							{% for category in categories_all %}
+							<li class="dropdown">
+								<a href="/books/search/?category_id={{category.id}}" class="dropdown-toggle products-toogle" > {{category.name}}</a>
+							</li>
+							{% endfor %}
+					
+						</ul>
+
+					</div>
+				</div>
+			</nav>
+		</div>
+	</section>
+
+						

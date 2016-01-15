@@ -1,0 +1,405 @@
+     {% include 'partials/header.html' %}
+<section id="product-details">
+	<div class="container">
+		<div class="page-nav">
+			<a href="/">Home</a>  {% if category %}> <a href="/books/search/?category_id={{category.id}}">{{category.name}}</a>{%endif%}  {% if sub_category %} > <a href="/books/search/?sub_category_id={{sub_category.id}}">{{sub_category.name}}</a>{%endif%} > {{ book.title }}
+		</div>
+		<div class="book-detail">
+			<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 book-img pad-zero text-center">
+                 <img src="{% if book.image_url %}{{book.image_url}}{%else%}/static/main/images/no-book-image-big.png{%endif%}"  {% for author in display_book.authors.all %} alt="{{display_book.title}} by {{ author.name }}" {% endfor %}>
+			</div>
+			<div class="col-lg-8 col-md-8 col-sm-8 col-xs-8 col-lg-offset-1 col-md-offset-1 col-sm-offset-1 col-xs-offset-1 book-details pad-l">
+				<h3 class="book_id" id="book_id" data-id="{{ book.id }}">{{ display_book.title }}</h3>
+
+				<span class="book-author">{% for author in display_book.authors.all %}<a href="/books/search/?author_id={{author.id}}"> {{ author.name }}</a> | {% endfor %}</span>
+
+
+                <div class="book-rating">
+                        {% if rounded_rating %}
+						<ul class="list-unstyled user-rating">
+                            {% for i in "x"|rjust:rounded_rating %}
+							<li><img src="/midway/static/main/images/star-small.png" alt=""></li>
+                            {% endfor %}
+						</ul>
+                        {% endif%}
+					<span class="customer-views"><a href="">({{review_count}} Reviews)</a></span>
+
+                    <span  class="add_to_wishlist add-wishlist" data-book-id="{{display_book.id}}">  <i class="fa fa-heart"></i> Add To Wishlist</span>
+                </div>
+
+
+                {% if seller_count > 0 and display_seller %}
+				<div class="seller">
+					Seller : <a href="/accounts/profile/?id={{ display_seller.seller_book.seller.id }}">{{ display_seller.seller_book.seller.seller_name }}</a>
+				</div>
+                {% endif %}
+                <div class="price-rate">
+                    {% if display_book.price %}
+					<div class="{% if display_seller %}old-price-line{%else %}old-price{%endif%}">MRP : Rs {{ display_book.price }}</div>
+                    {% endif %}
+					{% if display_seller %}
+                        <div class="current-price">RS {{ display_seller.selling_price }}
+                            {% if display_offer %}<span class="offer">{{display_offer}}% off</span>{% endif %}</div>
+                    {% endif %}
+
+                    {% if seller_count > 1 %}
+					<div class="options"><a href="#">{{seller_count|add:"-1"}} more Options available</a></div>
+                    {% endif %}
+				</div>
+
+				<div class="book-information">
+					<ul class="info-left list-unstyled pull-left">
+						<li><span>Cover :</span>{%ifequal book.binding '1'%} Hard Cover {%else %} Paper Back{% endifequal%}</li>
+						<li><span>Edition and Year :</span> {{ book.edition_and_year }}</li>
+						<li><span>Publisher :</span> {%for publisher in book.publishers.all %} {{publisher.name}} | {%endfor%}</li>
+						
+						
+					</ul>
+					<ul class="info-right list-unstyled pull-left">
+						<li><span>Pages :</span> {{ book.pages }}</li>
+						<li><span>ISBN 10:</span> {{ book.isbn_10 }} </li>
+						<li><span>ISBN 13:</span> {{ book.isbn_13 }} </li>
+					</ul>
+					<div class="clearfix"></div>
+				</div>
+                {% if seller_count > 0 %}
+				<div class="cart">
+					<button class="btn addcart rent_now"  data-type="rent" data-seller-book-condition-id="{{display_seller.id}}" data-seller-id="{{display_seller.seller_book.seller.id}}"
+                            {%if display_seller.seller_book.seller.selling_option == '1' %}disabled="disabled"{%endif%} data-book-id="{{ book.id }}"
+                    >Rent Now</button>
+                    <button class="btn addcart buy buy_now"  data-type="buy"  data-seller-book-condition-id="{{display_seller.id}}" data-seller-id="{{display_seller.seller_book.seller.id}}"
+                             {%if display_seller.seller_book.seller.selling_option == '2' %}disabled="disabled"{%endif%}
+                    data-book-id="{{ book.id }}">Buy now</button>
+				</div>
+                {% else %}
+                <h4> No Stocks Available</h4>
+                {%endif %}
+			</div><!--book-details-->				
+			<div class="clearfix"></div>
+		</div>
+		<div class="book-desc">
+			<h4>Book Details</h4>
+			<div class="desc">
+				{{ book.description }}
+			</div>
+		</div>
+
+
+        <div>
+
+
+        {% if seller_count > 0 %}
+
+        <div class="sellerpotion">
+                {% if seller_count > 1 %}
+				<h4>{{seller_count}} Seller Options</h4>
+                {% endif %}
+				<table width="100%" cellspacing="0" cellpadding="0" class="seller-detail">
+					<thead>
+						<tr>
+							<th>Seller Name</th>
+							<th>Condition</th>
+							<th>Delivered In</th>
+							<th>Price</th>
+							<th></th>
+						</tr>
+					</thead>
+
+
+                    {% for seller_items in sellers.items %}
+
+					<tbody class="so-section">
+						<tr>
+							<td class="seller-name" rowspan="8">
+								<a href="/accounts/profile/?id={{ seller_items.1.0.details.id}}">{{seller_items.1.0.details.seller_name}}</a>
+								<div class="payment">
+									<ul class="list-unstyled">
+										{% if seller_items.1.0.details.is_cod_available %} <li><img src="/midway/static/main/images/cod.png" alt="Textnook.com gives you cash on delivery">
+                                             COD </li>{% endif %}
+										<li><img src="/midway/static/main/images/return.png" alt=""> {{ seller_items.1.0.details.return_policy }} Days of return</li>
+									</ul>
+								</div>
+							</td>
+                            {% for seller in seller_items.1 %}
+
+							<tr class="sec-tab">
+								<td class="condition">{{ seller.book_condition.get_book_condition_display }}</td>
+								<td class="duration">
+                                   {% if seller.details.estimate_from%}
+                                    {{seller.details.estimate_from}}- {{seller.details.estimate_to}} Business Days
+                                   {% endif %}
+                                </td>
+
+                                <td class="seller-rate">{{ seller.book_condition.selling_price }}</td>
+								<td class="sell-type">
+
+									<button class="btn st-R rent_now" data-type="rent" data-book-id="{{ display_seller.seller_book.book.id }}"
+                                            data-seller-book-condition-id="{{seller.book_condition.id}}" data-seller-id="{{display_seller.seller_book.seller.id}}"
+                                            {%if seller.details.selling_option == '1' %}disabled="disabled"{%endif%}>Rent</button>
+									<button class="btn st-B buy_now" data-type="buy" data-book-id="{{ display_seller.seller_book.book.id }}"
+                                            data-seller-book-condition-id="{{seller.book_condition.id}}" data-seller-id="{{display_seller.seller_book.seller.id}}"
+                                            {%if seller.details.selling_option == '2' %}disabled="disabled"{%endif%}
+                                    >Buy</button>
+								</td>
+							</tr>
+							<tr class="sec-divider"><td colspan="4"><img src="/midway/static/main/images/tr-divider.png" alt="Textnook.com image divider"></td></tr>
+                            {% endfor %}
+
+						</tr>
+						<tr class="sec-divider"><td colspan="5"><img src="/midway/static/main/images/tbody-divider.png" alt="Textnook.com image divider"></td></tr>
+					</tbody>
+
+
+                    {% endfor %}
+
+                </table>
+				<div class="viewall hide">
+					<a href="#">View All Options</a>
+					<hr>
+				</div>
+			</div>
+
+        {% endif %}
+
+		<div id="Review">
+			<div class="top-title">
+				<div class="pull-left">
+					<h4>Review and Comments</h4>
+				</div>
+
+				<div class="clearfix"></div>
+			</div>
+
+			<div class="starts-rating col-lg-4 col-md-4 col-sm-5 col-xs-5">
+				<div class="avg-rate col-lg-4 col-md-4 col-sm-4 col-xs-4">
+					<div class="bk-star">{{average_rating}}</div>
+				</div>
+				<div class="star-list col-lg-8 col-md-8 col-sm-8 col-xs-8">
+					<ul class="list-unstyled star-list">
+
+						<li>
+                            {% for i in "x"|rjust:5 %}
+
+							<span><img src="/midway/static/main/images/star-small.png" alt="textnook.com reviews and ratng of textbooks"></span>
+                            {%endfor%}
+
+							<span>( {{stars_5}} Votes )</span>
+						</li>
+						<li>
+                            {% for i in "x"|rjust:4 %}
+
+							<span><img src="/midway/static/main/images/star-small.png" alt="textnook.com reviews and ratng of textbooks"></span>
+                            {%endfor%}
+
+							<span>( {{stars_4}} Votes )</span>
+						</li>
+						<li>
+                            {% for i in "x"|rjust:3 %}
+
+							<span><img src="/midway/static/main/images/star-small.png" alt="textnook.com reviews and ratng of textbooks"></span>
+                            {%endfor%}
+
+							<span>( {{stars_3}} Votes )</span>
+						</li>
+						<li>
+                            {% for i in "x"|rjust:2 %}
+
+							<span><img src="/midway/static/main/images/star-small.png" alt="textnook.com reviews and ratng of textbooks"></span>
+                            {%endfor%}
+
+							<span>( {{stars_2}} Votes )</span>
+						</li>
+						<li>
+                            {% for i in "x"|rjust:1 %}
+
+							<span><img src="/midway/static/main/images/star-small.png" alt="textnook.com reviews and ratng of textbooks"></span>
+                            {%endfor%}
+
+							<span>( {{stars_1}} Votes )</span>
+						</li>
+					</ul>
+				</div>
+				<div class="clearfix"></div>
+			</div>
+            {% if user_review.review %}
+            <div class="col-lg-8 col-md-8 col-sm-7 col-xs-7 comment-left">
+				<div class="featurecomment pull-left text-center">
+					<span>Your comment</span>
+					<div class="userimg">
+                        <img src="{%if user_review.buyer.profile_image_ur %}
+                        {{user_review.buyer.profile_image_url}}
+                        {%else%}/static/main/images/small-img.png{%endif%}"></div>
+					<span>{{user_review.buyer.profile.first_name}}</span>
+
+				</div>
+				<div class="comment-txt pull-left">
+
+					{{ user_review.review}}
+                    {% if user_review.rating %}
+                    <ul class="list-unstyled user-rating {% if user_review.rating %}hide{%endif%}">
+                        {% for i in "x"|rjust:user_review.rating %}
+
+                        <li><img src="/midway/static/main/images/star-small.png" alt="textnook.com reviews and ratng of textbooks"></li>
+
+                        {% endfor %}
+                    </ul>
+                    {% endif%}
+				</div>
+
+				<div class="clearfix"></div>
+			</div>
+            {%else%}
+
+			<div class="col-lg-8 col-md-8 col-sm-7 col-xs-7 comment-left">
+                 {% if user and not user.is_anonymous %}
+                <div class="featurecomment pull-left">
+
+
+                    <div class="form-group {% if user_review.rating %}hide{%endif%}">
+                        <h4>Your Ratings</h4>
+                        <div class="product-ratings">
+                            <span class="starRating bookRating" data-type="book">
+                                <input type="radio" value="5" name="rating" id="rating5">
+                                <label for="rating5">5</label>
+                                <input type="radio" value="4" name="rating" id="rating4">
+                                <label for="rating4">4</label>
+                                <input type="radio" value="3" name="rating" id="rating3">
+                                <label for="rating3">3</label>
+                                <input type="radio" value="2" name="rating" id="rating2">
+                                <label for="rating2">2</label>
+                                <input type="radio" value="1" name="rating" id="rating1">
+                                <label for="rating1">1</label>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <h4>Your Review</h4>
+                        <div class="post-form">
+                            <form>
+                                <textarea class="form-control" rows="3"></textarea><br>
+                                <input type="submit" value="Submit">
+                            </form>
+                        </div>
+                    </div>
+
+
+                </div>
+                {%endif%}
+			<div class="clearfix"></div>
+		</div><!--/review-->
+            {%endif%}
+			<div class="clearfix"></div>
+
+		<div class="recent-comment">
+			<h4 class="title"> User Reviews</h4>
+            <div class="notice-message {% if book_reviews %} hide {% endif %}">
+                <h4>No reviews yet.</h4>
+            </div>
+            {% for review in book_reviews %}
+			<div class="comment-field">
+				<div class="user-rating col-lg-3 col-md-3 col-sm-3 col-xs-5">
+					<span class="pull-left"><img
+                            src="{% if review.buyer.profile_image_url %}{{review.buyer.profile_image_url}}
+                            {%else%}/static/main/images/big-img.png{%endif%}" alt="Textnook.com buyer profile image"></span>
+					<div class="usernaeme pull-left">
+						<span>{{review.buyer.profile.first_name}}</span>
+                        {% if review.rating %}
+						<ul class="list-unstyled user-rating">
+                            {% for i in "x"|rjust:review.rating %}
+
+							<li><img src="/midway/static/main/images/star-small.png" alt="textnook.com reviews and ratng of textbooks"></li>
+
+                            {% endfor %}
+						</ul>
+                        {% endif%}
+					</div>
+				</div>
+				<div class="user-comment col-lg-9 col-md-9 col-sm-9 col-xs-7">
+                    {{review.review}}
+				</div>
+				<div class="clearfix"></div>
+			</div>
+            {%endfor%}
+		</div>
+
+
+	</div>
+
+        </div><!--/container-->
+	<!-- <div class="trace"><img src="/static/main/images/trace.jpg" alt=""></div> -->
+</section>
+     <div class="modal fade" id="wishlist_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+					<div class="modal-title" id="myModalLabel">Add to Wish List</div>
+				</div>
+                    <div class="modal-body">
+        </div>
+				<div class="modal-footer">
+				</div>
+			</div>
+		</div>
+	</div>
+    <script type="text/javascript" src="/midway/static/main/js/script.js"></script>
+    <script type="text/javascript" src="/midway/static/app/accounts/js/auth.js"></script>
+    <script type="text/javascript" src="/midway/static/app/books/js/review.js"></script>
+
+     <script type="text/x-underscore" id="wishlist_added">
+        <p class="mwL_msg"> This item was already in <a href="/wishlist/">WishList</a>&nbsp;&nbsp;
+            </p>
+        <div class="mwL_item">
+            <div class="mwL_image">
+                <img src="<%= image_url %>" alt="Book">
+            </div>
+            <div class="mwL_itemInfo">
+                <span>
+                    <a href="/books/details/<%= id %>"> <%= title %> </a> by
+                    	<% _.each(authors, function(author,key,list){%>
+                    	<%= author.name %>
+                        <% }) %>
+                </span>
+                <div class="color-D21">Rs <%= price %></div>
+                 <form action ="http://128.199.125.22/wishlist/">
+                <button class="btn btn-vwl">View Wishlist</button>
+                </form>
+            </div>
+        </div>
+    </script>
+
+
+   <script type="text/x-underscore" id="comment_added">
+        <div class="comment-field">
+				<div class="user-rating col-lg-3 col-md-3 col-sm-3 col-xs-5">
+				<% if (buyer_profile_pic!=undefined){ %>
+					<span class="pull-left"><img src="/static/main/images/big-img.png" alt=""></span>
+                <% }else{ %>
+                    <span class="pull-left"><img src="<%= buyer_profile_pic%>" alt=""></span>
+				<%}%>
+
+					<div class="usernaeme pull-left">
+						<span><%= buyer_name %></span>
+
+						<ul class="list-unstyled user-rating">
+						<% for(var i=0; i<rating;i++){%>
+							<li><img src="/static/main/images/star-small.png" alt=""></li>
+						<% } %>
+						</ul>
+					</div>
+				</div>
+				<div class="user-comment col-lg-9 col-md-9 col-sm-9 col-xs-7">
+                    <%= review %>
+				</div>
+				<div class="clearfix"></div>
+			</div>
+    </script>
+
+     <script type="text/javascript" src="/midway/static/main/js/script.js"></script>
+     <script type="text/javascript" src="/midway/static/app/accounts/js/auth.js"></script>
+     <script type="text/javascript" src="/midway/static/app/books/js/search.js"></script>
+     <script type="text/javascript" src="/midway/static/app/wishlists/js/index.js"></script>
+     <script type="text/javascript" src="/midway/static/app/checkout/js/cart.js"></script>
+
+     {% include 'partials/footer-home.html' %}
+

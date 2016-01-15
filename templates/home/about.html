@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="keywords" content="Buy books online in India, Buy books online, Sell books online in India, Sell books online, Rent books online in India, Rent books online, India's Exclusive online Market Place for New or Used Textbooks" />
+  <meta name="description" content="Buy | Sell | Rent your books at India’s exclusive online market place for new or used textbooks – TextNook.com.  Free shipping, cash on delivery at TextNook.com.Buy, Sell, Rent or Hire your textbook at best price in India on TextNook.com.Know more about Textnook.com, neet the textnook.com team and read textnook.com success stories here."/>
+	    <!-- Open Graph data -->
+
+    <meta property="og:title" content="title of page " />
+    <meta property="og:type" content="Website" />
+    <meta property="og:url" content="http://www.textnook.com/" />
+    <meta property="og:description" content="Know more about Textnook.com, neet the textnook.com team and read textnook.com success stories here. " />
+    <meta property="og:site_name" content="TextNook" />
+    <meta property="fb:admins" content="100008157123170" />
+    <meta property="fb:page_id" content="744625135570074"/>
+
+    <!-- Schema.org markup for Google+ -->
+    <meta itemprop="name" content="{{page_title}}">
+
+    <meta itemprop="description" content="Buy, Sell, Rent or Hire your textbook at best price in India on TextNook.com.Know more about Textnook.com, neet the textnook.com team and read textnook.com success stories here.">
+
+    <meta itemprop="image" content="http://www.textnook.com/static/main/images/logo.png">
+
+<!-- Twitter Card data -->
+
+    <meta name="twitter:card" content="product">
+    <meta name="twitter:site" content="@TextNookBooks">
+    <meta name="twitter:creator" content="@TextNookBooks">
+    <meta name="twitter:title" content="{{page_title}}">
+    <meta name="twitter:image" content={% if book.image_url %}"{{book.image_url}}"{%else%}"http://www.textnook.com/static/main/images/logo.png"{%endif%}>
+    <meta name="twitter:label1" content="Category">
+    <meta name="twitter:data1" content= "Buy, Sell, Rent or Hire your textbook at best price in India on TextNook.com.Know more about Textnook.com, neet the textnook.com team and read textnook.com success stories here.">
+
+
+
+	<title>TextNook- About Us, Our Team, Testimonials</title>
+	<link href="/midway/static/main/css/bootstrap.min.css" rel="stylesheet">
+	<link rel="stylesheet" href="/midway/static/main/css/style.css">
+	<link rel="stylesheet" href="/midway/static/main/css/fonts.css">
+	<link rel="stylesheet" href="/midway/static/main/css/font-awesome.min.css">
+	<link rel="stylesheet" href="/midway/static/main/css/bootstrap-slider.css">
+	<link rel="stylesheet" href="/midway/static/main/css/jquery-ui.min.css">
+	<link rel="stylesheet" href="/midway/static/main/css/jquery.mCustomScrollbar.css">
+	<script src="/midway/static/main/js/jquery-2.1.1.min.js"></script>
+	<script src="/midway/static/main/js/jquery-ui.min.js"></script>
+	<script src="/midway/static/main/js/underscore-min.js"></script>
+	<script src="/midway/static/main/js/bootstrap.min.js"></script>
+	<script src="/midway/static/main/js/screw-default.js"></script>
+	<script src="/midway/static/main/js/jquery.nicescroll.js"></script>
+	<script src="/midway/static/main/js/modernizr.custom.87232.js"></script>
+	<script src="/midway/static/main/js/bootstrap-slider.min.js"></script>
+  <script src="/midway/static/main/js/jquery.validate.min.js"></script>
+
+
+</head>
+<body>
+     {% include 'partials/authentication.html' %}
+
+	<section id="header">
+		<div class="header-green">
+			<div class="container">
+				<div class="header-top">
+					<div class="header-logo-white col-lg-2 col-md-2 col-sm-2 col-xs-4 pull-left">
+						<a href="/"><img src="/midway/static/main/images/logo-inner.png" class="img-responsive"></a>
+					</div>
+					<div class="header-user pull-right col-lg-3 col-md-3 col-sm-3 col-xs-5">
+                        {% if cart_count %}
+                        <a href="/orders/checkout/">
+						<li class="shop-cart"><img src="/midway/static/main/images/shopping.png" alt="">
+							<div class="shopping-item"> {{cart_count }} </div>
+						</li>
+                        </a>
+                        {%else %}
+                        <li class="shop-cart"><img src="/midway/static/main/images/shopping.png" alt="">
+							<div class="shopping-item"> 0 </div>
+						</li>
+                        {%endif %}
+                            {% if user and not user.is_anonymous %}
+                            <li class="dropdown fs">
+
+                               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                                <p>HI {{ user.first_name }}</p> <span class="caret caret-white"></span>
+                               </a>
+                                <ul class="dropdown-menu pull-right" role="menu">
+                                    <li><a href="/sellers/dashboard">My Dashboard</a></li>
+                                    <li><a href="/accounts/profile/">My ProfileS</a></li>
+                                    <li><a href="/wishlist/">My Wishlist</a></li>
+
+
+                                    <li><a href="{% url 'auth:logout' %}?next=/">Logout</a></li>
+                                </ul>
+                            </li>
+                                <li>
+                                    <div class="avatar-pic">
+                                    <a href=""><img
+                                                    src="{% if buyer.profile_image_url %}{{buyer.profile_image_url}}{% else %}/static/main/images/user-avatar.png{% endif %}" alt="Username"></a></li>
+                                    </div>
+
+                           {% else %}
+                             <a href="#" class="authentication authentication_inner" data-type="signin"><p>SIGN IN</p></a>
+                             <a href="#" class="authentication authentication_inner" data-type="signup"><p>SIGN UP</p></a>
+
+                           {% endif %}
+
+					</div>
+
+					<div class="search-bar pull-left col-lg-offset-1 col-md-offset-1 col-sm-offset-1 col-lg-6 col-md-6 col-sm-6 col-xs-4">
+						<div>
+							<input class="filter_value" id="query" type="text" value="{%if query %} {{query}} {% endif %}" placeholder="Search" name=""><span id="search_books"><label class="srch1">Search</label><img class="srch" src="/midway/static/main/images/search-icon.png"></span>
+						</div>
+					</div>
+					<div class="clearfix"></div>
+				</div>
+			</div>
+		</div>
+
+	</section>
+
+
+
+
+<!---About Us Starts -->
+
+<section id="aboutUs">
+
+		<div class="aboutus-banner">
+			<div class="abt-overlay"></div>
+			<div class="container">
+				<div class="abt-content">
+					<h2>What's special about textnook?</h2>
+					<button class="btn btn-knowmore">Know More</button>
+				</div>
+			</div>
+		</div>
+		<div class="abt-body">
+			<div class="container">
+				<div class="abt-desc">
+					<div class="abt-tab">
+						<ul>
+							<li class="active" data-id="about">About Us</li>
+							<li data-id="team">Our Team</li>
+							<li data-id="testimonial">Testimonial</li>
+						</ul>
+					</div>
+					<div class="col-lg-10 col-lg-offset-2 col-md-10 col-md-offset-1 col-sm-12 col-xs-12">
+						<div class="abt-desc-content">
+							<div class="abt-aboutUs child" id="about">
+
+								<h4></h4>
+								<P>
+								Albert Einstein said <b>"You don't need to know everything. You only need to know where to find it when you need it"</b>. We at textnook took his words very seriously and created a marketplace where you can search and get the textbooks which you need, when you need it. But we did not stop there, we are also providing you the opportunity to clear your study table and make room for a new set of speakers.
+								</P>
+								<P>
+								How is that possible? It's possible because here at textnook we not only allow you to buy and rent books but we also allow you to sell it back at the best price and you don't even have to worry about the shipping because we are there to help you out with it.
+								</P>
+								<P>
+								This is the best opportunity any seller could have. They can reach out to buyers from all over India and sell their books while we manage their inventory for free.
+								</P>
+								<p>At TextNook, we believe that the right tools can make a world of difference. We strive to bring about a change in the way you source your books and are dedicated to help you save money.
+								</p>
+							</div>
+							<!-- About us ends here -->
+
+							<div class="abt-team text-center hide child" id="team">
+								<div class="abt-title">
+									<h1>The Doers</h1>
+								</div>
+
+								<div class="row">
+									<div class="col-md-6 col-lg-6">
+										<div class="p-details">
+											<img src="/midway/static/main/images/sathish.jpg">
+											<h4>Sathish Visanagiri</h4>
+											<p>The man with a plan.</p>
+										</div>
+									</div>
+									<div class="col-md-6 col-lg-6">
+										<div class="p-details">
+											<img src="/midway/static/main/images/amar.jpg">
+											<h4>Amar Prabhu</h4>
+											<p>He has the answer to every question</p>
+										</div>
+									</div>
+
+								</div>
+                                <div class="row">
+									<div class="col-md-6 col-lg-6">
+										<div class="p-details">
+											<img src="/midway/static/main/images/raghu.jpg">
+											<h4>Raghu Raju</h4>
+											<p>Google's next of kin ;)</p>
+										</div>
+									</div>
+									<div class="col-md-6 col-lg-6">
+										<div class="p-details">
+											<img src="/midway/static/main/images/subhajit.jpg">
+											<h4>Subhajit Mukherjee</h4>
+											<p>The snake(python) charmer</p>
+										</div>
+									</div>
+
+								</div>
+							</div>
+							<!-- About team ends here -->
+							<div class="abt-company text-center hide child " id="testimonial">
+								<div class="abt-title">
+									TESTIMONIAL
+								</div>
+								<div id="myCarousel" class="carousel slide">
+									<div class="carousel-inner" role="listbox">
+										<ul class="item active" id="0">
+											<div class="row">
+									            <li class="col-md-4 profile-list">
+													<span class="profile-img"> <img src="/midway/static/main/images/quotes.png"></span>
+													<h4>- Virag Kumar, Noida</h4>
+													<p>
+														Excellent Concept, Excellent support, Excellent Saving!!! (What else you want :)) Thanks Textnook!!!
+													</p>
+												</li>
+												<li class="col-md-4 profile-list">
+													<span class="profile-img"> <img src="/midway/static/main/images/quotes.png"></span>
+													<h4>Prashanth S, Bangalore</h4>
+													<p>
+I faced no hassles with delivery. I haven't come across any service that can match you. Great going Keep it up!
+                                                    </p>
+												</li>
+												<li class="col-md-4 profile-list" >
+													<span class="profile-img"> <img src="/midway/static/main/images/quotes.png"></span>
+													<h4>Mohan R, Bangalore</h4>
+													<p>
+I should say I had a great experience. The service was very prompt and really helped me. Very much satisfied with your service.													</p>
+												</li>
+									        </div>
+										</ul>
+										<ul class="item" id="1">
+											<div class="row">
+											<li class="col-md-4 profile-list">
+												<span class="profile-img"> <img src="/midway/static/main/images/quotes.png"></span>
+
+												<h4>Durba M, Pune</h4>
+												<p>
+The service has been excellent. The Delivery and Pickup were prompt and without any unnecessary
+                                                    hassle.The packing was professional.Everytime I called Textnook, I have received very prompt response. Experience can be rated 10/10.
+                                                    Happy to have been associated with Textnook and will definitely continue being a member of Textnook.
+												</p>
+											</li>
+											<li class="col-md-4 profile-list">
+												<span class="profile-img"> <img src="/midway/static/main/images/quotes.png"></span>
+												<h4>Mohanraj R, Coimbatore</h4>
+												<p>
+												Good service, well done. The books were delivered in a perfectly packed condition. It's a good deal and
+
+saved my time in searching for books in the market. Good that you provided free shipping even for
+
+Coimbatore. I’m sure I will be back for my next semester and I’ll even recommend your service to my
+
+friends.
+                                                </p>
+											</li>
+											<li class="col-md-4 profile-list">
+												<span class="profile-img"> <img src="/midway/static/main/images/quotes.png"></span>
+												<h4>Sunil T, New Delhi</h4>
+												<p>
+Excellent! Really appreciate your support, service time and Authenticity. The delivery and return pickup
+
+was on time. It saved a lot of money and time, and same books would cost me more on any website and
+
+I wouldn’t have the rental option on those sites. In one sentence, it was an excellent and commendable
+
+service.
+                                                </p>
+											</li>
+											</div>
+										</ul>
+										<ul class="item" id="2">
+											<div class="row">
+											<li class="col-md-4 profile-list">
+												<span class="profile-img"> <img src="/midway/static/main/images/quotes.png"></span>
+
+												<h4>Vaishali S, Pune</h4>
+												<p>
+Delivery was very good. Did not face any hassles during delivery or return process. No wear and tear on
+
+the books. 5 star experience till now :) Keep												</p>
+											</li>
+											<li class="col-md-4 profile-list">
+												<span class="profile-img"> <img src="/midway/static/main/images/quotes.png"></span>
+												<h4>Swetha M, Chennai</h4>
+												<p>
+The service was good in terms of the customer care. You helped me to choose the correct plan
+
+depending on my requirement. The delivery was on time and I got the books right away without any
+
+effort. The prices are also fair enough and as the books were offered on rental basis, it helped me save
+
+some money. Felt good and satisfied with the service.												</p>
+											</li>
+											<li class="col-md-4 profile-list">
+												<span class="profile-img"> <img src="/midway/static/main/images/quotes.png"></span>
+												<h4>Monish R, Chennai</h4>
+												<p>
+The overall experience was great. I will prefer your service for future requirements.												</p>
+											</li>
+											</div>
+										</ul><ul class="item" id="3">
+											<div class="row">
+											<li class="col-md-4 profile-list">
+												<span class="profile-img"> <img src="/midway/static/main/images/quotes.png"></span>
+
+												<h4>Sheetal F, Pune</h4>
+												<p>
+Service was very good. Delivery and pickup were fast and on time. Saved my time and money. Feeling
+
+blessed! I will continue using your service henceforth.   :)												</p>
+											</li>
+											<li class="col-md-4 profile-list">
+												<span class="profile-img"> <img src="/midway/static/main/images/quotes.png"></span>
+												<h4>- Bharath K, Chennai</h4>
+												<p>
+Good service from your team. On-time delivery and prior notice before pick-up really helped. Appreciate
+
+your work.												</p>
+											</li>
+											<li class="col-md-4 profile-list">
+												<span class="profile-img"> <img src="/midway/static/main/images/quotes.png"></span>
+												<h4>Balaji N, Chennai</h4>
+												<p>
+Overall awesome!												</p>
+											</li>
+											</div>
+										</ul>
+								    </div>
+									<ol class="carousel-indicators circle">
+										<li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+										<li data-target="#myCarousel" data-slide-to="1" ></li>
+										<li data-target="#myCarousel" data-slide-to="2" ></li>
+										<li data-target="#myCarousel" data-slide-to="3" ></li>
+									</ol>
+
+								</div>
+							</div>
+							<!-- end here testimonal -->
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+<script>
+$(document).ready(function() {
+  function setHeight() {
+    windowHeight = $(window).innerHeight() - 150;
+    $('.aboutus-banner').css('min-height', windowHeight);
+  };
+  setHeight();
+
+  $(window).resize(function() {
+    setHeight();
+  });
+
+});
+$(".abt-tab li").click(function(){
+	$("li.active").removeClass("active");
+    $(this).addClass("active");
+    var getid=$(this).data('id');
+    $(".abt-desc-content .child:not(.hide)").addClass("hide");
+    console.log(getid);
+    $("#"+getid).removeClass("hide");
+});
+
+if(window.location.href.indexOf('team')!=-1){
+    $('.abt-tab li[data-id="team"]').trigger('click')
+}else if(window.location.href.indexOf('testimonial')!=-1){
+    $('.abt-tab li[data-id="testimonial"]').trigger('click')
+}
+
+$('.btn-knowmore').on('click', function(){
+    $(window).scrollTop('600')
+})
+</script>
+     {% include 'partials/footer-home.html' %}
+	 {% include 'partials/footer.html' %}

@@ -1,0 +1,20 @@
+{% include 'partials/header.html' %}
+		      <div id="page-content-wrapper">
+                  <span class="verification_email_msg error_display"></span>
+<div class="col-lg-4">
+<form class="resend_verification_form">
+ <div class="input-group">
+  <span class="input-group-addon">
+    <img src="/midway/static/main/images/lock-icon.png" alt="M">
+  </span>
+  <input type="text" name="email" class="form-control" placeholder="Email Id">
+</div>
+
+<div class="signupBtn">
+  <button type="submit" id="resend-verification-email" class="btn btn-reset-pwd">RESEND VERIFICATION EMAIL</button>
+</div>
+</form>
+</div> </div>
+<script type="text/javascript" src="/midway/static/main/js/script.js"></script>
+    <script type="text/javascript" src="/midway/static/app/accounts/js/auth.js"></script>
+     {% include 'partials/footer-home.html' %}

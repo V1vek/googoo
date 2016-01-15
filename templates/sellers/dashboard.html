@@ -1,0 +1,652 @@
+     {% include 'partials/header.html' %}
+<section id="profile">
+		<div class="container profile">
+			<div class="profile-box">
+                <div class="profile-header">
+					<div class="userProfile col-lg-4 col-md-4 col-sm-3 col-xs-12">
+						<div class="user-img">
+							<img src="{% if buyer.profile_image_url %}{{buyer.profile_image_url}}{% else %}/static/main/images/profile-pic.png{% endif %}" alt="Profile Image">
+                            <input type="file" class="hide" id="seller_pic_input">
+                        </div>
+						<div class="user-info">
+							<h4>{{ user.get_full_name}}</h4>
+                            <p>Member since {{user.date_joined|date:"M d, Y"}}</p>
+						</div>
+					</div>
+                    <div class="col-lg-8 col-md-8 col-sm-9 col-xs-12">
+					<div class="bB-bR">
+						<div class="bBought">
+							<h3>{{books_bought}}</h3>
+							<p>Books Bought</p>
+						</div>
+						<!--<div class="uRatings hide">-->
+							<!--<span class="starRating">-->
+								<!--<input id="rating5" type="radio" name="rating" value="5">-->
+								<!--<label for="rating5">5</label>-->
+								<!--<input id="rating4" type="radio" name="rating" value="4">-->
+								<!--<label for="rating4">4</label>-->
+								<!--<input id="rating3" type="radio" name="rating" value="3">-->
+								<!--<label for="rating3">3</label>-->
+								<!--<input id="rating2" type="radio" name="rating" value="2">-->
+								<!--<label for="rating2">2</label>-->
+								<!--<input id="rating1" type="radio" name="rating" value="1">-->
+								<!--<label for="rating1">1</label>-->
+							<!--</span>-->
+							<!--<p>143 reviews</p>-->
+						<!--</div>-->
+					</div>
+					<div class="bSold">
+						<h3>{{books_sold}}</h3>
+						<p>Books Sold</p>
+					</div>
+					<div class="bCondition">
+						 {% ifequal seller.book_condition '1' %}
+                        <h3>NEW</h3>
+                        {%endifequal%}
+                        {% ifequal seller.book_condition '2' %}
+                        <h3>OLD</h3>
+                        {%endifequal%}
+                        {% ifequal seller.book_condition '3' %}
+                        <h3>NEW / OLD</h3>
+                        {%endifequal%}
+                        <!--{% if not seller %}-->
+                        <!--<h3>-</h3>-->
+                        <!--{% endif %}-->
+						<p>Books Condition</p>
+					</div>
+					<div class="bsellOptions">
+						{% ifequal seller.selling_option '1' %}
+                        <h3>SALE</h3>
+                        {%endifequal%}
+                        {% ifequal seller.selling_option '2' %}
+                        <h3>RENT</h3>
+                        {%endifequal%}
+                        {% ifequal seller.selling_option '3' %}
+                        <h3>SALE / RENT</h3>
+                        {%endifequal%}
+                        <!--{% if not seller %}-->
+                        <!--<h3>-</h3>-->
+                        <!--{% endif %}-->
+						<p>Selling Options</p>
+					</div>
+                    </div>
+					<div class="clearfix"></div>
+				</div>
+
+			</div>
+			<div class="profile-tabs">
+				<div class="p-tab col-xs-4">
+                    <a href="/buyers/dashboard">
+                            <p>Buyer Dashboard</p>
+                    </a>
+                </div>
+
+
+				<div class="p-tab col-xs-4  p-tab-active">
+                    <a href="/sellers/dashboard/">
+						<p>Seller Dashboard</p>
+                    </a>
+				</div>
+				<a href="/accounts/profile">
+					<div class="p-tab col-xs-4 ">
+						<p>My Profile</p>
+					</div>
+				</a>
+				<div class="clearfix"></div>
+			</div>
+            <div class="notice-message {% if seller %} hide {% endif %}">
+                <h4>Please create your <a href="/accounts/profile/">seller profile</a> to access dashboard features.</h4>
+            </div>
+			<div class="add-books {% if not seller or edit_mode %} hide {% endif %}">
+				<button class="btn btn-books">Add Books</button>
+			</div>
+            <div class="add-books-form {% if not seller or not edit_mode %} hide {% endif %}" data-open="false">
+                  <div class="aB-left">
+                    <button class="btn btn-default btn-aB back-add-books">Back</button>
+
+                    <form class="form-horizontal" id="add_books">
+                      <div class="form-group">
+                        <label class="col-sm-4 control-label">ISBN13</label>
+                        <div class="col-sm-8">
+                          <input type="text" id="isbn_13" name="isbn_13"
+                                 {% if edit_mode %} value="{{inventories.items.0.1.0.isbn_13}}" {%endif%}
+                                 class="form-control book_fields">
+                        </div>
+                      </div>
+
+                      <div class="form-group">
+                        <label class="col-sm-4 control-label">ISBN10</label>
+                        <div class="col-sm-8">
+                          <input type="text" id="isbn_10" name="isbn_10" class="form-control book_fields">
+                        </div>
+                      </div>
+                        <div class="form-group">
+                        <label class="col-sm-4 control-label">Book Title</label>
+                        <div class="col-sm-8">
+                          <input type="text" id="book_title" name="title" class="form-control book_fields">
+                        </div>
+                      </div>
+                      <div class="form-group">
+		              <label class="col-sm-4 control-label v-center" name="book_image">Book Image</label>
+		              <div class="col-sm-8">
+		                <div class="upload_pic">
+                          <input type="file" class="hide " id="book_image">
+		                  <img src="/midway/static/main/images/har.jpg" id="book_image_container" alt="book">
+		                  <a href="" class="up-pic upload_book_pic"><i class="fa fa-pencil"></i> Update Book Image</a>
+		                </div>
+                          <label id="book_image-error" class="error hide" for="book_image">Please enter title of the book.</label>
+                        <input type="hidden" class="book_fields" name="image_url">
+		              </div>
+
+		            </div>
+
+                        <div class="form-group">
+                        <label class="col-sm-4 control-label">Book Summary</label>
+                        <div class="col-sm-8">
+                          <input type="text" name="description" class="form-control book_fields">
+                        </div>
+                      </div>
+                        <div class="form-group">
+                        <label class="col-sm-4 control-label">Authors</label>
+                        <div class="col-sm-8">
+                          <input type="text" name="authors" class="form-control book_fields">
+                        </div>
+                      </div>
+                        <div class="form-group">
+                        <label class="col-sm-4 control-label">Publisher</label>
+                        <div class="col-sm-8">
+                          <input type="text" name="publishers" class="form-control book_fields">
+                        </div>
+                      </div>
+                      <div class="form-group">
+                          <label class="col-sm-4 control-label">Category</label>
+                          <div class="col-sm-8 ">
+                            <div class="sp-dd">
+                                <select name="category_id" id="category" class="form-control book_fields">
+                                    <option value="" selected>Choose Category</option>
+
+                                    {% for category in categories_all %}
+
+                                  <option value="{{category.id}}">{{category.name }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+
+                          </div>
+		             </div>
+
+                     <div class="form-group">
+                          <label class="col-sm-4 control-label">Sub Category</label>
+                          <div class="col-sm-8 ">
+                            <div class="sp-dd">
+                                <select name="sub_category_id" id="sub_category" class="form-control book_fields ">
+                                    <option value="">Choose Subcategory</option>
+
+                                  <option value="others">Others</option>
+                                </select>
+                            </div>
+
+                          </div>
+		             </div>
+                      <div class="form-group">
+                        <label class="col-sm-4 control-label">Pages</label>
+                        <div class="col-sm-8">
+                          <input type="text" data-seller="true" name="pages" class="form-control book_fields">
+                        </div>
+                      </div>
+
+                      <div class="form-group">
+                        <label class="col-sm-4 control-label">MRP Price</label>
+                        <div class="col-sm-8">
+                          <input type="text" data-seller="true" name="price" class="form-control book_fields">
+                        </div>
+                      </div>
+
+                      <div class="form-group">
+                        <label class="col-sm-4 control-label">Edition and Year</label>
+                        <div class="col-sm-8">
+                          <input type="text" data-seller="true" name="edition_and_year" class="form-control book_fields">
+                        </div>
+                      </div>
+
+                      <div class="form-group">
+		              <label class="col-sm-4 control-label">Binding</label>
+		              <div class="col-sm-8 ">
+                        <div class="sp-dd">
+                            <select name="binding" class="form-control book_fields">
+                              <option value="1" selected>Hard Cover </option>
+                              <option value="2">Paper Back</option>
+                            </select>
+                        </div>
+
+		              </div>
+                      </div>
+
+
+                    <div class="bookMulti">
+                    <h4>Book Condition</h4>
+
+                    {% if not edit_mode %}
+                    <div class="bm-addSection">
+                      <div class="form-group">
+                        <label class="col-sm-4 control-label">Condition</label>
+                        <div class="col-sm-8 sp-dd">
+                          <select class="form-control conditions" id="book_condition_1" data-seller="true" name="book_condition">
+                            <option value="" selected>Choose book condition</option>
+                          {% if seller.book_condition == "1" or seller.book_condition == "3"%}
+                            <option value="1">New Book </option>
+                          {% endif %}
+
+                          {% if seller.book_condition == '2' or seller.book_condition == '3'%}
+
+                            <option value="2">Like New</option>
+                            <option value="3">Good</option>
+                            <option value="4">Average</option>
+                            <option value="5">Acceptable</option>
+                          {% endif %}
+
+                          </select>
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label class="col-sm-4 control-label">Selling Price</label>
+                        <div class="col-sm-8">
+                              <input type="text" data-seller="true" id="selling_price_1" name="selling_price" class="form-control conditions">
+
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label class="col-sm-4 control-label">Quantity</label>
+                        <div class="col-sm-8">
+                        <input type="text" data-seller="true" id="book_quantity_1" name="book_quantity" class="form-control conditions">
+
+                        </div>
+                      </div>
+                    </div>
+                    {% else %}
+
+                        {% for condition in book_conditions %}
+
+                          <div class="bm-addSection">
+                          <div class="form-group">
+                            <label class="col-sm-4 control-label">Condition</label>
+                            <div class="col-sm-8 sp-dd">
+                              <select class="form-control conditions" id="book_condition_1" data-seller="true" name="book_condition">
+                                <option value="">Choose book condition</option>
+                              {% if seller.book_condition == "1" or seller.book_condition == "3"%}
+                                <option value="1" {% if condition.book_condition == '1' %}selected {%endif%}>New Book </option>
+                              {% endif %}
+
+                              {% if seller.book_condition == '2' or seller.book_condition == '3'%}
+
+                                <option value="2"  {% if condition.book_condition == '2' %}selected {%endif%}>Like New</option>
+                                <option value="3"  {% if condition.book_condition == '3' %}selected {%endif%}>Good</option>
+                                <option value="4"  {% if condition.book_condition == '4' %}selected {%endif%}>Average</option>
+                                <option value="5" {% if condition.book_condition == '5' %}selected {%endif%}>Acceptable</option>
+                              {% endif %}
+
+                              </select>
+                            </div>
+                          </div>
+                          <div class="form-group">
+                            <label class="col-sm-4 control-label">Selling Price</label>
+                            <div class="col-sm-8">
+                                  <input type="text" data-seller="true" id="selling_price_1" name="selling_price" value="{{condition.selling_price}}" class="form-control conditions">
+
+                            </div>
+                          </div>
+                          <div class="form-group">
+                            <label class="col-sm-4 control-label">Quantity</label>
+                            <div class="col-sm-8">
+                            <input type="text" data-seller="true" id="book_quantity_1" value="{{condition.book_quantity}}" name="book_quantity" class="form-control conditions">
+
+                            </div>
+                          </div>
+
+                        </div>
+                        {% endfor%}
+                    {% endif %}
+                   {% if seller.book_condition != "1"%}
+
+                    <div class="bm-button">
+                      <span class="bm-plus"><i class="fa fa-plus-square-o add_book_condition"></i> Add another condition</span>
+                      <!-- <span class="bm-minus"><i class="fa fa-trash"></i> Remove </span> -->
+                    </div>
+                   {% endif %}
+                  </div>
+
+                        <div class="text-right">
+                            <button type="submit" class="btn btn-success btn-save">Save
+                            </button>
+                        </div>
+                    </form>
+                  </div>
+                  <div class="aB-center">
+                    <hr>
+                    <span>OR</span>
+                  </div>
+                  <div class="aB-right">
+                    <button class="btn btn-default btn-mulUpld">Multi-upload via Excel</button>
+                      <input type="file" class="upload-books-excel hide">
+                    <div class="ex-dwnld"><span>Note:</span> <a target="_blank" href="/midway/static/temp/textnook.xlsx">Click here</a> to download Excel format</div>
+                  </div>
+            </div>
+			<div class="details {% if not seller or edit_mode %} hide {% endif %}">
+				<div class="details-tab">
+					<p>Inventory Details</p>
+					<a href="#">
+						<span data-type="inventory" data-open="true" class="up-arrow inventory-display"></span>
+					</a>
+				</div>
+                {% if inventories %}
+
+				<div class="clearfix"></div>
+
+				<div class="details-table inventory-details-container">
+                    {% if inventory_limit %}
+					<form>
+						<div class="form-group filter-group filter-group2">
+							<input type="text" class="form-control order-search search-inventory" placeholder="Search Orders">
+						</div>
+					</form>
+                    {% endif %}
+					<table class="table inventory-table">
+						<thead>
+							<th>ISBN 13</th>
+							<th>TITLE</th>
+							<th>SELLING PRICE</th>
+							<th>CONDITION</th>
+							<th>NO Of BOOKS</th>
+						</thead>
+                        {% for inventory_items in inventories.items %}
+
+
+                        <tbody class="it-section">
+							<tr>
+								<td rowspan="10" class="it-isbn">{{ inventory_items.1.0.isbn_13}} <a href="#"><span class="tclose-mobile"></span></a></td>
+								<td rowspan="10" class="it-title"><a href="/books/details/{{ inventory_items.1.0.book_id}}">{{ inventory_items.1.0.title}}</a></td>
+                                {% for inventory in inventory_items.1 %}
+
+                                <tr class="it-sec-tr">
+									<td class="editable">Rs <span class="display_text">{{ inventory.selling_price }}</span>
+                                    </td>
+									{% if inventory.book_condition == '1' %}
+                                    <td>New Book</td>
+                                    {% elif inventory.book_condition == '2' %}
+                                    <td>Like New</td>
+                                    {% elif inventory.book_condition == '3' %}
+                                    <td> Good </td>
+                                    {% elif inventory.book_condition == '4' %}
+                                    <td>Average </td>
+                                    {% elif inventory.book_condition == '5' %}
+                                    <td>Acceptable</td>
+                                    {%endif%}
+									<td class="editable"> <span class="display_text">{{ inventory.book_quantity }}</span>
+                                    </td>
+									<td>
+                                        <span class="display_mode">
+                                       <a href="/sellers/dashboard/?mode=edit&id={{inventory.seller_book_id}}" ><span id="inventory_{{inventory.seller_book_id}}" data-id="{{inventory.book_condition_id}}" data-seller-book-id="{{inventory.seller_book_id}}" class="tedit-desktop fa fa-edit"></span></a>
+                                        <a href="#" ><span id="inventory_{{inventory.seller_book_id}}" data-id="{{inventory.book_condition_id}}" data-seller-book-id="{{inventory.seller_book_id}}" class="tclose-desktop fa fa-trash"></span></a>
+
+                                        </span>
+
+                                    </td>
+								</tr>
+                                {% endfor %}
+							</tr>
+						</tbody>
+
+                        {% endfor %}
+
+					</table>
+                    {% if inventory_limit %}
+
+					<div class="details-load">
+						<button class="btn btn-load load-more-inventory">
+							LOAD MORE
+						</button>
+					</div>
+
+
+                    {% endif %}
+				</div>
+                {% else %}
+                 <div class="notice-message {% if not seller %} hide {% endif %}">
+                <h4>You haven't added any books to your inventory yet.</h4>
+            </div>
+
+                {% endif %}
+
+
+			</div>
+
+			<div class="order-details {% if not seller or edit_mode %} hide {% endif %}">
+				<div class="details-tab">
+					<p>Order Details</p>
+					<a href="#">
+						<span data-type="order" data-open="true" class="up-arrow order-display"></span>
+					</a>
+				</div>
+                <div class="notice-message {% if orders %} hide {% endif %}">
+                    <h4>You haven't received any order yet.</h4>
+                </div>
+            <div class="order-details-container {% if not orders %} hide {%endif%}">
+				<div class="clearfix"></div>
+                {% if order_limit %}
+				<div class="order-filter">
+					<form class="form-inline order-form">
+						<div class="form-group filter-group filter-group1">
+							<select class="form-control slt-order-filter">
+                              <option value="">Filter by : Shipping Status </option>
+                              <option value="1">Pending </option>
+                              <option value="2">Cancelled</option>
+                              <option value="3">Shipped</option>
+							</select>
+						</div>
+					</form>
+				</div>
+                {% endif%}
+				<div class="clearfix"></div>
+				<div class="details-table">
+                    <div class="no-order-results hide">
+                        <h4>No results found.</h4>
+                    </div>
+					<table class="table invoice-table order-table">
+						<tr>
+							<th>ORDER</th>
+							<th>DATE</th>
+							<th>PLACED BY</th>
+							<th>PAYMENT STATUS</th>
+							<th>SHIPPING STATUS</th>
+							<th>TOTAL</th>
+						</tr>
+                        <tbody class="tbody-order-table">
+                        {%for order in orders %}
+						<tr>
+							<td class="td-blue"><a href="/orders/details/{{order.id}}">#OD0000{{order.order.id}}</a></td>
+							<td>{{order.order.ordered_date}}</td>
+							<td class="pb_name">{{order.order.user.get_full_name}}</td>
+							<td>{{order.order.get_payment_status_display}}</td>
+							<td>{{order.get_shipping_status_display}}</td>
+							<td>RS {{order.total_price}}</td>
+						</tr>
+                        {% endfor %}
+                        </tbody>
+					</table>
+                    {% if order_limit %}
+					<div class="details-load">
+						<button class="btn btn-load load-orders">
+							LOAD MORE
+						</button>
+					</div>
+                    {%endif%}
+				</div>
+			</div>
+            </div>
+        </div>
+</section>
+
+<div class="modal fade" id="bookInventory" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Textnook Alert</h4>
+      </div>
+      <div class="modal-body">
+        Are you sure want to delete this item?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-yes delete_inventory" data-dismiss="modal">Yes</button>
+        <button type="button" class="btn btn-no" data-dismiss="modal">No</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="backToInventory" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Textnook Alert</h4>
+      </div>
+      <div class="modal-body font-14">
+        You have unsaved changes which will not be saved, if you chose to go back. Still want to continue ?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-yes go-back-inventory" data-dismiss="modal">Yes</button>
+        <button type="button" class="btn btn-no" data-dismiss="modal">No</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+     <script id="book_condition_tmpl1ss" type="text/x-underscore">
+         <div class="book_condition">
+
+          <div class="form-group">
+            <label class="col-sm-4 control-label">Book Condition</label>
+            <div class="col-sm-8 sp-dd">
+              <select class="form-control conditions" id="book_condition_<%= id %>" data-seller="true" name="book_condition">
+                <option value="" selected>Choose book condition</option>
+                <option value="1">New Book </option>
+                <option value="2">Like New</option>
+                <option value="3">Good</option>
+                <option value="4">Average</option>
+                <option value="5">Acceptable</option>
+              </select>
+            </div>
+          </div>
+
+           <div class="form-group new_quantity">
+            <label class="col-sm-4 control-label">Book Quantity</label>
+            <div class="col-sm-8">
+              <input type="text" data-seller="true" id="book_quantity_<%=id%>" name="book_quantity" class="form-control conditions">
+            </div>
+          </div>
+
+           <div class="form-group new_quantity">
+            <label class="col-sm-4 control-label">Book Selling Price</label>
+            <div class="col-sm-8">
+              <input type="text" data-seller="true" id="selling_price_<%=id%>" name="selling_price" class="form-control conditions">
+            </div>
+          </div>
+
+        </div>
+
+     </script>
+
+       <script id="book_condition_tmpl" type="text/x-underscore">
+
+         <div class="bm-addSection">
+                      <div class="form-group">
+                        <label class="col-sm-4 control-label">Condition</label>
+                        <div class="col-sm-8 sp-dd">
+                          <select class="form-control conditions" id="book_condition_<%= id %>" data-seller="true" name="book_condition">
+                             <option value="" selected>Choose book condition</option>
+
+                            {% if seller.book_condition == "1" or seller.book_condition == "3"%}
+                            <option value="1">New Book </option>
+                          {% endif %}
+
+                          {% if seller.book_condition == '2' or seller.book_condition == '3'%}
+
+                            <option value="2">Like New</option>
+                            <option value="3">Good</option>
+                            <option value="4">Average</option>
+                            <option value="5">Acceptable</option>
+                          {% endif %}
+                          </select>
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label class="col-sm-4 control-label">Selling Price</label>
+                        <div class="col-sm-8">
+                          <input type="text" data-seller="true" id="selling_price_<%=id%>" name="selling_price" class="form-control conditions">
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label class="col-sm-4 control-label">Quantity</label>
+                        <div class="col-sm-8">
+                          <input type="text" data-seller="true" id="book_quantity_<%=id%>" name="book_quantity" class="form-control conditions">
+                        </div>
+                      </div>
+                      <div class="bm-button-remove">
+                        <span class="bm-minus"><i class="fa fa-trash"></i> Remove</span>
+                      </div>
+                    </div>
+                    <div class="bm-button">
+                      <span class="bm-plus"><i class="fa fa-plus-square-o add_book_condition"></i> Add another condition</span>
+                      <!-- <span class="bm-minus"><i class="fa fa-trash"></i> Remove </span> -->
+                    </div>
+     </script>
+
+     <script  id="order_tmpl" type="text/x-underscore">
+        <% _.each(orders, function(order){ %>
+         <tr>
+            <td class="td-blue"><a href="/orders/details/<%=order.seller_order_id%>">#OD0000<%=order.order_id%></a></td>
+            <td><%=formatDate(order.ordered_date)%></td>
+            <td class="pb_name"><%=order.placed_by%></td>
+            <td><%=order.payment_method%></td>
+            <td><%=order.shipping_status%></td>
+            <td>RS <%=order.total%></td>
+        </tr>
+        <% }) %>
+     </script>
+     <script  id="inventory_tmpl" type="text/x-underscore">
+        <% _.each(inventories, function(inventory){ %>
+         <tbody class="it-section">
+            <tr>
+                <td rowspan="10" class="it-isbn"><%= inventory[0].isbn_13%> <a href="#"><span class="tclose-mobile"></span></a></td>
+                <td rowspan="10" class="it-title"><a href="/books/details/<%= inventory[0].book_id %>"><%= inventory[0].title %> </a></td>
+
+                <% _.each(inventory, function(condition){ %>
+                    <tr class="it-sec-tr">
+                        <td>Rs <%=condition.selling_price %></td>
+                        <td><%=condition.condition %></td>
+                        <td><%=condition.book_quantity %></td>
+                        <td>
+                    <span class="display_mode">
+                   <a href="/sellers/dashboard/?mode=edit&id=<%=condition.seller_book_id%>" ><span id="inventory_<%=condition.seller_book_id%>" data-id="<%=condition.id%>" data-seller-book-id="<%=condition.seller_book_id%>" class="tedit-desktop fa fa-edit"></span></a>
+                    <a href="#" ><span id="inventory_<%=condition.seller_book_id%>" data-id="<%=condition.id%>" data-seller-book-id="<%=condition.seller_book_id%>" class="tclose-desktop fa fa-trash"></span></a>
+
+                    </span>
+
+                </td>
+                    </tr>
+                <% }) %>
+
+            </tr>
+         </tbody>
+        <% }) %>
+     </script>
+    <script type="text/javascript" src="/midway/static/main/js/script.js"></script>
+    <script type="text/javascript" src="/midway/static/main/js/moment.js"></script>
+     <script type="text/javascript" src="/midway/static/app/accounts/js/auth.js"></script>
+     <script type="text/javascript" src="/midway/static/app/books/js/search.js"></script>
+    <script src="/midway/static/app/sellers/js/books.js"></script>
+    <script src="/midway/static/app/sellers/js/dashboard.js"></script>
+    <script src="/midway/static/app/sellers/js/seller_orders.js"></script>
+     {% include 'partials/footer-home.html' %}
+

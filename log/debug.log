@@ -1,0 +1,685 @@
+[05/Aug/2015 07:02:06] INFO [gunicorn.error:222] Worker reloading: /Users/vinod/workspace/textnookmarketplace/app/sellers/views.py modified
+[05/Aug/2015 07:02:06] INFO [gunicorn.error:222] Worker exiting (pid: 6784)
+[05/Aug/2015 07:02:06] INFO [gunicorn.error:222] Worker exiting (pid: 6784)
+[05/Aug/2015 07:02:16] INFO [app.sellers.views:206] None
+[05/Aug/2015 07:02:16] INFO [app.sellers.views:207] 10
+[05/Aug/2015 07:02:38] INFO [app.sellers.views:206] 2
+[05/Aug/2015 07:02:38] INFO [app.sellers.views:207] 0
+[05/Aug/2015 07:02:53] INFO [app.sellers.views:206] 2
+[05/Aug/2015 07:02:53] INFO [app.sellers.views:207] 0
+[05/Aug/2015 07:23:25] INFO [app.sellers.views:206] 2
+[05/Aug/2015 07:23:25] INFO [app.sellers.views:207] 0
+[05/Aug/2015 07:23:38] INFO [gunicorn.error:222] Worker reloading: /Users/vinod/workspace/textnookmarketplace/app/sellers/views.py modified
+[05/Aug/2015 07:23:38] INFO [gunicorn.error:222] Worker reloading: /Users/vinod/workspace/textnookmarketplace/app/sellers/views.py modified
+[05/Aug/2015 07:23:38] INFO [gunicorn.error:222] Worker exiting (pid: 6790)
+[05/Aug/2015 07:23:38] INFO [gunicorn.error:222] Worker exiting (pid: 6790)
+[05/Aug/2015 07:23:41] INFO [app.sellers.views:207] <rest_framework.request.Request object at 0x1115266d0>
+[05/Aug/2015 07:25:00] INFO [gunicorn.error:222] Worker reloading: /Users/vinod/workspace/textnookmarketplace/app/sellers/views.py modified
+[05/Aug/2015 07:25:00] INFO [gunicorn.error:222] Worker reloading: /Users/vinod/workspace/textnookmarketplace/app/sellers/views.py modified
+[05/Aug/2015 07:25:00] INFO [gunicorn.error:222] Worker exiting (pid: 6832)
+[05/Aug/2015 07:25:00] INFO [gunicorn.error:222] Worker exiting (pid: 6832)
+[05/Aug/2015 07:25:05] INFO [app.sellers.views:207] <rest_framework.request.Request object at 0x11150b690>
+[05/Aug/2015 07:25:35] INFO [gunicorn.error:222] Worker exiting (pid: 6849)
+[05/Aug/2015 07:25:35] INFO [gunicorn.error:222] Worker exiting (pid: 6849)
+[05/Aug/2015 08:54:00] INFO [gunicorn.error:222] Worker exiting (pid: 6860)
+[05/Aug/2015 08:54:00] INFO [gunicorn.error:222] Worker exiting (pid: 6860)
+[05/Aug/2015 10:10:12] INFO [gunicorn.error:222] Worker exiting (pid: 6917)
+[05/Aug/2015 10:10:12] INFO [gunicorn.error:222] Worker exiting (pid: 6917)
+[05/Aug/2015 11:00:37] INFO [gunicorn.error:222] Worker exiting (pid: 6986)
+[05/Aug/2015 11:00:37] INFO [gunicorn.error:222] Worker exiting (pid: 6986)
+[05/Aug/2015 13:55:59] INFO [gunicorn.error:222] Worker exiting (pid: 7049)
+[05/Aug/2015 13:55:59] INFO [gunicorn.error:222] Worker exiting (pid: 7049)
+[05/Aug/2015 15:04:14] INFO [gunicorn.error:222] Worker exiting (pid: 7308)
+[05/Aug/2015 15:04:14] INFO [gunicorn.error:222] Worker exiting (pid: 7308)
+[05/Aug/2015 20:54:45] INFO [gunicorn.error:222] Worker exiting (pid: 7395)
+[05/Aug/2015 20:54:45] INFO [gunicorn.error:222] Worker exiting (pid: 7395)
+[06/Aug/2015 03:35:05] INFO [gunicorn.error:222] Worker exiting (pid: 7561)
+[06/Aug/2015 03:35:05] INFO [gunicorn.error:222] Worker exiting (pid: 7561)
+[06/Aug/2015 04:23:50] INFO [gunicorn.error:222] Worker exiting (pid: 7581)
+[06/Aug/2015 04:23:50] INFO [gunicorn.error:222] Worker exiting (pid: 7581)
+[06/Aug/2015 05:02:44] INFO [gunicorn.error:222] Worker exiting (pid: 7633)
+[06/Aug/2015 05:02:44] INFO [gunicorn.error:222] Worker exiting (pid: 7633)
+[06/Aug/2015 05:43:52] INFO [gunicorn.error:222] Worker exiting (pid: 7662)
+[06/Aug/2015 05:43:52] INFO [gunicorn.error:222] Worker exiting (pid: 7662)
+[06/Aug/2015 07:14:23] INFO [gunicorn.error:222] Worker exiting (pid: 7830)
+[06/Aug/2015 07:14:23] INFO [gunicorn.error:222] Worker exiting (pid: 7830)
+[06/Aug/2015 08:44:06] INFO [gunicorn.error:222] Worker exiting (pid: 8179)
+[06/Aug/2015 08:44:06] INFO [gunicorn.error:222] Worker exiting (pid: 8179)
+[06/Aug/2015 10:07:13] INFO [gunicorn.error:222] Worker exiting (pid: 8228)
+[06/Aug/2015 10:07:13] INFO [gunicorn.error:222] Worker exiting (pid: 8228)
+[06/Aug/2015 10:55:04] INFO [gunicorn.error:222] Worker exiting (pid: 8308)
+[06/Aug/2015 10:55:04] INFO [gunicorn.error:222] Worker exiting (pid: 8308)
+[06/Aug/2015 11:14:50] INFO [gunicorn.error:222] Worker exiting (pid: 8358)
+[06/Aug/2015 11:14:50] INFO [gunicorn.error:222] Worker exiting (pid: 8358)
+[06/Aug/2015 16:41:55] INFO [gunicorn.error:222] Worker exiting (pid: 8382)
+[06/Aug/2015 16:41:55] INFO [gunicorn.error:222] Worker exiting (pid: 8382)
+[06/Aug/2015 16:49:05] INFO [gunicorn.error:222] Worker exiting (pid: 8862)
+[06/Aug/2015 16:49:05] INFO [gunicorn.error:222] Worker exiting (pid: 8862)
+[06/Aug/2015 21:06:40] INFO [gunicorn.error:222] Worker exiting (pid: 8868)
+[06/Aug/2015 21:06:40] INFO [gunicorn.error:222] Worker exiting (pid: 8868)
+[07/Aug/2015 04:06:19] INFO [gunicorn.error:222] Worker exiting (pid: 9056)
+[07/Aug/2015 04:06:19] INFO [gunicorn.error:222] Worker exiting (pid: 9056)
+[07/Aug/2015 04:23:28] INFO [gunicorn.error:222] Worker exiting (pid: 9078)
+[07/Aug/2015 04:23:28] INFO [gunicorn.error:222] Worker exiting (pid: 9078)
+[07/Aug/2015 04:59:25] INFO [gunicorn.error:222] Worker exiting (pid: 9135)
+[07/Aug/2015 04:59:25] INFO [gunicorn.error:222] Worker exiting (pid: 9135)
+[07/Aug/2015 05:35:05] INFO [gunicorn.error:222] Worker exiting (pid: 9164)
+[07/Aug/2015 05:35:05] INFO [gunicorn.error:222] Worker exiting (pid: 9164)
+[07/Aug/2015 06:03:44] INFO [gunicorn.error:222] Worker exiting (pid: 9201)
+[07/Aug/2015 06:03:44] INFO [gunicorn.error:222] Worker exiting (pid: 9201)
+[07/Aug/2015 06:04:43] INFO [gunicorn.error:222] Worker exiting (pid: 9274)
+[07/Aug/2015 06:04:43] INFO [gunicorn.error:222] Worker exiting (pid: 9274)
+[12/Jan/2016 17:10:46] ERROR [django.request:231] Internal Server Error: /
+Traceback (most recent call last):
+  File "C:\Python27\django\env\lib\site-packages\django\core\handlers\base.py", line 98, in get_response
+    resolver_match = resolver.resolve(request.path_info)
+  File "C:\Python27\django\env\lib\site-packages\django\core\urlresolvers.py", line 338, in resolve
+    for pattern in self.url_patterns:
+  File "C:\Python27\django\env\lib\site-packages\django\core\urlresolvers.py", line 367, in url_patterns
+    patterns = getattr(self.urlconf_module, "urlpatterns", self.urlconf_module)
+  File "C:\Python27\django\env\lib\site-packages\django\core\urlresolvers.py", line 361, in urlconf_module
+    self._urlconf_module = import_module(self.urlconf_name)
+  File "C:\Python27\Lib\importlib\__init__.py", line 37, in import_module
+    __import__(name)
+  File "C:\Users\nivethiv\Documents\nivi\PycharmProjects\midway\midway\main\urls.py", line 10, in <module>
+    url(r'^$', include('app.home.urls')),
+  File "C:\Python27\django\env\lib\site-packages\django\conf\urls\__init__.py", line 28, in include
+    urlconf_module = import_module(urlconf_module)
+  File "C:\Python27\Lib\importlib\__init__.py", line 37, in import_module
+    __import__(name)
+  File "C:\Users\nivethiv\Documents\nivi\PycharmProjects\midway\midway\app\home\urls.py", line 3, in <module>
+    from midway.app.home import views
+ImportError: No module named midway.app.home
+[12/Jan/2016 17:10:46] ERROR [django.request:231] Internal Server Error: /favicon.ico
+Traceback (most recent call last):
+  File "C:\Python27\django\env\lib\site-packages\django\core\handlers\base.py", line 87, in get_response
+    response = middleware_method(request)
+  File "C:\Python27\django\env\lib\site-packages\django\middleware\common.py", line 72, in process_request
+    if (not urlresolvers.is_valid_path(request.path_info, urlconf) and
+  File "C:\Python27\django\env\lib\site-packages\django\core\urlresolvers.py", line 614, in is_valid_path
+    resolve(path, urlconf)
+  File "C:\Python27\django\env\lib\site-packages\django\core\urlresolvers.py", line 489, in resolve
+    return get_resolver(urlconf).resolve(path)
+  File "C:\Python27\django\env\lib\site-packages\django\core\urlresolvers.py", line 338, in resolve
+    for pattern in self.url_patterns:
+  File "C:\Python27\django\env\lib\site-packages\django\core\urlresolvers.py", line 367, in url_patterns
+    patterns = getattr(self.urlconf_module, "urlpatterns", self.urlconf_module)
+  File "C:\Python27\django\env\lib\site-packages\django\core\urlresolvers.py", line 361, in urlconf_module
+    self._urlconf_module = import_module(self.urlconf_name)
+  File "C:\Python27\Lib\importlib\__init__.py", line 37, in import_module
+    __import__(name)
+  File "C:\Users\nivethiv\Documents\nivi\PycharmProjects\midway\midway\main\urls.py", line 10, in <module>
+    url(r'^$', include('app.home.urls')),
+  File "C:\Python27\django\env\lib\site-packages\django\conf\urls\__init__.py", line 28, in include
+    urlconf_module = import_module(urlconf_module)
+  File "C:\Python27\Lib\importlib\__init__.py", line 37, in import_module
+    __import__(name)
+  File "C:\Users\nivethiv\Documents\nivi\PycharmProjects\midway\midway\app\home\urls.py", line 3, in <module>
+    from midway.app.home import views
+ImportError: No module named midway.app.home
+[12/Jan/2016 17:10:46] ERROR [django.request:231] Internal Server Error: /favicon.ico
+Traceback (most recent call last):
+  File "C:\Python27\django\env\lib\site-packages\django\core\handlers\base.py", line 87, in get_response
+    response = middleware_method(request)
+  File "C:\Python27\django\env\lib\site-packages\django\middleware\common.py", line 72, in process_request
+    if (not urlresolvers.is_valid_path(request.path_info, urlconf) and
+  File "C:\Python27\django\env\lib\site-packages\django\core\urlresolvers.py", line 614, in is_valid_path
+    resolve(path, urlconf)
+  File "C:\Python27\django\env\lib\site-packages\django\core\urlresolvers.py", line 489, in resolve
+    return get_resolver(urlconf).resolve(path)
+  File "C:\Python27\django\env\lib\site-packages\django\core\urlresolvers.py", line 338, in resolve
+    for pattern in self.url_patterns:
+  File "C:\Python27\django\env\lib\site-packages\django\core\urlresolvers.py", line 367, in url_patterns
+    patterns = getattr(self.urlconf_module, "urlpatterns", self.urlconf_module)
+  File "C:\Python27\django\env\lib\site-packages\django\core\urlresolvers.py", line 361, in urlconf_module
+    self._urlconf_module = import_module(self.urlconf_name)
+  File "C:\Python27\Lib\importlib\__init__.py", line 37, in import_module
+    __import__(name)
+  File "C:\Users\nivethiv\Documents\nivi\PycharmProjects\midway\midway\main\urls.py", line 10, in <module>
+    url(r'^$', include('app.home.urls')),
+  File "C:\Python27\django\env\lib\site-packages\django\conf\urls\__init__.py", line 28, in include
+    urlconf_module = import_module(urlconf_module)
+  File "C:\Python27\Lib\importlib\__init__.py", line 37, in import_module
+    __import__(name)
+  File "C:\Users\nivethiv\Documents\nivi\PycharmProjects\midway\midway\app\home\urls.py", line 3, in <module>
+    from midway.app.home import views
+ImportError: No module named midway.app.home
+[12/Jan/2016 17:13:45] ERROR [django.request:231] Internal Server Error: /
+Traceback (most recent call last):
+  File "C:\Python27\django\env\lib\site-packages\django\core\handlers\base.py", line 98, in get_response
+    resolver_match = resolver.resolve(request.path_info)
+  File "C:\Python27\django\env\lib\site-packages\django\core\urlresolvers.py", line 338, in resolve
+    for pattern in self.url_patterns:
+  File "C:\Python27\django\env\lib\site-packages\django\core\urlresolvers.py", line 367, in url_patterns
+    patterns = getattr(self.urlconf_module, "urlpatterns", self.urlconf_module)
+  File "C:\Python27\django\env\lib\site-packages\django\core\urlresolvers.py", line 361, in urlconf_module
+    self._urlconf_module = import_module(self.urlconf_name)
+  File "C:\Python27\Lib\importlib\__init__.py", line 37, in import_module
+    __import__(name)
+  File "C:\Users\nivethiv\Documents\nivi\PycharmProjects\midway\midway\main\urls.py", line 10, in <module>
+    url(r'^$', include('app.home.urls')),
+  File "C:\Python27\django\env\lib\site-packages\django\conf\urls\__init__.py", line 28, in include
+    urlconf_module = import_module(urlconf_module)
+  File "C:\Python27\Lib\importlib\__init__.py", line 37, in import_module
+    __import__(name)
+  File "C:\Users\nivethiv\Documents\nivi\PycharmProjects\midway\midway\app\home\urls.py", line 3, in <module>
+    from midway.app.home import views
+ImportError: No module named midway.app.home
+[12/Jan/2016 17:14:41] ERROR [django.request:231] Internal Server Error: /faq/
+Traceback (most recent call last):
+  File "C:\Python27\django\env\lib\site-packages\django\core\handlers\base.py", line 98, in get_response
+    resolver_match = resolver.resolve(request.path_info)
+  File "C:\Python27\django\env\lib\site-packages\django\core\urlresolvers.py", line 338, in resolve
+    for pattern in self.url_patterns:
+  File "C:\Python27\django\env\lib\site-packages\django\core\urlresolvers.py", line 367, in url_patterns
+    patterns = getattr(self.urlconf_module, "urlpatterns", self.urlconf_module)
+  File "C:\Python27\django\env\lib\site-packages\django\core\urlresolvers.py", line 361, in urlconf_module
+    self._urlconf_module = import_module(self.urlconf_name)
+  File "C:\Python27\Lib\importlib\__init__.py", line 37, in import_module
+    __import__(name)
+  File "C:\Users\nivethiv\Documents\nivi\PycharmProjects\midway\midway\main\urls.py", line 10, in <module>
+    url(r'^$', include('app.home.urls')),
+  File "C:\Python27\django\env\lib\site-packages\django\conf\urls\__init__.py", line 28, in include
+    urlconf_module = import_module(urlconf_module)
+  File "C:\Python27\Lib\importlib\__init__.py", line 37, in import_module
+    __import__(name)
+  File "C:\Users\nivethiv\Documents\nivi\PycharmProjects\midway\midway\app\home\urls.py", line 3, in <module>
+    from midway.app.home import views
+ImportError: No module named midway.app.home
+[12/Jan/2016 17:15:09] ERROR [django.request:231] Internal Server Error: /home/
+Traceback (most recent call last):
+  File "C:\Python27\django\env\lib\site-packages\django\core\handlers\base.py", line 98, in get_response
+    resolver_match = resolver.resolve(request.path_info)
+  File "C:\Python27\django\env\lib\site-packages\django\core\urlresolvers.py", line 338, in resolve
+    for pattern in self.url_patterns:
+  File "C:\Python27\django\env\lib\site-packages\django\core\urlresolvers.py", line 367, in url_patterns
+    patterns = getattr(self.urlconf_module, "urlpatterns", self.urlconf_module)
+  File "C:\Python27\django\env\lib\site-packages\django\core\urlresolvers.py", line 361, in urlconf_module
+    self._urlconf_module = import_module(self.urlconf_name)
+  File "C:\Python27\Lib\importlib\__init__.py", line 37, in import_module
+    __import__(name)
+  File "C:\Users\nivethiv\Documents\nivi\PycharmProjects\midway\midway\main\urls.py", line 10, in <module>
+    url(r'^$', include('app.home.urls')),
+  File "C:\Python27\django\env\lib\site-packages\django\conf\urls\__init__.py", line 28, in include
+    urlconf_module = import_module(urlconf_module)
+  File "C:\Python27\Lib\importlib\__init__.py", line 37, in import_module
+    __import__(name)
+  File "C:\Users\nivethiv\Documents\nivi\PycharmProjects\midway\midway\app\home\urls.py", line 3, in <module>
+    from midway.app.home import views
+ImportError: No module named midway.app.home
+[12/Jan/2016 17:15:56] ERROR [django.request:231] Internal Server Error: /
+Traceback (most recent call last):
+  File "C:\Python27\django\env\lib\site-packages\django\core\handlers\base.py", line 98, in get_response
+    resolver_match = resolver.resolve(request.path_info)
+  File "C:\Python27\django\env\lib\site-packages\django\core\urlresolvers.py", line 338, in resolve
+    for pattern in self.url_patterns:
+  File "C:\Python27\django\env\lib\site-packages\django\core\urlresolvers.py", line 367, in url_patterns
+    patterns = getattr(self.urlconf_module, "urlpatterns", self.urlconf_module)
+  File "C:\Python27\django\env\lib\site-packages\django\core\urlresolvers.py", line 361, in urlconf_module
+    self._urlconf_module = import_module(self.urlconf_name)
+  File "C:\Python27\Lib\importlib\__init__.py", line 37, in import_module
+    __import__(name)
+  File "C:\Users\nivethiv\Documents\nivi\PycharmProjects\midway\midway\main\urls.py", line 10, in <module>
+    url(r'^$', include('app.home.urls')),
+  File "C:\Python27\django\env\lib\site-packages\django\conf\urls\__init__.py", line 28, in include
+    urlconf_module = import_module(urlconf_module)
+  File "C:\Python27\Lib\importlib\__init__.py", line 37, in import_module
+    __import__(name)
+  File "C:\Users\nivethiv\Documents\nivi\PycharmProjects\midway\midway\app\home\urls.py", line 3, in <module>
+    from app.home import views
+  File "C:\Users\nivethiv\Documents\nivi\PycharmProjects\midway\midway\app\home\views.py", line 6, in <module>
+    from midway.app.categories.models import Category
+ImportError: No module named midway.app.categories.models
+[12/Jan/2016 17:16:36] ERROR [django.request:231] Internal Server Error: /
+Traceback (most recent call last):
+  File "C:\Python27\django\env\lib\site-packages\django\core\handlers\base.py", line 98, in get_response
+    resolver_match = resolver.resolve(request.path_info)
+  File "C:\Python27\django\env\lib\site-packages\django\core\urlresolvers.py", line 338, in resolve
+    for pattern in self.url_patterns:
+  File "C:\Python27\django\env\lib\site-packages\django\core\urlresolvers.py", line 367, in url_patterns
+    patterns = getattr(self.urlconf_module, "urlpatterns", self.urlconf_module)
+  File "C:\Python27\django\env\lib\site-packages\django\core\urlresolvers.py", line 361, in urlconf_module
+    self._urlconf_module = import_module(self.urlconf_name)
+  File "C:\Python27\Lib\importlib\__init__.py", line 37, in import_module
+    __import__(name)
+  File "C:\Users\nivethiv\Documents\nivi\PycharmProjects\midway\midway\main\urls.py", line 15, in <module>
+    url(r'^authors/', include('app.authors.urls')),
+  File "C:\Python27\django\env\lib\site-packages\django\conf\urls\__init__.py", line 28, in include
+    urlconf_module = import_module(urlconf_module)
+  File "C:\Python27\Lib\importlib\__init__.py", line 37, in import_module
+    __import__(name)
+ImportError: No module named authors.urls
+[12/Jan/2016 17:18:19] ERROR [django.request:231] Internal Server Error: /
+Traceback (most recent call last):
+  File "C:\Python27\django\env\lib\site-packages\django\core\handlers\base.py", line 98, in get_response
+    resolver_match = resolver.resolve(request.path_info)
+  File "C:\Python27\django\env\lib\site-packages\django\core\urlresolvers.py", line 338, in resolve
+    for pattern in self.url_patterns:
+  File "C:\Python27\django\env\lib\site-packages\django\core\urlresolvers.py", line 367, in url_patterns
+    patterns = getattr(self.urlconf_module, "urlpatterns", self.urlconf_module)
+  File "C:\Python27\django\env\lib\site-packages\django\core\urlresolvers.py", line 361, in urlconf_module
+    self._urlconf_module = import_module(self.urlconf_name)
+  File "C:\Python27\Lib\importlib\__init__.py", line 37, in import_module
+    __import__(name)
+  File "C:\Users\nivethiv\Documents\nivi\PycharmProjects\midway\midway\main\urls.py", line 19, in <module>
+    url(r'^requested_books/', include('app.requested_books.urls')),
+  File "C:\Python27\django\env\lib\site-packages\django\conf\urls\__init__.py", line 28, in include
+    urlconf_module = import_module(urlconf_module)
+  File "C:\Python27\Lib\importlib\__init__.py", line 37, in import_module
+    __import__(name)
+ImportError: No module named requested_books.urls
+[12/Jan/2016 17:18:45] ERROR [django.request:231] Internal Server Error: /
+Traceback (most recent call last):
+  File "C:\Python27\django\env\lib\site-packages\django\core\handlers\base.py", line 111, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+TypeError: 'str' object is not callable
+[12/Jan/2016 17:18:58] ERROR [django.request:231] Internal Server Error: /home/
+Traceback (most recent call last):
+  File "C:\Python27\django\env\lib\site-packages\django\core\handlers\base.py", line 111, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+TypeError: 'str' object is not callable
+[12/Jan/2016 17:25:09] ERROR [django.request:231] Internal Server Error: /
+Traceback (most recent call last):
+  File "C:\Python27\django\env\lib\site-packages\django\core\handlers\base.py", line 111, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+TypeError: 'str' object is not callable
+[12/Jan/2016 17:30:55] WARNING [django.request:143] Not Found: /
+[12/Jan/2016 17:31:05] ERROR [django.request:231] Internal Server Error: /home/
+Traceback (most recent call last):
+  File "C:\Python27\django\env\lib\site-packages\django\core\handlers\base.py", line 111, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+TypeError: 'str' object is not callable
+[12/Jan/2016 17:31:45] WARNING [django.request:143] Not Found: /home/
+[12/Jan/2016 17:31:53] ERROR [django.request:231] Internal Server Error: /home/index/
+Traceback (most recent call last):
+  File "C:\Python27\django\env\lib\site-packages\django\core\handlers\base.py", line 111, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+TypeError: 'str' object is not callable
+[12/Jan/2016 17:37:40] ERROR [django.request:231] Internal Server Error: /home/faq/
+Traceback (most recent call last):
+  File "C:\Python27\django\env\lib\site-packages\django\core\handlers\base.py", line 111, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+TypeError: 'str' object is not callable
+[12/Jan/2016 17:38:26] ERROR [django.request:231] Internal Server Error: /home/faq/
+Traceback (most recent call last):
+  File "C:\Python27\django\env\lib\site-packages\django\core\handlers\base.py", line 98, in get_response
+    resolver_match = resolver.resolve(request.path_info)
+  File "C:\Python27\django\env\lib\site-packages\django\core\urlresolvers.py", line 338, in resolve
+    for pattern in self.url_patterns:
+  File "C:\Python27\django\env\lib\site-packages\django\core\urlresolvers.py", line 367, in url_patterns
+    patterns = getattr(self.urlconf_module, "urlpatterns", self.urlconf_module)
+  File "C:\Python27\django\env\lib\site-packages\django\core\urlresolvers.py", line 361, in urlconf_module
+    self._urlconf_module = import_module(self.urlconf_name)
+  File "C:\Python27\Lib\importlib\__init__.py", line 37, in import_module
+    __import__(name)
+  File "C:\Users\nivethiv\Documents\nivi\PycharmProjects\midway\midway\main\urls.py", line 12, in <module>
+    url(r'^home/', include('app.home.urls')),
+  File "C:\Python27\django\env\lib\site-packages\django\conf\urls\__init__.py", line 28, in include
+    urlconf_module = import_module(urlconf_module)
+  File "C:\Python27\Lib\importlib\__init__.py", line 37, in import_module
+    __import__(name)
+  File "C:\Users\nivethiv\Documents\nivi\PycharmProjects\midway\midway\app\home\urls.py", line 3, in <module>
+    from midway.app.home import views
+ImportError: No module named midway.app.home
+[12/Jan/2016 17:39:02] ERROR [django.request:231] Internal Server Error: /home/faq/
+Traceback (most recent call last):
+  File "C:\Python27\django\env\lib\site-packages\django\core\handlers\base.py", line 111, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+TypeError: 'str' object is not callable
+[12/Jan/2016 17:41:59] ERROR [django.request:231] Internal Server Error: /home/faq/
+Traceback (most recent call last):
+  File "C:\Python27\django\env\lib\site-packages\django\core\handlers\base.py", line 98, in get_response
+    resolver_match = resolver.resolve(request.path_info)
+  File "C:\Python27\django\env\lib\site-packages\django\core\urlresolvers.py", line 340, in resolve
+    sub_match = pattern.resolve(new_path)
+  File "C:\Python27\django\env\lib\site-packages\django\core\urlresolvers.py", line 340, in resolve
+    sub_match = pattern.resolve(new_path)
+  File "C:\Python27\django\env\lib\site-packages\django\core\urlresolvers.py", line 224, in resolve
+    return ResolverMatch(self.callback, args, kwargs, self.name)
+  File "C:\Python27\django\env\lib\site-packages\django\core\urlresolvers.py", line 231, in callback
+    self._callback = get_callable(self._callback_str)
+  File "C:\Python27\django\env\lib\site-packages\django\utils\lru_cache.py", line 101, in wrapper
+    result = user_function(*args, **kwds)
+  File "C:\Python27\django\env\lib\site-packages\django\core\urlresolvers.py", line 101, in get_callable
+    not module_has_submodule(import_module(parentmod), submod)):
+  File "C:\Python27\Lib\importlib\__init__.py", line 37, in import_module
+    __import__(name)
+ImportError: No module named midway.home
+[12/Jan/2016 17:42:22] ERROR [django.request:231] Internal Server Error: /home/faq/
+Traceback (most recent call last):
+  File "C:\Python27\django\env\lib\site-packages\django\core\handlers\base.py", line 111, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\nivethiv\Documents\nivi\PycharmProjects\midway\midway\app\home\views.py", line 24, in faq
+    return render(request, 'home/faq.html', {'context': context})
+  File "C:\Python27\django\env\lib\site-packages\django\shortcuts.py", line 48, in render
+    return HttpResponse(loader.render_to_string(*args, **kwargs),
+  File "C:\Python27\django\env\lib\site-packages\django\template\loader.py", line 178, in render_to_string
+    return t.render(context_instance)
+  File "C:\Python27\django\env\lib\site-packages\django\template\base.py", line 148, in render
+    return self._render(context)
+  File "C:\Python27\django\env\lib\site-packages\django\template\base.py", line 142, in _render
+    return self.nodelist.render(context)
+  File "C:\Python27\django\env\lib\site-packages\django\template\base.py", line 844, in render
+    bit = self.render_node(node, context)
+  File "C:\Python27\django\env\lib\site-packages\django\template\debug.py", line 80, in render_node
+    return node.render(context)
+  File "C:\Python27\django\env\lib\site-packages\django\template\loader_tags.py", line 150, in render
+    return template.render(context)
+  File "C:\Python27\django\env\lib\site-packages\django\template\base.py", line 148, in render
+    return self._render(context)
+  File "C:\Python27\django\env\lib\site-packages\django\template\base.py", line 142, in _render
+    return self.nodelist.render(context)
+  File "C:\Python27\django\env\lib\site-packages\django\template\base.py", line 844, in render
+    bit = self.render_node(node, context)
+  File "C:\Python27\django\env\lib\site-packages\django\template\debug.py", line 80, in render_node
+    return node.render(context)
+  File "C:\Python27\django\env\lib\site-packages\django\template\loader_tags.py", line 150, in render
+    return template.render(context)
+  File "C:\Python27\django\env\lib\site-packages\django\template\base.py", line 148, in render
+    return self._render(context)
+  File "C:\Python27\django\env\lib\site-packages\django\template\base.py", line 142, in _render
+    return self.nodelist.render(context)
+  File "C:\Python27\django\env\lib\site-packages\django\template\base.py", line 844, in render
+    bit = self.render_node(node, context)
+  File "C:\Python27\django\env\lib\site-packages\django\template\debug.py", line 80, in render_node
+    return node.render(context)
+  File "C:\Python27\django\env\lib\site-packages\django\template\defaulttags.py", line 444, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=context.current_app)
+  File "C:\Python27\django\env\lib\site-packages\django\core\urlresolvers.py", line 517, in reverse
+    app_list = resolver.app_dict[ns]
+  File "C:\Python27\django\env\lib\site-packages\django\core\urlresolvers.py", line 329, in app_dict
+    self._populate()
+  File "C:\Python27\django\env\lib\site-packages\django\core\urlresolvers.py", line 292, in _populate
+    for name in pattern.reverse_dict:
+  File "C:\Python27\django\env\lib\site-packages\django\core\urlresolvers.py", line 315, in reverse_dict
+    self._populate()
+  File "C:\Python27\django\env\lib\site-packages\django\core\urlresolvers.py", line 303, in _populate
+    lookups.appendlist(pattern.callback, (bits, p_pattern, pattern.default_args))
+  File "C:\Python27\django\env\lib\site-packages\django\core\urlresolvers.py", line 231, in callback
+    self._callback = get_callable(self._callback_str)
+  File "C:\Python27\django\env\lib\site-packages\django\utils\lru_cache.py", line 101, in wrapper
+    result = user_function(*args, **kwds)
+  File "C:\Python27\django\env\lib\site-packages\django\core\urlresolvers.py", line 97, in get_callable
+    mod = import_module(mod_name)
+  File "C:\Python27\Lib\importlib\__init__.py", line 37, in import_module
+    __import__(name)
+  File "C:\Users\nivethiv\Documents\nivi\PycharmProjects\midway\midway\app\order_items\views.py", line 2, in <module>
+    from midway.app.order_items.models import OrderItem
+ImportError: No module named midway.app.order_items.models
+[12/Jan/2016 17:43:07] ERROR [django.request:231] Internal Server Error: /home/faq/
+Traceback (most recent call last):
+  File "C:\Python27\django\env\lib\site-packages\django\core\handlers\base.py", line 111, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\nivethiv\Documents\nivi\PycharmProjects\midway\midway\app\home\views.py", line 24, in faq
+    return render(request, 'home/faq.html', {'context': context})
+  File "C:\Python27\django\env\lib\site-packages\django\shortcuts.py", line 48, in render
+    return HttpResponse(loader.render_to_string(*args, **kwargs),
+  File "C:\Python27\django\env\lib\site-packages\django\template\loader.py", line 178, in render_to_string
+    return t.render(context_instance)
+  File "C:\Python27\django\env\lib\site-packages\django\template\base.py", line 148, in render
+    return self._render(context)
+  File "C:\Python27\django\env\lib\site-packages\django\template\base.py", line 142, in _render
+    return self.nodelist.render(context)
+  File "C:\Python27\django\env\lib\site-packages\django\template\base.py", line 844, in render
+    bit = self.render_node(node, context)
+  File "C:\Python27\django\env\lib\site-packages\django\template\debug.py", line 80, in render_node
+    return node.render(context)
+  File "C:\Python27\django\env\lib\site-packages\django\template\loader_tags.py", line 150, in render
+    return template.render(context)
+  File "C:\Python27\django\env\lib\site-packages\django\template\base.py", line 148, in render
+    return self._render(context)
+  File "C:\Python27\django\env\lib\site-packages\django\template\base.py", line 142, in _render
+    return self.nodelist.render(context)
+  File "C:\Python27\django\env\lib\site-packages\django\template\base.py", line 844, in render
+    bit = self.render_node(node, context)
+  File "C:\Python27\django\env\lib\site-packages\django\template\debug.py", line 80, in render_node
+    return node.render(context)
+  File "C:\Python27\django\env\lib\site-packages\django\template\loader_tags.py", line 150, in render
+    return template.render(context)
+  File "C:\Python27\django\env\lib\site-packages\django\template\base.py", line 148, in render
+    return self._render(context)
+  File "C:\Python27\django\env\lib\site-packages\django\template\base.py", line 142, in _render
+    return self.nodelist.render(context)
+  File "C:\Python27\django\env\lib\site-packages\django\template\base.py", line 844, in render
+    bit = self.render_node(node, context)
+  File "C:\Python27\django\env\lib\site-packages\django\template\debug.py", line 80, in render_node
+    return node.render(context)
+  File "C:\Python27\django\env\lib\site-packages\django\template\defaulttags.py", line 444, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=context.current_app)
+  File "C:\Python27\django\env\lib\site-packages\django\core\urlresolvers.py", line 517, in reverse
+    app_list = resolver.app_dict[ns]
+  File "C:\Python27\django\env\lib\site-packages\django\core\urlresolvers.py", line 329, in app_dict
+    self._populate()
+  File "C:\Python27\django\env\lib\site-packages\django\core\urlresolvers.py", line 292, in _populate
+    for name in pattern.reverse_dict:
+  File "C:\Python27\django\env\lib\site-packages\django\core\urlresolvers.py", line 315, in reverse_dict
+    self._populate()
+  File "C:\Python27\django\env\lib\site-packages\django\core\urlresolvers.py", line 303, in _populate
+    lookups.appendlist(pattern.callback, (bits, p_pattern, pattern.default_args))
+  File "C:\Python27\django\env\lib\site-packages\django\core\urlresolvers.py", line 231, in callback
+    self._callback = get_callable(self._callback_str)
+  File "C:\Python27\django\env\lib\site-packages\django\utils\lru_cache.py", line 101, in wrapper
+    result = user_function(*args, **kwds)
+  File "C:\Python27\django\env\lib\site-packages\django\core\urlresolvers.py", line 97, in get_callable
+    mod = import_module(mod_name)
+  File "C:\Python27\Lib\importlib\__init__.py", line 37, in import_module
+    __import__(name)
+  File "C:\Users\nivethiv\Documents\nivi\PycharmProjects\midway\midway\app\discount_coupon\views.py", line 11, in <module>
+    from midway.app.discount_coupon.models import Discount
+ImportError: No module named midway.app.discount_coupon.models
+[12/Jan/2016 17:43:42] ERROR [django.request:231] Internal Server Error: /home/faq/
+Traceback (most recent call last):
+  File "C:\Python27\django\env\lib\site-packages\django\core\handlers\base.py", line 111, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\nivethiv\Documents\nivi\PycharmProjects\midway\midway\app\home\views.py", line 24, in faq
+    return render(request, 'home/faq.html', {'context': context})
+  File "C:\Python27\django\env\lib\site-packages\django\shortcuts.py", line 48, in render
+    return HttpResponse(loader.render_to_string(*args, **kwargs),
+  File "C:\Python27\django\env\lib\site-packages\django\template\loader.py", line 178, in render_to_string
+    return t.render(context_instance)
+  File "C:\Python27\django\env\lib\site-packages\django\template\base.py", line 148, in render
+    return self._render(context)
+  File "C:\Python27\django\env\lib\site-packages\django\template\base.py", line 142, in _render
+    return self.nodelist.render(context)
+  File "C:\Python27\django\env\lib\site-packages\django\template\base.py", line 844, in render
+    bit = self.render_node(node, context)
+  File "C:\Python27\django\env\lib\site-packages\django\template\debug.py", line 80, in render_node
+    return node.render(context)
+  File "C:\Python27\django\env\lib\site-packages\django\template\loader_tags.py", line 150, in render
+    return template.render(context)
+  File "C:\Python27\django\env\lib\site-packages\django\template\base.py", line 148, in render
+    return self._render(context)
+  File "C:\Python27\django\env\lib\site-packages\django\template\base.py", line 142, in _render
+    return self.nodelist.render(context)
+  File "C:\Python27\django\env\lib\site-packages\django\template\base.py", line 844, in render
+    bit = self.render_node(node, context)
+  File "C:\Python27\django\env\lib\site-packages\django\template\debug.py", line 80, in render_node
+    return node.render(context)
+  File "C:\Python27\django\env\lib\site-packages\django\template\loader_tags.py", line 150, in render
+    return template.render(context)
+  File "C:\Python27\django\env\lib\site-packages\django\template\base.py", line 148, in render
+    return self._render(context)
+  File "C:\Python27\django\env\lib\site-packages\django\template\base.py", line 142, in _render
+    return self.nodelist.render(context)
+  File "C:\Python27\django\env\lib\site-packages\django\template\base.py", line 844, in render
+    bit = self.render_node(node, context)
+  File "C:\Python27\django\env\lib\site-packages\django\template\debug.py", line 80, in render_node
+    return node.render(context)
+  File "C:\Python27\django\env\lib\site-packages\django\template\defaulttags.py", line 444, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=context.current_app)
+  File "C:\Python27\django\env\lib\site-packages\django\core\urlresolvers.py", line 517, in reverse
+    app_list = resolver.app_dict[ns]
+  File "C:\Python27\django\env\lib\site-packages\django\core\urlresolvers.py", line 329, in app_dict
+    self._populate()
+  File "C:\Python27\django\env\lib\site-packages\django\core\urlresolvers.py", line 292, in _populate
+    for name in pattern.reverse_dict:
+  File "C:\Python27\django\env\lib\site-packages\django\core\urlresolvers.py", line 315, in reverse_dict
+    self._populate()
+  File "C:\Python27\django\env\lib\site-packages\django\core\urlresolvers.py", line 303, in _populate
+    lookups.appendlist(pattern.callback, (bits, p_pattern, pattern.default_args))
+  File "C:\Python27\django\env\lib\site-packages\django\core\urlresolvers.py", line 231, in callback
+    self._callback = get_callable(self._callback_str)
+  File "C:\Python27\django\env\lib\site-packages\django\utils\lru_cache.py", line 101, in wrapper
+    result = user_function(*args, **kwds)
+  File "C:\Python27\django\env\lib\site-packages\django\core\urlresolvers.py", line 97, in get_callable
+    mod = import_module(mod_name)
+  File "C:\Python27\Lib\importlib\__init__.py", line 37, in import_module
+    __import__(name)
+  File "C:\Users\nivethiv\Documents\nivi\PycharmProjects\midway\midway\app\discount_coupon\views.py", line 13, in <module>
+    from app.orders.helpers import get_cart_details
+  File "C:\Users\nivethiv\Documents\nivi\PycharmProjects\midway\midway\app\orders\helpers.py", line 4, in <module>
+    from midway.app.carts.models import Cart
+ImportError: No module named midway.app.carts.models
+[12/Jan/2016 17:44:14] ERROR [django.request:231] Internal Server Error: /home/faq/
+Traceback (most recent call last):
+  File "C:\Python27\django\env\lib\site-packages\django\core\handlers\base.py", line 111, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\nivethiv\Documents\nivi\PycharmProjects\midway\midway\app\home\views.py", line 24, in faq
+    return render(request, 'home/faq.html', {'context': context})
+  File "C:\Python27\django\env\lib\site-packages\django\shortcuts.py", line 48, in render
+    return HttpResponse(loader.render_to_string(*args, **kwargs),
+  File "C:\Python27\django\env\lib\site-packages\django\template\loader.py", line 178, in render_to_string
+    return t.render(context_instance)
+  File "C:\Python27\django\env\lib\site-packages\django\template\base.py", line 148, in render
+    return self._render(context)
+  File "C:\Python27\django\env\lib\site-packages\django\template\base.py", line 142, in _render
+    return self.nodelist.render(context)
+  File "C:\Python27\django\env\lib\site-packages\django\template\base.py", line 844, in render
+    bit = self.render_node(node, context)
+  File "C:\Python27\django\env\lib\site-packages\django\template\debug.py", line 80, in render_node
+    return node.render(context)
+  File "C:\Python27\django\env\lib\site-packages\django\template\loader_tags.py", line 150, in render
+    return template.render(context)
+  File "C:\Python27\django\env\lib\site-packages\django\template\base.py", line 148, in render
+    return self._render(context)
+  File "C:\Python27\django\env\lib\site-packages\django\template\base.py", line 142, in _render
+    return self.nodelist.render(context)
+  File "C:\Python27\django\env\lib\site-packages\django\template\base.py", line 844, in render
+    bit = self.render_node(node, context)
+  File "C:\Python27\django\env\lib\site-packages\django\template\debug.py", line 80, in render_node
+    return node.render(context)
+  File "C:\Python27\django\env\lib\site-packages\django\template\loader_tags.py", line 150, in render
+    return template.render(context)
+  File "C:\Python27\django\env\lib\site-packages\django\template\base.py", line 148, in render
+    return self._render(context)
+  File "C:\Python27\django\env\lib\site-packages\django\template\base.py", line 142, in _render
+    return self.nodelist.render(context)
+  File "C:\Python27\django\env\lib\site-packages\django\template\base.py", line 844, in render
+    bit = self.render_node(node, context)
+  File "C:\Python27\django\env\lib\site-packages\django\template\debug.py", line 80, in render_node
+    return node.render(context)
+  File "C:\Python27\django\env\lib\site-packages\django\template\defaulttags.py", line 444, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=context.current_app)
+  File "C:\Python27\django\env\lib\site-packages\django\core\urlresolvers.py", line 517, in reverse
+    app_list = resolver.app_dict[ns]
+  File "C:\Python27\django\env\lib\site-packages\django\core\urlresolvers.py", line 329, in app_dict
+    self._populate()
+  File "C:\Python27\django\env\lib\site-packages\django\core\urlresolvers.py", line 292, in _populate
+    for name in pattern.reverse_dict:
+  File "C:\Python27\django\env\lib\site-packages\django\core\urlresolvers.py", line 315, in reverse_dict
+    self._populate()
+  File "C:\Python27\django\env\lib\site-packages\django\core\urlresolvers.py", line 303, in _populate
+    lookups.appendlist(pattern.callback, (bits, p_pattern, pattern.default_args))
+  File "C:\Python27\django\env\lib\site-packages\django\core\urlresolvers.py", line 231, in callback
+    self._callback = get_callable(self._callback_str)
+  File "C:\Python27\django\env\lib\site-packages\django\utils\lru_cache.py", line 101, in wrapper
+    result = user_function(*args, **kwds)
+  File "C:\Python27\django\env\lib\site-packages\django\core\urlresolvers.py", line 97, in get_callable
+    mod = import_module(mod_name)
+  File "C:\Python27\Lib\importlib\__init__.py", line 37, in import_module
+    __import__(name)
+  File "C:\Users\nivethiv\Documents\nivi\PycharmProjects\midway\midway\app\orders\views.py", line 18, in <module>
+    from midway.app.categories.models import Category
+ImportError: No module named midway.app.categories.models
+[12/Jan/2016 17:45:21] ERROR [django.request:231] Internal Server Error: /home/faq/
+Traceback (most recent call last):
+  File "C:\Python27\django\env\lib\site-packages\django\core\handlers\base.py", line 111, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\nivethiv\Documents\nivi\PycharmProjects\midway\midway\app\home\views.py", line 24, in faq
+    return render(request, 'home/faq.html', {'context': context})
+  File "C:\Python27\django\env\lib\site-packages\django\shortcuts.py", line 48, in render
+    return HttpResponse(loader.render_to_string(*args, **kwargs),
+  File "C:\Python27\django\env\lib\site-packages\django\template\loader.py", line 178, in render_to_string
+    return t.render(context_instance)
+  File "C:\Python27\django\env\lib\site-packages\django\template\base.py", line 148, in render
+    return self._render(context)
+  File "C:\Python27\django\env\lib\site-packages\django\template\base.py", line 142, in _render
+    return self.nodelist.render(context)
+  File "C:\Python27\django\env\lib\site-packages\django\template\base.py", line 844, in render
+    bit = self.render_node(node, context)
+  File "C:\Python27\django\env\lib\site-packages\django\template\debug.py", line 80, in render_node
+    return node.render(context)
+  File "C:\Python27\django\env\lib\site-packages\django\template\loader_tags.py", line 150, in render
+    return template.render(context)
+  File "C:\Python27\django\env\lib\site-packages\django\template\base.py", line 148, in render
+    return self._render(context)
+  File "C:\Python27\django\env\lib\site-packages\django\template\base.py", line 142, in _render
+    return self.nodelist.render(context)
+  File "C:\Python27\django\env\lib\site-packages\django\template\base.py", line 844, in render
+    bit = self.render_node(node, context)
+  File "C:\Python27\django\env\lib\site-packages\django\template\debug.py", line 80, in render_node
+    return node.render(context)
+  File "C:\Python27\django\env\lib\site-packages\django\template\loader_tags.py", line 150, in render
+    return template.render(context)
+  File "C:\Python27\django\env\lib\site-packages\django\template\base.py", line 148, in render
+    return self._render(context)
+  File "C:\Python27\django\env\lib\site-packages\django\template\base.py", line 142, in _render
+    return self.nodelist.render(context)
+  File "C:\Python27\django\env\lib\site-packages\django\template\base.py", line 844, in render
+    bit = self.render_node(node, context)
+  File "C:\Python27\django\env\lib\site-packages\django\template\debug.py", line 80, in render_node
+    return node.render(context)
+  File "C:\Python27\django\env\lib\site-packages\django\template\defaulttags.py", line 444, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=context.current_app)
+  File "C:\Python27\django\env\lib\site-packages\django\core\urlresolvers.py", line 517, in reverse
+    app_list = resolver.app_dict[ns]
+  File "C:\Python27\django\env\lib\site-packages\django\core\urlresolvers.py", line 329, in app_dict
+    self._populate()
+  File "C:\Python27\django\env\lib\site-packages\django\core\urlresolvers.py", line 292, in _populate
+    for name in pattern.reverse_dict:
+  File "C:\Python27\django\env\lib\site-packages\django\core\urlresolvers.py", line 315, in reverse_dict
+    self._populate()
+  File "C:\Python27\django\env\lib\site-packages\django\core\urlresolvers.py", line 303, in _populate
+    lookups.appendlist(pattern.callback, (bits, p_pattern, pattern.default_args))
+  File "C:\Python27\django\env\lib\site-packages\django\core\urlresolvers.py", line 231, in callback
+    self._callback = get_callable(self._callback_str)
+  File "C:\Python27\django\env\lib\site-packages\django\utils\lru_cache.py", line 101, in wrapper
+    result = user_function(*args, **kwds)
+  File "C:\Python27\django\env\lib\site-packages\django\core\urlresolvers.py", line 97, in get_callable
+    mod = import_module(mod_name)
+  File "C:\Python27\Lib\importlib\__init__.py", line 37, in import_module
+    __import__(name)
+  File "C:\Users\nivethiv\Documents\nivi\PycharmProjects\midway\midway\app\order_shipping_address\views.py", line 7, in <module>
+    from midway.app.order_shipping_address.models import OrderShippingAddress
+ImportError: No module named midway.app.order_shipping_address.models
+[13/Jan/2016 10:29:27] WARNING [django.request:143] Not Found: /faq
+[13/Jan/2016 10:29:36] WARNING [django.request:143] Not Found: /home/
+[13/Jan/2016 10:40:32] ERROR [django.request:231] Internal Server Error: /accounts/signup_user/
+Traceback (most recent call last):
+  File "C:\Python27\django\env\lib\site-packages\django\core\handlers\base.py", line 98, in get_response
+    resolver_match = resolver.resolve(request.path_info)
+  File "C:\Python27\django\env\lib\site-packages\django\core\urlresolvers.py", line 340, in resolve
+    sub_match = pattern.resolve(new_path)
+  File "C:\Python27\django\env\lib\site-packages\django\core\urlresolvers.py", line 340, in resolve
+    sub_match = pattern.resolve(new_path)
+  File "C:\Python27\django\env\lib\site-packages\django\core\urlresolvers.py", line 224, in resolve
+    return ResolverMatch(self.callback, args, kwargs, self.name)
+  File "C:\Python27\django\env\lib\site-packages\django\core\urlresolvers.py", line 231, in callback
+    self._callback = get_callable(self._callback_str)
+  File "C:\Python27\django\env\lib\site-packages\django\utils\lru_cache.py", line 101, in wrapper
+    result = user_function(*args, **kwds)
+  File "C:\Python27\django\env\lib\site-packages\django\core\urlresolvers.py", line 97, in get_callable
+    mod = import_module(mod_name)
+  File "C:\Python27\Lib\importlib\__init__.py", line 37, in import_module
+    __import__(name)
+  File "C:\Users\nivethiv\Documents\nivi\PycharmProjects\midway\midway\app\accounts\views.py", line 26, in <module>
+    from midway.app.customer.models import Customer
+ImportError: No module named midway.app.customer.models
+[13/Jan/2016 18:00:45] ERROR [django.request:231] Internal Server Error: /accounts/signup_user
+Traceback (most recent call last):
+  File "C:\Python27\django\env\lib\site-packages\django\core\handlers\base.py", line 87, in get_response
+    response = middleware_method(request)
+  File "C:\Python27\django\env\lib\site-packages\django\middleware\common.py", line 82, in process_request
+    "settings.") % (new_url[0], new_url[1]))
+RuntimeError: You called this URL via POST, but the URL doesn't end in a slash and you have APPEND_SLASH set. Django can't redirect to the slash URL while maintaining POST data. Change your form to point to 127.0.0.1:8000/accounts/signup_user/ (note the trailing slash), or set APPEND_SLASH=False in your Django settings.
+[13/Jan/2016 18:01:08] WARNING [django.request:143] Not Found: /accounts/

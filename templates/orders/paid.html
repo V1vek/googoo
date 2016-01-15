@@ -1,0 +1,94 @@
+{% include 'partials/header.html' %}
+  <div class="container">
+
+      <a href="/"><button class="btn btn-back">HOME</button></a>
+
+			<div class="order-full-info">
+				<div class="order-left">
+					<dl class="order-info">
+						<dt>{{shipping_address.name}}</dt>
+						<!--<dd>santhosh.hugar@gmail.com</dd>-->
+						<dd>{{shipping_address.contact_number}}</dd>
+					</dl>
+					<dl class="order-info">
+						<dt>SHIPPING ADDRESS</dt>
+						<dd>{{shipping_address.name}} </dd>
+						<dd>{{shipping_address.address}} ,</dd>
+						<dd>{{shipping_address.address1}} </dd>
+						<dd>{{shipping_address.city}} ,</dd>
+						<dd>{{shipping_address.state}} , {{shipping_address.zip_code}} </dd>
+						<dd>India</dd>
+						<dd>Phone: {{shipping_address.contact_number}}</dd>
+					</dl>
+				</div>
+				<div class="order-right">
+					<div class="order-status">
+						<h4 class="order-heading">ORDER DETAILS</h4>
+						<div class="pay-method">
+							<p class="order-title">PAYMENT METHOD</p>
+                            <p class="order-desc">{% if order.payment_status == '3'%} INSTAMOJO {%else %} COD {%endif%}</p>
+
+						</div>
+						<div class="pay-received">
+							<p class="order-title">ORDER PLACED</p>
+							<p class="order-desc">YOUR ORDER HAD BEEN PROCESSED.</p>
+						</div>
+
+					</div>
+					<div class="clearfix"></div>
+					<div class="s-order-summary">
+						<h4 class="order-heading ml-11">ORDER SUMMARY</h4>
+						<table class="table order-table">
+							<th>Product</th>
+							<th class="txt-center">Condition</th>
+							<th class="txt-right">Rention Option</th>
+							<th class="txt-right">Quantity</th>
+							<th class="txt-right">Pricing</th>
+                            {%for order_seller in order_sellers %}
+
+                                {%for order_item in order_seller.order_seller_item.all %}
+                                <tr>
+                                    <td>{{order_item.seller_book_condition.seller_book.book.title}}</td>
+                                    <td>{{order_item.seller_book_condition.get_book_condition_display}}</td>
+                                    <td>{{order_item.get_renting_options_display}}</td>
+                                    <td class="txt-center">{{order_item.quantity}}</td>
+                                    <td class="txt-right">Rs {{order_item.seller_book_condition.selling_price}}</td>
+                                </tr>
+                                {% endfor%}
+                            {% endfor%}
+
+						</table>
+						<table class="table order-table">
+							<tr>
+								<td>Sub total</td>
+								<td class="txt-right">Rs {{order.cart_total}}</td>
+							</tr>
+							<!--<tr>-->
+								<!--<td>Service Tax</td>-->
+								<!--<td class="txt-right">Rs 50</td>-->
+							<!--</tr>-->
+							<tr>
+								<td>Shipping Charge</td>
+								<td class="txt-right">Rs {{order.shipping_total}}</td>
+							</tr>
+						</table>
+						<table class="table order-table order-table-last">
+							<tr>
+								<th>Total</th>
+								<th class="txt-right">Rs {{order.order_total}}</th>
+							</tr>
+						</table>
+						<div class="clearfix"></div>
+					</div>
+
+				</div>
+				<div class="clearfix"></div>
+			</div>
+
+
+  </div> <!-- Container -->
+
+    <script type="text/javascript" src="/midway/static/main/js/script.js"></script>
+     <script type="text/javascript" src="/midway/static/app/books/js/search.js"></script>
+
+     {% include 'partials/footer-home.html' %}

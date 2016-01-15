@@ -1,0 +1,451 @@
+     {% include 'partials/header.html' %}
+	<div class="back-to-top hide">Top </div>
+
+	<section id="products-list">
+		<div class="container">
+		<div class="products-list">
+			{% if query or display_filters %}
+			<div class="products-filter">
+				<span class="af-title">Applied Filters :</span>
+				<ul class="list-unstyled p-filter-title">
+					
+					{%if query%} 
+					<li >{{query}} <img data-applied-filter="query" src="/midway/static/main/images/filter-close.png" alt="Textnook.com textbook category close"></li>
+					{%endif%}
+
+					{%for cat in display_filters.category%} 
+					<li > {{cat.name}} <img data-filter-id="{{cat.id}}" data-applied-filter="category_id" src="/midway/static/main/images/filter-close.png" alt="Textnook.com textbook category close"></li>
+					{%endfor%}
+
+					{%for sub_cat in display_filters.sub_category%} 
+					<li> {{sub_cat.name}} <img  data-filter-id="{{sub_cat.id}}" data-applied-filter="sub_category_id" src="/midway/static/main/images/filter-close.png" alt="Textnook.com textbook category close"></li>
+					{%endfor%}
+
+					{%for binding in display_filters.binding%} 
+					<li > {{binding.name}} <img data-filter-id="{{binding.id}}" data-applied-filter="binding" src="/midway/static/main/images/filter-close.png" alt="Textnook.com textbook category close"></li>
+					{%endfor%}
+
+					{%for auth in display_filters.authors%} 
+					<li > {{auth.name}} <img data-filter-id="{{auth.id}}" data-applied-filter="author" src="/midway/static/main/images/filter-close.png" alt="Textnook.com textbook category close"></li>
+					{%endfor%}
+
+					{%for publisher in display_filters.publishers%} 
+					<li > {{publisher.name}} <img data-filter-id="{{publisher.id}}" data-applied-filter="publisher" src="/midway/static/main/images/filter-close.png" alt="Textnook.com textbook category close"></li>
+					{%endfor%}
+					
+				</ul>
+			</div>
+			{% endif %}
+			<div class="products-sort">
+				{% if count %}
+				<div class="p-results">
+					<h4>{{ count }} Results Found</h4>
+				</div>
+				<div class="p-sort">
+					<div class="dropdown">
+						<button class="btn btn-default dropdown-toggle p-sort-btn" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
+							<span class="sort_filter">Sort By</span>
+							<span class="custom-caret"></span>
+						</button>
+						<ul class="dropdown-menu pull-right" role="menu" aria-labelledby="dropdownMenu1">
+							<li class="presentation"><a data-type="ratings" role="menuitem" tabindex="-1" href="#">Sort by : Ratings</a></li>
+							<li class="presentation"><a data-type="price"  role="menuitem" tabindex="-1" href="#">Sort by : Price</a></li>
+						</ul>
+					</div>
+				</div>
+				{% else %}
+					<div class="p-results">
+						<h4>No Results Found</h4>
+					</div>
+				{% endif %}
+				<div class="clearfix"></div>
+			</div>
+
+			<div class="p-list">
+					<div class="p-filters col-lg-3 col-md-4 col-sm-4 hidden-xs">
+						<div class="p-filters-text">
+							<p>FILTERS</p>
+						</div>
+						{% if categories %}
+						<div class="filter-container">
+							<div class="p-sub-cat">
+								<p>CATEGORIES</p>
+								<i class="fa fa-minus"></i>
+							</div>
+							<div class="p-search-cat">
+								<div class="p-search-cat-group">
+									<input data-filter="category" type="text" class="form-control p-search-cat-box" placeholder="Search">
+								</div>
+								<div class="p-search-cat-list">
+									<ul filter-type="category" class="p-search-var-items fa-ul">
+									
+									{% for category in categories %}
+										<li data-id="{{category.id}}">
+										 <label for="category_{{category.id}}">
+										 <input type="radio" name="category" id="category_{{category.id}}" 
+										 {% ifequal category.id|stringformat:"s" param_values.category_id|stringformat:"s" %} checked="checked"{% endifequal %}> 
+										 <span> {{category.name}} </span>
+										</label></li>
+									{% endfor %}															
+									</ul>
+								</div>
+							</div>
+						</div>
+						{% endif %}
+						<input type="hidden" 
+						value="{{request_params.category_id}}" 
+						class="filter_value" id="category_id">
+						{% if sub_categories %}
+
+						<div class="filter-container">
+
+							<div class="p-sub-cat">
+								<p>SUB CATEGORIES</p>
+								<i class="fa fa-minus"></i>
+							</div>
+							<div class="p-search-cat">
+								<div class="p-search-cat-group">
+									<input data-filter="sub_category" type="text" class="form-control p-search-cat-box" placeholder="Search">
+									<span class="filter-search-icon">
+										<i class="fa fa-search"></i>
+									</span>
+								</div>
+								<div class="p-search-cat-list">
+									<ul filter-type="sub_category" class="p-search-var-items fa-ul">
+									
+									{% for sub_category in sub_categories %}
+										<li> 
+										<label for="sub_category_{{sub_category.id}}">
+										<input type="radio" name="sub_category" id="sub_category_{{sub_category.id}}"
+										 {% ifequal sub_category.id|stringformat:"s" param_values.sub_category_id|stringformat:"s" %} checked="checked"{% endifequal %}>
+										<span>{{sub_category.name}}</span></label></li>
+									{% endfor %}															
+									</ul>
+								</div>
+							</div>
+						</div>
+						{% endif %}
+					
+						<input type="hidden" class="filter_value" value="{{request_params.sub_category_id}}" id="sub_category_id">
+
+						<div class="filter-container" id="binding">
+
+							<div class="p-sub-cat">
+								<p>BINDING</p>
+								<i class="fa fa-minus"></i>
+							</div>
+							<div class="p-search-cat">
+								<div class="p-search-cat-group">
+									<input type="hidden" value="{{request_params.binding_id}}" class="filter_value" id="binding_id">
+									<span class="filter-search-icon hide">
+										<i class="fa fa-search"></i>
+									</span>
+								</div>
+								<div class="p-search-cat-list">
+								  <ul filter-type="binding" class="p-search-var-items fa-ul">
+										<li>  <input type="checkbox" name="binding" id="binding_1" {% if 1 in param_values.binding_ids %} checked="checked"{% endif %}> 
+
+										<label for="binding_1">Hard Cover</label></li>
+										<li>  <input type="checkbox" name="binding" id="binding_2" {% if 2 in param_values.binding_ids %} checked="checked"{% endif %}><label for="binding_2">Paper Back</label></li>
+								  </ul>
+								</div>
+							</div>
+						</div>
+
+						{% if authors %}
+
+						<div class="filter-container">
+
+							<div class="p-sub-cat">
+								<p>AUTHORS</p>
+								<i class="fa fa-minus"></i>
+							</div>
+							<div class="p-search-cat">
+								<div class="p-search-cat-group">
+									<input data-filter="author" type="text" class="form-control p-search-cat-box" placeholder="Search">
+									<input type="hidden" value="{{request_params.author_id}}" class="filter_value" id="author_id">
+									
+									<input type="hidden" value="{{request_params.author_key}}" class="filter_value" id="author_key">
+									<span class="filter-search-icon">
+										<i class="fa fa-search"></i>
+									</span>
+								</div>
+								<div class="p-search-cat-list">
+									<ul filter-type="author" class="author-results p-search-var-items fa-ul">
+									
+									{% for author in authors %}
+										<li>
+										<input type="checkbox" name="author" id="author_{{author.id}}" 
+										  {% if author.id in param_values.author_ids %}  checked="checked"{% endif %}> 
+
+										  <label for="author_{{author.id}}">{{author.name}}</label></li>
+									{% endfor %}															
+									</ul>
+								</div>
+							</div>
+						</div>
+						{% endif %}
+
+						{% if publishers %}
+
+						<div class="filter-container">
+
+							<div class="p-sub-cat">
+								<p>PUBLISHERS</p>
+								<i class="fa fa-minus"></i>
+							</div>
+							<div class="p-search-cat">
+								<div class="p-search-cat-group">
+									<input data-filter="publisher" type="text" class="form-control p-search-cat-box" placeholder="Search">
+									<input type="hidden" value="{{request_params.publisher_id}}" class="filter_value" id="publisher_id">
+									<input type="hidden" class="filter_value" value="{{request_params.publisher_key}}" id="publisher_key">
+									<span class="filter-search-icon">
+										<i class="fa fa-search"></i>
+									</span>
+								</div>
+								<div class="p-search-cat-list">
+									<ul filter-type="publisher" class="publisher-results p-search-var-items fa-ul">
+									
+									{% for publisher in publishers %}
+										<li>  
+										<input type="checkbox"  name="publisher" id="publisher_{{publisher.id}}" 
+										 {% if publisher.id in param_values.publisher_ids %} checked="checked"{% endif %}> 
+										<label for="publisher_{{publisher.id}}">{{publisher.name}}</label></li>
+									{% endfor %}															
+									</ul>
+								</div>
+							</div>
+						</div>
+						{% endif %}
+					</div>
+					
+					<div class="p-result col-lg-9 col-md-8 col-sm-8 col-xs-12">
+						{%if count %}
+						{% for book_detail in book_details %}
+							<div class="p-item">
+								<div class="p-item-img text-center col-lg-2 col-md-2 col-sm-3 col-xs-4">
+
+                                    <img src="{% if book_detail.book.image_url %}{{book_detail.book.image_url}}{%else%}/static/main/images/no-book-image-small.png{%endif%}" alt="{{book_detail.book.title}} by {% for author in book_detail.book.authors.all %}{{ author.name }}{% endfor %} on Textnook.com">
+
+								</div>
+								<div class="p-item-desc  col-lg-10 col-md-10 col-sm-9 col-xs-8">
+									<a href="/books/details/?id={{book_detail.book.id}}"><p class="p-item-title">{{ book_detail.book.title }} </p></a>
+									{% for author in book_detail.book.authors.all %}
+									<p class="p-item-author">{{ author.name }}</p>
+									{% endfor %}
+                                    {% if book_detail.rating %}
+                                    <ul class="list-unstyled user-rating">
+                                        {% for i in "x"|rjust:book_detail.rating %}
+
+                                        <li><img src="/midway/static/main/images/star-small.png" alt=""></li>
+
+                                        {% endfor %}
+                                    </ul>
+                                    {% endif%}
+
+									<p class="p-item-reviews">({{book_detail.review_count}} Reviews)</p>
+                                    <span class="add_to_wishlist add-wishlist" data-book-id="{{book_detail.book.id}}"> <i class="fa fa-heart"></i> Add to wishlist </span>
+                                    <span class="remove_from_wishlist hide" > Remove from wishlist </span>
+									<div class="disp-block"></div>
+                                    {%if book_detail.seller_book_price %}
+                                    <div class="price-rate">
+					                    <div class="old-price-line">MRP : {{ book_detail.mrp }}</div>
+                                        <div class="current-price">RS {{ book_detail.seller_book_price }}
+                                            {%if book_detail.offer%}<span class="offer">{{ book_detail.offer }} %off</span>{%endif%}
+                                        </div>
+                                    </div>
+                                    {%else%}
+                                     <div class="price-rate">
+                                        <div class="current-price">RS {{ book_detail.mrp }}
+                                        </div>
+                                    </div>
+                                    {%endif%}
+									<!--<p class="p-item-price old-price-line">MRP </p>-->
+									<!--<p class="p-item-price current-price">Rs </p>-->
+									<!--<p class="p-item-price">Rs </p>-->
+									<!--<p class="p-item-options">()</p>-->
+									<div class="disp-block"></div>
+									<p class="p-item-released">Released : <span class="p-item-year">{{ book_detail.book.edition_and_year }}</span></p>
+									<p class="p-item-pub">Publisher: 
+									{% for publisher in book_detail.book.publishers.all %}
+									
+									<span class="p-item-pub-name">{{ publisher.name }}</span>
+									{% endfor %}
+
+									</p>
+								</div>
+							</div>
+							<div class="clearfix"></div>	
+						{% endfor %}
+                        {%elif user and not user.is_anonymous %}
+
+                        <h4>Request for a book</h4>
+                            <form class="form-horizontal" id="request_books">
+                      <div class="form-group">
+                        <label class="col-sm-4 control-label">ISBN10</label>
+                        <div class="col-sm-8">
+                          <input type="text"  name="isbn_10" class="form-control book_fields">
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label class="col-sm-4 control-label">ISBN13</label>
+                        <div class="col-sm-8">
+                          <input type="text" name="isbn_13" class="form-control book_fields">
+                        </div>
+                      </div>
+
+                      <div class="form-group">
+                        <label class="col-sm-4 control-label">Book Title</label>
+                        <div class="col-sm-8">
+                          <input type="text" name="title" class="form-control book_fields">
+                        </div>
+                      </div>
+
+                        <div class="form-group">
+                        <label class="col-sm-4 control-label">Authors</label>
+                        <div class="col-sm-8">
+                          <input type="text" name="authors" class="form-control book_fields">
+                        </div>
+                      </div>
+                        <div class="form-group">
+                        <label class="col-sm-4 control-label">Publisher</label>
+                        <div class="col-sm-8">
+                          <input type="text" name="publishers" class="form-control book_fields">
+                        </div>
+                      </div>
+                        <div class="text-right form-group">
+                            <button type="submit" class="btn btn-success btn-request-book">Save
+                            </button>
+                        </div>
+                      </form>
+                        {%endif%}
+					</div>
+			</div>
+			</div>
+		</div>
+	</section>
+     <div class="modal fade" id="wishlist_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+					<div class="modal-title" id="myModalLabel">Add to Wish List</div>
+				</div>
+				<div class="modal-body">
+
+				</div>
+				<div class="modal-footer">
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<script type="text/x-underscore" id="book_detail">
+	<% _.each(books, function(book,key,list){%>
+		<div class="p-item">
+								<div class="p-item-img text-center col-lg-2 col-md-2 col-sm-3 col-xs-4">
+									<img src="<% if(book.image_url){ %> <%=book.image_url%> <%}else{%>/static/main/images/no-book-image-small.png<% } %>" alt="">
+								</div>
+								<div class="p-item-desc  col-lg-10 col-md-10 col-sm-9 col-xs-8">
+									<a 
+									href="/books/details/<%=book.id%>">
+									<p class="p-item-title">
+									<%= book.title %> </p>
+									</a>
+									<% _.each(book.authors,function(author,key,list){ %>
+									<p class="p-item-author"><%= author.name %></p>
+									<% }) %>
+
+									<ul class="list-unstyled user-rating">
+                                    <% for(var i=0,len=book.rating; i<len;i++){%>
+                                        <li><img src="/static/main/images/star-small.png" alt=""></li>
+                                    <% } %>
+                                    </ul>
+									<p class="p-item-reviews">(<%=book.review_count%> Reviews)</p>
+									<span data-book-id="<%= book.id %>" class="add_to_wishlist add-wishlist"> &nbsp;&nbsp;
+									    <i class="fa fa-heart"></i> Add to wishlist
+									</span>
+									<div class="disp-block"></div>
+
+									<%if(book.seller_book_price){%>
+                                    <div class="price-rate">
+					                    <div class="old-price-line">MRP :  <%= book.price %> </div>
+                                        <div class="current-price">RS <%= book.seller_book_price %>
+                                            <%if(book.seller_book_price!=book.price){%>
+                                            <span class="offer"><%= Math.floor(((book.price - book.seller_book_price) / book.price) * 100) %> %off</span>
+                                            <%}%>
+                                        </div>
+                                    </div>
+                                    <%}else{%>
+                                     <div class="price-rate">
+                                        <div class="current-price">RS  <%= book.price %>
+                                        </div>
+                                    </div>
+                                    <% }%>
+									<div class="disp-block"></div>
+									<p class="p-item-released">Released : <span class="p-item-year"><%= book.edition_and_year %></span></p>
+									<p class="p-item-pub">Publisher: <span class="p-item-pub-name"><%= book.publisher %></span></p>
+								</div>
+							</div>
+							<div class="clearfix"></div>
+				<%	}) %>	
+	</script>
+
+	<script type="text/x-underscore" id="author_template">
+	<% _.each(results, function(author,key,list){%>
+
+		<li>
+			<input type="checkbox" name="author" id="author_<%=author.id%>" 
+			<% if(author.id==id) { %> 
+			 checked="checked"
+			<% } %> >
+			<label for="author_<%=author.id%>"><%= author.name%></label>
+		</li>
+	<%	}) %>	
+
+	</script>
+
+	<script type="text/x-underscore" id="publisher_template">
+	<% _.each(results, function(publisher,key,list){%>
+
+		<li>
+			<input type="checkbox" name="publisher" id="publisher_<%=publisher.id%>" 
+			<% if(publisher.id==id) { %> 
+			 checked="checked"
+			<% } %> >
+			<label for="publisher_<%=publisher.id%>"><%= publisher.name%></label>
+		</li>
+	<%	}) %>	
+
+	</script>
+     <script type="text/x-underscore" id="wishlist_added">
+        <p class="mwL_msg"> This item was already in <a href="/wishlist/">Wishlist</a>&nbsp;&nbsp;
+            </p>
+        <div class="mwL_item">
+            <div class="mwL_image">
+                <img src="<%= image_url %>" alt="Book">
+            </div>
+            <div class="mwL_itemInfo">
+                <span>
+                    <a href="/books/details/<%= id %>"> <%= title %> </a> by
+                    	<% _.each(authors, function(author,key,list){%>
+                    	<%= author.name %>
+                        <% }) %>
+                </span>
+                <div class="color-D21">Rs <%= price %></div>
+                 <form action ="https://textnook.com/wishlist/">
+                <button class="btn btn-vwl">View Wishlist</button>
+                </form>
+            </div>
+        </div>
+    </script>
+     <script type="text/javascript" src="/midway/static/main/js/script.js"></script>
+     <script type="text/javascript" src="/midway/static/app/accounts/js/auth.js"></script>
+     <script type="text/javascript" src="/midway/static/app/books/js/search.js"></script>
+     <script type="text/javascript" src="/midway/static/app/wishlists/js/index.js"></script>
+     <script type="text/javascript" src="/midway/static/app/checkout/js/cart.js"></script>
+
+     {% include 'partials/footer-home.html' %}
+
+
+

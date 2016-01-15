@@ -1,0 +1,10 @@
+MySQL-python
+pytest
+requests
+djangorestframework
+djangorestframework-jwt
+python-social-auth
+boto
+xlrd
+djrill
+schedule

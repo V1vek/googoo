@@ -1,0 +1,46 @@
+<html style="margin: 0;padding: 0;border: 0;font-size: 100%;font: inherit;vertical-align: baseline;box-sizing: border-box;">
+<head>
+	<title>Textnook Email</title>
+	<link href="http://fonts.googleapis.com/css?family=Roboto:400,300,700,500" rel="stylesheet" type="text/css">
+
+</head>
+<body style="margin: 0;padding: 0;border: 0;font-size: 100%;font: inherit;vertical-align: baseline;box-sizing: border-box;width: 600px;font-family: 'Roboto', sans-serif;letter-spacing: 0.4px;line-height: 18px;">
+	<header class="bbtm" style="margin: 15px 35px;padding: 0;border: 0;font-size: 100%;font: inherit;vertical-align: baseline;box-sizing: border-box;padding-bottom: 10px;border-bottom: 1px solid #ebebeb;">
+		<div class="col-6 text-left" style="margin: 0;padding: 0;border: 0;font-size: 100%;font: inherit;vertical-align: baseline;box-sizing: border-box;min-height: 1px;position: relative;float: left;width: 50%;text-align: left;">
+			<a href="http://textnook.com" style="margin: 0;padding: 0;border: 0;font-size: 100%;font: inherit;vertical-align: baseline;box-sizing: border-box;text-decoration: none;"><img src="/midway/static/main/images/logo.png" class="logo" alt="TEXTNOOK" style="margin: 0;padding: 0;border: 0;font-size: 100%;font: inherit;vertical-align: baseline;box-sizing: border-box;"></a>
+		</div>
+		<div class="col-6 text-right" style="margin: 0;padding: 0;border: 0;font-size: 100%;font: inherit;vertical-align: baseline;box-sizing: border-box;min-height: 1px;position: relative;float: left;width: 50%;text-align: right;">
+			<a href="#" style="margin: 0;padding: 0;border: 0;font-size: 100%;font: inherit;vertical-align: baseline;box-sizing: border-box;text-decoration: none;"><span class="toll-text orange-color" style="margin: 0;padding: 5px 10px;border: 0;font-size: 12px;font: inherit;vertical-align: bottom;box-sizing: border-box;display: inline-block;color: #e3a626;">Toll Free 1-800-200-6353</span></a>
+		</div>
+		<div class="clearfix" style="margin: 0;padding: 0;border: 0;font-size: 100%;font: inherit;vertical-align: baseline;box-sizing: border-box;clear: both;"></div>
+	</header>
+	<div class="container message padb-5 padt-15" style="margin: 0 40px;padding: 25px 0;border: 0;font-size: 100%;font: inherit;vertical-align: baseline;box-sizing: border-box;padding-bottom: 5px;padding-top: 15px;">
+		<h4 class="black-color fontbold font20 padb-10" style="margin: 0;padding: 0;border: 0;font-size: 20px;font: inherit;vertical-align: baseline;box-sizing: border-box;color: #000000;padding-bottom: 10px;font-weight: 700;">Hi, {{user.get_full_name}}!</h4>
+		<p class="fontmedium font14 black-color" style="margin: 0;padding: 10px 0;border: 0;font-size: 14px;font: inherit;vertical-align: baseline;box-sizing: border-box;color: #000000;font-weight: 500;">The following books are added to your wishlist.</p>
+
+
+        {%for order_item in order_items %}
+        <div class="col-12 padt-15 padb-15 btop" style="margin: 0;padding: 0;border: 0;font-size: 100%;font: inherit;vertical-align: baseline;box-sizing: border-box;min-height: 1px;position: relative;float: left;width: 100%;border-top: 1px solid #ebebeb;padding-top: 15px;padding-bottom: 15px;">
+			<div class="col-3" style="margin: 0;padding: 0;border: 0;font-size: 100%;font: inherit;vertical-align: baseline;box-sizing: border-box;min-height: 1px;position: relative;float: left;width: 25%;">
+				<img src="book.png" alt="Book" style="margin: 0;padding: 0;border: 0;font-size: 100%;font: inherit;vertical-align: baseline;box-sizing: border-box;">
+			</div>
+			<div class="col-9" style="margin: 0;padding: 0;border: 0;font-size: 100%;font: inherit;vertical-align: baseline;box-sizing: border-box;min-height: 1px;position: relative;float: left;width: 75%;">
+				<p class="fontbold black-color font14" style="margin: 0;padding: 10px 0;border: 0;font-size: 14px;font: inherit;vertical-align: baseline;box-sizing: border-box;color: #000000;font-weight: 700;">{{order_item.seller_book_condition.seller_book.book.title}}</p>
+				{%if order_item.seller_book_condition.seller_book.book.isbn_13%}
+                <div class="col-8" style="margin: 0;padding: 0;border: 0;font-size: 100%;font: inherit;vertical-align: baseline;box-sizing: border-box;min-height: 1px;position: relative;float: left;width: 66.66666667%;">
+					<span class="font14 semiblack-color fontregular" style="margin: 0;padding: 0;border: 0;font-size: 14px;font: inherit;vertical-align: baseline;box-sizing: border-box;color: #a6a3a3;font-weight: 400;">ISBN NO : {{order_item.seller_book_condition.seller_book.book.isbn_13}}</span>
+				</div>
+                {%endif%}
+
+				<div class="clearfix" style="margin: 0;padding: 0;border: 0;font-size: 100%;font: inherit;vertical-align: baseline;box-sizing: border-box;clear: both;"></div>
+				<p class="semiblack-color font14 fontregular padt-10" style="margin: 0;padding: 10px 0;border: 0;font-size: 14px;font: inherit;vertical-align: baseline;box-sizing: border-box;color: #a6a3a3;padding-top: 10px;font-weight: 400;">Price : RS {{order_item.seller_book_condition.selling_price}}</p>
+			</div>
+		</div>
+        {%endfor%}
+
+		<div class="clearfix" style="margin: 0;padding: 0;border: 0;font-size: 100%;font: inherit;vertical-align: baseline;box-sizing: border-box;clear: both;"></div>
+		<div class="invoice btop bbtm" style="margin: 0;padding: 0;border: 0;font-size: 100%;font: inherit;vertical-align: baseline;box-sizing: border-box;border-bottom: 1px solid #ebebeb;border-top: 1px solid #ebebeb;">
+			<p class="fontregular font13 semiblack-color" style="margin: 0;padding: 10px 0;border: 0;font-size: 13px;font: inherit;vertical-align: baseline;box-sizing: border-box;text-align:center;color: #a6a3a3;font-weight: 400;">We will try to find out the sellers offering these books.</p>
+		</div>
+	</div>
+     {% include 'partials/email_footer.html' %}

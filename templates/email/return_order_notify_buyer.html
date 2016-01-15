@@ -1,0 +1,28 @@
+<html style="margin: 0;padding: 0;border: 0;font-size: 100%;font: inherit;vertical-align: baseline;box-sizing: border-box;">
+<head>
+	<title>Textnook Email</title>
+	<link href="http://fonts.googleapis.com/css?family=Roboto:400,300,700,500" rel="stylesheet" type="text/css">
+
+</head>
+<body style="margin: 0;padding: 0;border: 0;font-size: 100%;font: inherit;vertical-align: baseline;box-sizing: border-box;width: 600px;font-family: 'Roboto', sans-serif;letter-spacing: 0.4px;line-height: 18px;">
+	<header class="bbtm" style="margin: 15px 35px;padding: 0;border: 0;font-size: 100%;font: inherit;vertical-align: baseline;box-sizing: border-box;padding-bottom: 10px;border-bottom: 1px solid #ebebeb;">
+		<div class="col-6 text-left" style="margin: 0;padding: 0;border: 0;font-size: 100%;font: inherit;vertical-align: baseline;box-sizing: border-box;min-height: 1px;position: relative;float: left;width: 50%;text-align: left;">
+			<a href="http://textnook.com" style="margin: 0;padding: 0;border: 0;font-size: 100%;font: inherit;vertical-align: baseline;box-sizing: border-box;text-decoration: none;"><img src="/midway/static/main/images/logo.png" class="logo" alt="TEXTNOOK" style="margin: 0;padding: 0;border: 0;font-size: 100%;font: inherit;vertical-align: baseline;box-sizing: border-box;"></a>
+		</div>
+		<div class="col-6 text-right" style="margin: 0;padding: 0;border: 0;font-size: 100%;font: inherit;vertical-align: baseline;box-sizing: border-box;min-height: 1px;position: relative;float: left;width: 50%;text-align: right;">
+			<a href="#" style="margin: 0;padding: 0;border: 0;font-size: 100%;font: inherit;vertical-align: baseline;box-sizing: border-box;text-decoration: none;"><span class="toll-text orange-color" style="margin: 0;padding: 5px 10px;border: 0;font-size: 12px;font: inherit;vertical-align: bottom;box-sizing: border-box;display: inline-block;color: #e3a626;">Toll Free 1-800-200-6353</span></a>
+		</div>
+		<div class="clearfix" style="margin: 0;padding: 0;border: 0;font-size: 100%;font: inherit;vertical-align: baseline;box-sizing: border-box;clear: both;"></div>
+	</header>
+	<div class="container message padb-5 padt-15" style="margin: 0 40px;padding: 25px 0;border: 0;font-size: 100%;font: inherit;vertical-align: baseline;box-sizing: border-box;padding-bottom: 5px;padding-top: 15px;">
+		<h4 class="black-color fontbold font20 padb-10" style="margin: 0;padding: 0;border: 0;font-size: 20px;font: inherit;vertical-align: baseline;box-sizing: border-box;color: #000000;padding-bottom: 10px;font-weight: 700;">Hi, {{user.get_full_name}}!</h4>
+		<p class="font14 semiblack-color fontregular" style="margin: 0;padding: 10px 0;border: 0;font-size: 14px;font: inherit;vertical-align: baseline;box-sizing: border-box;color: #a6a3a3;font-weight: 400;">We received your request for returning the order.<span class="orange-color" style="margin: 0;padding: 0;border: 0;font-size: 100%;font: inherit;vertical-align: baseline;box-sizing: border-box;color: #e3a626;">OD0000{{order_id}}</span></p>
+
+
+		<div class="clearfix" style="margin: 0;padding: 0;border: 0;font-size: 100%;font: inherit;vertical-align: baseline;box-sizing: border-box;clear: both;"></div>
+		<div class="feedback btop bbtm padb-10" style="margin: 0;padding: 0;border: 0;font-size: 100%;font: inherit;vertical-align: baseline;box-sizing: border-box;border-bottom: 1px solid #ebebeb;border-top: 1px solid #ebebeb;padding-bottom: 10px;">
+		<p class="orange-color font13 text-left" style="margin: 0;padding: 10px 0;border: 0;font-size: 13px;font: inherit;vertical-align: baseline;box-sizing: border-box;text-align: left;color: #e3a626;">Please pack the book(s) in a box and keep it ready for the pickup.</p>
+		<p class="fontregular black-color font14" style="margin: 0;padding: 10px 0;border: 0;font-size: 14px;font: inherit;vertical-align: baseline;box-sizing: border-box;color: #000000;font-weight: 400;">The pickup will be scheduled in the next 5-7 days.</p>
+		</div>
+	</div>
+     {% include 'partials/email_footer.html' %}

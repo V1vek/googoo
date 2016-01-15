@@ -1,0 +1,53 @@
+<div class="modal fade pl-zero" id="fulfill_order" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+              <h4>FULFILL ORDER</h4>
+
+
+          </div>
+
+          <div class="modal-body">
+              <form class="fulfill_order_form">
+
+                   <div class="form-group">
+		              <label class="col-sm-4 control-label">Order Status</label>
+		              <div class="col-sm-8">
+                       <div class="sp-dd">
+		                <select id="order_status" name="order_satus" class="form-control">
+		                  <option value="1">Processed </option>
+		                  <option value="2">Cancelled</option>
+		                  <option value="3">Shipped</option>
+		                </select>
+                       </div>
+		              </div>
+		            </div>
+
+                  <div class="form-group track hide">
+		              <label class="col-sm-4 control-label">Tracking ID</label>
+		              <div class="col-sm-8">
+                           <input type="text" id="tracking_id" name="tracking_id" value="" class="form-control">
+		              </div>
+		            </div>
+
+                  <div class="form-group track hide">
+		              <label class="col-sm-4 control-label">Tracking URL</label>
+		              <div class="col-sm-8">
+                           <input type="text" name="tracking_url" id="tracking_url"
+                           value=""
+                           class="form-control">
+
+                  </div>
+                </div>
+              </form>
+
+          </div>
+         <div class="modal-footer">
+            <button type="button" class="btn btn-no" data-dismiss="modal">Cancel</button>
+             <button type="button" class="btn btn-yes save_order_details" data-order-seller-id="{{order_seller.id}}" data-dismiss="modal">Save</button>
+
+            </div>
+
+        </div>
+      </div>
+</div>

@@ -1,0 +1,729 @@
+     {% include 'partials/header.html' %}
+     {%if show_buyer_profile_warning %}
+        <div class="alert alert-danger profile_alert" role="alert"> Please create your buyer profile before placing an order.</div>
+     {%endif%}
+<section id="profile">
+		<div class="container profile">
+			<div class="profile-box">
+				<div class="profile-header">
+					<div class="userProfile col-lg-4 col-md-4 col-sm-3 col-xs-12">
+						<div class="user-img">
+							<img src="{% if buyer.profile_image_url %}{{buyer.profile_image_url}}{% else %}/static/main/images/profile-pic.png{% endif %}" alt="Profile Image">
+                            <a href="" class="up-pic upload_buyer_pic" data-type="buyer"><i class="fa fa-pencil"></i> Update profile picture</a>
+                            <input type="file" class="hide" id="buyer_pic_input">
+                        </div>
+
+						<div class="user-info">
+							<h4>{% if is_current_user %} {{ user.get_full_name}} {%else%}{{seller.seller_name}}{%endif%}</h4>
+							<p>Member since {{user.date_joined|date:"M d, Y"}}</p>
+						</div>
+					</div>
+                    <div class="col-lg-8 col-md-8 col-sm-9 col-xs-12">
+					<div class="bB-bR">
+						<div class="bBought {% if not is_current_user %} hide {%endif%}">
+							<h3>{{books_bought}}</h3>
+							<p>Books Bought</p>
+						</div>
+						<div class="uRatings {% if is_current_user %}hide{%endif%}">
+							<span class="starRating1">
+								{%if rounded_rating %}
+                                    <ul class="list-unstyled user-rating">
+                                        {% for i in "x"|rjust:rounded_rating %}
+
+                                      <li><img src="/midway/static/main/images/star-small.png" alt=""></li>
+                                        {% endfor %}
+
+                                    </ul>
+                                {%endif%}
+							</span>
+							<p>{{seller_reviews_count}} reviews</p>
+						</div>
+					</div>
+					<div class="bSold">
+						<h3>{{books_sold}}</h3>
+						<p>Books Sold</p>
+					</div>
+					<div class="bCondition">
+						 {% ifequal seller.book_condition '1' %}
+                        <h3>NEW</h3>
+                        {%endifequal%}
+                        {% ifequal seller.book_condition '2' %}
+                        <h3>OLD</h3>
+                        {%endifequal%}
+                        {% ifequal seller.book_condition '3' %}
+                        <h3>NEW / OLD</h3>
+                        {%endifequal%}
+                        <!--{% if not seller %}-->
+                        <!--<h3>-</h3>-->
+                        <!--{% endif %}-->
+						<p>Books Condition</p>
+					</div>
+					<div class="bsellOptions">
+						{% ifequal seller.selling_option '1' %}
+                        <h3>SALE</h3>
+                        {%endifequal%}
+                        {% ifequal seller.selling_option '2' %}
+                        <h3>RENT</h3>
+                        {%endifequal%}
+                        {% ifequal seller.selling_option '3' %}
+                        <h3>SALE / RENT</h3>
+                        {%endifequal%}
+                        <!--{% if not seller %}-->
+                        <!--<h3>-</h3>-->
+                        <!--{% endif %}-->
+						<p>Selling Options</p>
+					</div>
+                    </div>
+					<div class="clearfix"></div>
+				</div>
+			</div>
+			<div class="profile-tabs">
+                <div class="p-tab col-xs-4">
+                    <a href="/buyers/dashboard">
+                        <p>My Buyer Dashboard</p>
+                    </a>
+                </div>
+
+
+				<div class="p-tab col-xs-4">
+                    <a href="/sellers/dashboard/">
+						<p>My Seller Dashboard</p>
+                    </a>
+				</div>
+
+				<a href="/accounts/profile">
+					<div class="p-tab col-xs-4 p-tab-active">
+						<p>{% if is_current_user %} My {% endif %} Profile</p>
+					</div>
+				</a>
+				<div class="clearfix"></div>
+			</div>
+		    <div id="wrapper">
+		      <!-- Sidebar -->
+		      <div id="sidebar-wrapper">
+		        <ul class="sidebar-nav active-arrow">
+                 {% if is_current_user %}
+		          <li class="active">
+		            <a href="#" data-tab="buyer_prof" class="profile_tab">BUYER PROFILE</a>
+		          </li>
+                  {% endif %}
+		          <li >
+		            <a href="#" data-tab="seller_prof" class="profile_tab">SELLER PROFILE</a>
+		          </li>
+                  {% if is_current_user %}
+		          <li>
+		            <a href="#" data-tab="change_pwd" class="profile_tab" >CHANGE PASSWORD</a>
+		          </li>
+                    {% endif %}
+                    <li>
+                      <a href="#" data-tab="seller_review" class="profile_tab" >SELLER REVIEW</a>
+                    </li>
+		        </ul>
+		      </div>
+		      <!-- /#sidebar-wrapper -->
+
+		      <!-- Page Content -->
+		      <div id="page-content-wrapper">
+		        <a href="#menu-toggle" id="menu-toggle"><i class="fa fa-bars"></i></a>
+                  {% if is_current_user %}
+                  <div class="profile_content buyer_prof">
+                    {% csrf_token %}
+                    <input type="hidden" value="{{user.id}}" name="profile_id" id="profile_id" class="form-control">
+                    <input type="hidden" value="{{user.username}}" name="username" id="username" class="form-control">
+
+                     <div class="text-right edit-btn-mobile">
+		            	<button type="button" id="edit_buyer_profile" class="btn btn-success edit-btn btn-save {% if not buyer %}hide{%endif%}">
+                            Edit
+                        </button>
+		            </div>
+
+		          <form class="form-horizontal" id="buyer_profile">
+
+		            <div class="form-group">
+		              <label class="col-sm-4 control-label">First Name</label>
+		              <div class="col-sm-8">
+		                <input type="text" name="first_name" id="first_name"
+                               value="{% if user.first_name %}{{user.first_name}}{% endif %}"
+                               class="form-control {% if buyer %}hide{%endif%}">
+                        <span class="buyer_profile_value {% if not buyer %}hide{%endif%}">{{user.first_name}}</span>
+		              </div>
+		            </div>
+		            <div class="form-group">
+		              <label class="col-sm-4 control-label">Last Name</label>
+		              <div class="col-sm-8">
+		                <input type="text" name="last_name" id="last_name"
+                               value="{% if user.last_name %}{{user.last_name}}{% endif %}"
+                               class="form-control {% if buyer %}hide{%endif%}">
+                         <span class="buyer_profile_value {% if not buyer %}hide{%endif%}">{{user.last_name}}</span>
+		              </div>
+		            </div>
+
+		            <div class="form-group">
+		              <label class="col-sm-4 control-label">Contact Number</label>
+		              <div class="col-sm-8">
+		                <input type="text" name="contact_number" id="contact_number"
+                               value="{% if buyer.contact_number %}{{buyer.contact_number}}{% endif %}"
+                               class="form-control {% if buyer %}hide{%endif%}">
+                            <span class="buyer_profile_value {% if not buyer %}hide{%endif%}">
+                            {% if buyer.contact_number %}    {{buyer.contact_number}} {% endif %}
+                            </span>
+
+		              </div>
+		            </div>
+
+                   {% if buyer.email %}
+		            <div class="form-group">
+		              <label class="col-sm-4 control-label">Email</label>
+		              <div class="col-sm-8">
+		                <input type="email" name="email" id="email"
+                               value="{% if buyer.email %}{{buyer.email}}{% endif %}"
+                               class="form-control {% if buyer %}hide{%endif%}">
+                            <span class="buyer_profile_value {% if not buyer %}hide{%endif%}">
+                                {% if buyer.email %} {{buyer.email}}  {% endif %}
+                            </span>
+
+		              </div>
+		            </div>
+                    {% else %}
+                    <div class="form-group">
+		              <label class="col-sm-4 control-label">Email</label>
+		              <div class="col-sm-8">
+		                <input type="email" name="email" id="email"
+                               value="{% if user.email %}{{user.email}}{% endif %}"
+                               class="form-control {% if buyer %}hide{%endif%}">
+                            <span class="buyer_profile_value {% if not buyer %}hide{%endif%}">{{user.email}}</span>
+
+		              </div>
+		            </div>
+                    {% endif %}
+
+                    <div class="form-group">
+		              <label class="col-sm-4 control-label">Address</label>
+		              <div class="col-sm-8">
+		                <input type="text" name="address" id="address"
+                               value="{% if buyer.address %}{{buyer.address}}{% endif %}"
+                               class="form-control {% if buyer %}hide{%endif%}">
+                            <span class="buyer_profile_value {% if not buyer %}hide{%endif%}">
+                                {% if buyer.address %} {{buyer.address}} {% endif %}
+                            </span>
+
+		              </div>
+		            </div>
+
+                    <div class="form-group">
+		              <label class="col-sm-4 control-label">Address1</label>
+		              <div class="col-sm-8">
+		                <input type="text" name="address1" id="address1"
+                               value="{% if buyer.address1 %}{{buyer.address1}}{% endif %}"
+                               class="form-control {% if buyer %}hide{%endif%}">
+                            <span class="buyer_profile_value {% if not buyer %}hide{%endif%}">
+                                {% if buyer.address1 %} {{buyer.address1}} {% endif %}
+                            </span>
+
+		              </div>
+		            </div>
+
+
+                    <div class="form-group">
+		              <label class="col-sm-4 control-label">State</label>
+                        <div class="col-sm-8">
+
+                          <div class="sp-dd {% if buyer %}hide{%endif%}">
+		                <select id="buyer_state" name="state" class="form-control user_state">
+                          <option value="">Choose State</option>
+                        <option {% ifequal buyer.state 'Andhra Pradesh' %}selected{% endifequal %} value="Andhra Pradesh">Andhra Pradesh</option>
+                        <option {% ifequal buyer.state 'Arunachal Pradesh' %}selected{% endifequal %} value="Arunachal Pradesh">Arunachal Pradesh</option>
+                        <option {% ifequal buyer.state 'Assam' %}selected{% endifequal %} value="Assam">Assam</option>
+                        <option {% ifequal buyer.state 'Bihar' %}selected{% endifequal %} value="Bihar">Bihar</option>
+                        <option {% ifequal buyer.state 'Chhattisgarh' %}selected{% endifequal %} value="Chhattisgarh">Chhattisgarh</option>
+                        <option {% ifequal buyer.state 'Goa' %}selected{% endifequal %} value="Goa">Goa</option>
+                        <option {% ifequal buyer.state 'Gujarat' %}selected{% endifequal %} value="Gujarat">Gujarat</option>
+                        <option {% ifequal buyer.state 'Haryana' %}selected{% endifequal %} value="Haryana">Haryana</option>
+                        <option {% ifequal buyer.state 'Himachal Pradesh' %}selected{% endifequal %} value="Himachal Pradesh">Himachal Pradesh</option>
+                        <option {% ifequal buyer.state 'Jammu and Kashmir' %}selected{% endifequal %} value="Jammu and Kashmir">Jammu and Kashmir</option>
+                        <option {% ifequal buyer.state 'Jharkhand' %}selected{% endifequal %} value="Jharkhand">Jharkhand</option>
+                        <option {% ifequal buyer.state 'Karnataka' %}selected{% endifequal %} value="Karnataka">Karnataka</option>
+                        <option {% ifequal buyer.state 'Kerala' %}selected{% endifequal %} value="Kerala">Kerala</option>
+                        <option {% ifequal buyer.state 'Madhya Pradesh' %}selected{% endifequal %} value="Madhya Pradesh">Madhya Pradesh</option>
+                        <option {% ifequal buyer.state 'Maharastra' %}selected{% endifequal %} value="Maharashtra">Maharashtra</option>
+                        <option {% ifequal buyer.state 'Manipur' %}selected{% endifequal %} value="Manipur">Manipur</option>
+                        <option {% ifequal buyer.state 'Meghalaya' %}selected{% endifequal %} value="Meghalaya">Meghalaya</option>
+                        <option {% ifequal buyer.state 'Mizoram' %}selected{% endifequal %} value="Mizoram">Mizoram</option>
+                        <option {% ifequal buyer.state 'Nagaland' %}selected{% endifequal %} value="Nagaland">Nagaland</option>
+                        <option {% ifequal buyer.state 'Odisha' %}selected{% endifequal %} value="Odisha">Odisha</option>
+                        <option {% ifequal buyer.state 'Punjab' %}selected{% endifequal %} value="Punjab">Punjab</option>
+                        <option {% ifequal buyer.state 'Rajasthan' %}selected{% endifequal %} value="Rajasthan">Rajasthan</option>
+                        <option {% ifequal buyer.state 'Sikkim' %}selected{% endifequal %} value="Sikkim">Sikkim</option>
+                        <option {% ifequal buyer.state 'Tamil Nadu' %}selected{% endifequal %} value="Tamil Nadu">Tamil Nadu</option>
+                        <option {% ifequal buyer.state 'Telangana' %}selected{% endifequal %} value="Telangana">Telangana</option>
+                        <option {% ifequal buyer.state 'Tripura' %}selected{% endifequal %} value="Tripura">Tripura</option>
+                        <option {% ifequal buyer.state 'Uttar Pradesh' %}selected{% endifequal %} value="Uttar Pradesh">Uttar Pradesh</option>
+                        <option {% ifequal buyer.state 'Uttarakhand' %}selected{% endifequal %} value="Uttarakhand">Uttarakhand</option>
+                        <option {% ifequal buyer.state 'West Bengal' %}selected{% endifequal %} value="West Bengal">West Bengal</option>
+
+                        </select>
+                              </div>
+                        <span class="prof_value buyer_profile_value {% if not buyer %}hide{%endif%}">
+                            {%if buyer.state%} {{buyer.state}} {% endif %}
+                        </span>
+		              </div>
+
+		            </div>
+
+                    <div class="form-group">
+		              <label class="col-sm-4 control-label">City</label>
+		              <div class="col-sm-8">
+		                <input type="text" name="city" id="city"
+                               value="{%if buyer.city %}{{buyer.city}}{% endif %}"
+                               class="form-control {% if buyer %}hide{%endif%}">
+                            <span class="buyer_profile_value {% if not buyer %}hide{%endif%}">
+                               {% if buyer.city %} {{buyer.city}} {% endif %}
+                            </span>
+
+		              </div>
+		            </div>
+
+                    <div class="form-group">
+		              <label class="col-sm-4 control-label">Pincode</label>
+		              <div class="col-sm-8">
+		                <input type="text" name="zip_code" id="zip_code"
+                               value="{% if buyer.zip_code %}{{buyer.zip_code}}{% endif %}"
+                               class="form-control {% if buyer %}hide{%endif%}">
+                            <span class="buyer_profile_value {% if not buyer %}hide{%endif%}">
+                               {% if buyer.zip_code %} {{buyer.zip_code}} {% endif %}
+                            </span>
+
+		              </div>
+		            </div>
+
+		            <div class="text-right">
+                        <button type="button" id="cancel_save_buyer" class="btn btn-success btn-save hide">Cancel
+                        </button>
+		            	<button type="submit" id="save_buyer_profile" data-id="{% if buyer %}{{buyer.id}}{% endif %}"
+                                data-method="{% if buyer %}PUT{% else %}POST{% endif %}"
+                                class="btn btn-success btn-save {% if buyer %}hide{%endif%}">Save
+                        </button>
+
+		            </div>
+		          </form>
+		        </div>
+                  {% endif %}
+
+                  <div class="profile_content seller_prof {% if is_current_user %} hide {% endif %}">
+                    <div class="text-right">
+		            	{% if is_current_user %}
+                        <button type="button" id="edit_seller_profile" class="btn btn-success edit-btn btn-save {% if not seller %}hide{%endif%}">
+                            Edit
+                        </button>
+		                {% endif%}
+                    </div>
+
+		          <form class="form-horizontal" id="seller_profile">
+
+		            <div class="form-group">
+		              <label class="col-sm-4 control-label">Company / Seller Name</label>
+		              <div class="col-sm-8">
+                       <input type="text" name="seller_name" id="seller_name"
+                           value="{% if seller.seller_name %}{{seller.seller_name}}{% endif %}"
+                           class="form-control {% if seller %}hide{%endif%}">
+                        <span class="seller_profile_value {% if not seller %}hide{%endif%}">
+                           {%if seller.seller_name%} {{seller.seller_name}} {% endif %}
+                        </span>
+
+		              </div>
+		            </div>
+                     <div class="form-group">
+		              <label class="col-sm-4 control-label">About Company / Seller</label>
+		              <div class="col-sm-8">
+                          <input type="text" name="about"
+                           value="{% if seller.about %}{{seller.about}}{% endif %}"
+                           class="form-control {% if seller %}hide{%endif%}">
+                        <span class="seller_profile_value {% if not seller %}hide{%endif%}">
+                            {%if seller.about%} {{seller.about}} {% endif %}
+                        </span>
+		              </div>
+                     </div>
+                      <div class="form-group">
+                          <label class="col-sm-4 control-label">Email-ID</label>
+                          <div class="col-sm-8">
+                               <input type="text" name="email"
+                               value="{% if seller.email %}{{seller.email}}{% endif %}"
+                               class="form-control {% if seller %}hide{%endif%}">
+                            <span class="seller_profile_value {% if not seller %}hide{%endif%}">
+                               {%if seller.email%} {{seller.email}} {% endif %}
+                            </span>
+                          </div>
+		                </div>
+		            <div class="form-group">
+		              <label class="col-sm-4 control-label">Contact Number</label>
+		              <div class="col-sm-8">
+		                <input type="text" name="contact_number"
+                           value="{% if seller.contact_number %}{{seller.contact_number}}{% endif %}"
+                           class="form-control {% if seller %}hide{%endif%}">
+                        <span class="seller_profile_value {% if not seller %}hide{%endif%}">
+                            {%if seller.contact_number%} {{seller.contact_number}} {% endif %}
+                        </span>
+		              </div>
+		            </div>
+		            <div class="form-group">
+		              <label class="col-sm-4 control-label">Company / Seller Address</label>
+		              <div class="col-sm-8">
+                          <input type="text" name="address"
+                           value="{% if seller.address %}{{seller.address}}{% endif %}"
+                           class="form-control {% if seller %}hide{%endif%}">
+                        <span class="seller_profile_value {% if not seller %}hide{%endif%}">
+                            {%if seller.address%} {{seller.address}} {% endif %}
+                        </span>
+		              </div>
+		            </div>
+
+                     <div class="form-group">
+		              <label class="col-sm-4 control-label">Company / Seller Address1</label>
+		              <div class="col-sm-8">
+                          <input type="text" name="address1"
+                           value="{% if seller.address1 %}{{seller.address1}}{% endif %}"
+                           class="form-control {% if seller %}hide{%endif%}">
+                        <span class="seller_profile_value {% if not seller %}hide{%endif%}">
+                            {%if seller.address1%} {{seller.address1}} {% endif %}
+                        </span>
+		              </div>
+		            </div>
+                       <div class="form-group">
+		              <label class="col-sm-4 control-label">City</label>
+		              <div class="col-sm-8">
+                           <input type="text" name="city"
+                           value="{% if seller.city %}{{seller.city}}{% endif %}"
+                           class="form-control {% if seller %}hide{%endif%}">
+                        <span class="seller_profile_value {% if not seller %}hide{%endif%}">
+                            {%if seller.city%} {{seller.city}} {% endif %}
+                        </span>
+		              </div>
+
+                    </div>
+                    <div class="form-group">
+		              <label class="col-sm-4 control-label">State</label>
+		              <div class="col-sm-8">
+
+                          <div class="sp-dd {% if seller %}hide{%endif%}">
+		                <select id="seller_state" name="state" class="form-control user_state">
+                          <option value="">Choose State</option>
+                            <option {% ifequal seller.state 'Andhra Pradesh' %}selected{% endifequal %} value="Andhra Pradesh">Andhra Pradesh</option>
+                            <option {% ifequal seller.state 'Arunachal Pradesh' %}selected{% endifequal %} value="Arunachal Pradesh">Arunachal Pradesh</option>
+                            <option {% ifequal seller.state 'Assam' %}selected{% endifequal %} value="Assam">Assam</option>
+                            <option {% ifequal seller.state 'Bihar' %}selected{% endifequal %} value="Bihar">Bihar</option>
+                            <option {% ifequal seller.state 'Chhattisgarh' %}selected{% endifequal %} value="Chhattisgarh">Chhattisgarh</option>
+                            <option {% ifequal seller.state 'Goa' %}selected{% endifequal %} value="Goa">Goa</option>
+                            <option {% ifequal seller.state 'Gujarat' %}selected{% endifequal %} value="Gujarat">Gujarat</option>
+                            <option {% ifequal seller.state 'Haryana' %}selected{% endifequal %} value="Haryana">Haryana</option>
+                            <option {% ifequal seller.state 'Himachal Pradesh' %}selected{% endifequal %} value="Himachal Pradesh">Himachal Pradesh</option>
+                            <option {% ifequal seller.state 'Jammu and Kashmir' %}selected{% endifequal %} value="Jammu and Kashmir">Jammu and Kashmir</option>
+                            <option {% ifequal seller.state 'Jharkhand' %}selected{% endifequal %} value="Jharkhand">Jharkhand</option>
+                            <option {% ifequal seller.state 'Karnataka' %}selected{% endifequal %} value="Karnataka">Karnataka</option>
+                            <option {% ifequal seller.state 'Kerala' %}selected{% endifequal %} value="Kerala">Kerala</option>
+                            <option {% ifequal seller.state 'Madhya Pradesh' %}selected{% endifequal %} value="Madhya Pradesh">Madhya Pradesh</option>
+                            <option {% ifequal seller.state 'Maharastra' %}selected{% endifequal %} value="Maharashtra">Maharashtra</option>
+                            <option {% ifequal seller.state 'Manipur' %}selected{% endifequal %} value="Manipur">Manipur</option>
+                            <option {% ifequal seller.state 'Meghalaya' %}selected{% endifequal %} value="Meghalaya">Meghalaya</option>
+                            <option {% ifequal seller.state 'Mizoram' %}selected{% endifequal %} value="Mizoram">Mizoram</option>
+                            <option {% ifequal seller.state 'Nagaland' %}selected{% endifequal %} value="Nagaland">Nagaland</option>
+                            <option {% ifequal seller.state 'Odisha' %}selected{% endifequal %} value="Odisha">Odisha</option>
+                            <option {% ifequal seller.state 'Punjab' %}selected{% endifequal %} value="Punjab">Punjab</option>
+                            <option {% ifequal seller.state 'Rajasthan' %}selected{% endifequal %} value="Rajasthan">Rajasthan</option>
+                            <option {% ifequal seller.state 'Sikkim' %}selected{% endifequal %} value="Sikkim">Sikkim</option>
+                            <option {% ifequal seller.state 'Tamil Nadu' %}selected{% endifequal %} value="Tamil Nadu">Tamil Nadu</option>
+                            <option {% ifequal seller.state 'Telangana' %}selected{% endifequal %} value="Telangana">Telangana</option>
+                            <option {% ifequal seller.state 'Tripura' %}selected{% endifequal %} value="Tripura">Tripura</option>
+                            <option {% ifequal seller.state 'Uttar Pradesh' %}selected{% endifequal %} value="Uttar Pradesh">Uttar Pradesh</option>
+                            <option {% ifequal seller.state 'Uttarakhand' %}selected{% endifequal %} value="Uttarakhand">Uttarakhand</option>
+                            <option {% ifequal seller.state 'West Bengal' %}selected{% endifequal %} value="West Bengal">West Bengal</option>
+                            </select>
+                              </div>
+                        <span class="prof_value seller_profile_value {% if not seller %}hide{%endif%}">
+                            {%if seller.state%} {{seller.state}} {% endif %}
+                        </span>
+		              </div>
+                    </div>
+
+                    <div class="form-group">
+		              <label class="col-sm-4 control-label">Zip Code</label>
+		              <div class="col-sm-8">
+                           <input type="text" name="zip_code"
+                           value="{% if seller.zip_code %}{{seller.zip_code}}{% endif %}"
+                           class="form-control {% if seller %}hide{%endif%}">
+                        <span class="seller_profile_value {% if not seller %}hide{%endif%}">
+                            {%if seller.zip_code%} {{seller.zip_code}} {% endif %}
+                        </span>
+		              </div>
+		            </div>
+		            <div class="form-group">
+		              <label class="col-sm-4 control-label">Book Condition</label>
+		              <div class="col-sm-8">
+                        <div class="sp-dd {% if seller %}hide{%endif%}">
+		                <select id="book_condition" name="book_condition" class="form-control">
+                          <option value="">Choose Book Condition</option>
+
+		                  <option value="1" {% ifequal seller.book_condition '1' %}selected{% endifequal %}>New Book </option>
+		                  <option value="2" {% ifequal seller.book_condition '2' %}selected{% endifequal %}>Old Book</option>
+		                  <option value="3" {% ifequal seller.book_condition '3' %}selected{% endifequal %}>New / Old</option>
+		                </select>
+                         </div>
+                          <span class="seller_profile_value {% if not seller %}hide{%endif%}">{{seller.get_book_condition_display}}</span>
+
+		              </div>
+		            </div>
+		            <div class="form-group">
+		              <label class="col-sm-4 control-label">Method of Selling</label>
+		              <div class="col-sm-8 ">
+                        <div class="sp-dd {% if seller %}hide{%endif%}">
+                            <select id="selling_option" name="selling_option" class="form-control ">
+                              <option value="">Choose Selling Option</option>
+                              <option value="1" {% ifequal seller.selling_option '1' %}selected{% endifequal %}>Sale </option>
+                              <option value="2" {% ifequal seller.selling_option '2' %} selected {% endifequal %}>Rent</option>
+                              <option value="3" {% ifequal seller.selling_option '3' %} selected {% endifequal %}>Sale / Rent</option>
+                            </select>
+                        </div>
+                          <span class="seller_profile_value {% if not seller %}hide{%endif%}">{{seller.get_selling_option_display}}</span>
+
+		              </div>
+		            </div>
+
+                      <div class="form-group selling-options-group {% if not seller or seller.selling_option|stringformat:'s' == '1' %}hide{%endif%}">
+		              <label class="col-sm-4 control-label">Payback</label>
+		              <div class="col-sm-8">
+		                <div class="input-group">
+                          <input type="text" name="pay_back" required
+                           value="{% if seller.pay_back %}{{seller.pay_back}}{% endif %}"
+                           class="selling_options form-control {% if seller %}hide{%endif%}">
+                           <span class=" seller_profile_value in-per {% if not seller %}hide{%endif%}">{{seller.pay_back}}</span>
+		                  <div class="input-group-addon {% if seller %}hide{%endif%}">%</div>
+		                </div>
+		              </div>
+		            </div>
+
+                      <div class="form-group selling-options-group {% if not seller or seller.selling_option|stringformat:'s' == '1' %}hide{%endif%}">
+
+		              <label class="col-sm-4 control-label">Tenure</label>
+		              <div class="col-sm-8">
+		                <div class="input-group">
+                          <input type="text" name="tenure" required
+                           value="{% if seller.tenure %}{{seller.tenure}}{% endif %}"
+                           class="selling_options form-control {% if seller %}hide{%endif%}">
+                           <span class="seller_profile_value in-month {% if not seller %}hide{%endif%}">{{seller.tenure}}</span>
+		                  <div class="input-group-addon {% if seller %}hide{%endif%}">Months</div>
+		                </div>
+		              </div>
+		            </div>
+
+
+                    <div class="form-group">
+		              <label class="col-sm-4 control-label"> Payment Option  </label>
+		              <div class="col-sm-8 check-style">
+                           <input type="checkbox" id="is_cod_available" name="is_cod_available"
+                                  {%if seller.is_cod_available%} checked="checked" {%endif%}  class=" {% if seller %}hide{%endif%}">
+                          <span class="check-label"> </span>
+                        <span class="seller_profile_value seller_payment_option {% if not seller %}hide{%endif%}">
+                         {%if seller %}  {%if seller.is_cod_available%} available {%else%} not available {% endif %}{% endif %}
+                        </span>
+		              </div>
+		            </div>
+
+
+
+                     <div class="form-group">
+		              <label class="col-sm-4 control-label"> Delivery Estimate  </label>
+		              <div class="col-sm-8">
+
+                        <div class="estimate_width col-sm-3 col-xs-4 pad-left-zero pad-right-zero  {% if not seller %}width-40{%else%} width-25{%endif%}">
+                             <input type="text" name="estimate_from"
+                           value="{% if seller.estimate_from %}{{seller.estimate_from}}{% endif %}"
+                           class="estimate_from form-control {% if seller %}hide{%endif%}">
+                            <span class="seller_profile_value estimate_from {% if not seller %}hide{%endif%}">
+                                {%if seller.estimate_from%} {{seller.estimate_from}} {% endif %}
+                            </span>
+                        </div>
+
+                         <div class="estimate col-sm-1 col-xs-1 pad-left-zero pad-right-zero {% if not seller %}pad-top-7  text-center {%else%} pad-top-zero width-sm-1 {%endif%}"> -  </div>
+
+                          <div class="estimate_width col-sm-3 col-xs-4 pad-left-zero pad-right-zero {% if not seller %}width-40{%else%} width-25{%endif%}">
+                                <input type="text" name="estimate_to"
+                               value="{% if seller.estimate_to %}{{seller.estimate_to}}{% endif %}"
+                               class="estimate_to form-control {% if seller %}hide{%endif%}">
+                                <span class="seller_profile_value estimate_to {% if not seller %}hide{%endif%} width-22">
+                                    {%if seller.estimate_to%} {{seller.estimate_to}} {% endif %}
+                                </span>
+                          </div>
+                         <div class="estimate col-sm-2 col-xs-2 pad-right-zero pad-left-zero text-center dEsti-days {% if not seller %}pad-top-7{%else%} pad-top-zero width-sm-1{%endif%}"> Days  </div>
+
+                      </div>
+		            </div>
+
+                    <div class="form-group">
+		              <label class="col-sm-4 control-label"> Return Policy  </label>
+		              <div class="col-sm-3 rtrn_plcy">
+                           <input type="text" name="return_policy"
+                           value="{% if seller.return_policy %}{{seller.return_policy}}{% endif %}"
+                           class="form-control {% if seller %}hide{%endif%} width-40">
+
+                        <span class="seller_profile_value {% if not seller %}hide{%endif%}">
+                            {%if seller.return_policy%} {{seller.return_policy}} {% endif %}
+                        </span>
+                        <span class="check-label"> </span>
+		              </div>
+		            </div>
+
+                     <div class="form-group">
+		              <label class="col-sm-4 control-label"> Shipping Option  </label>
+		              <div class="col-sm-8 check-style1">
+                          <span class="seller_profile_value is_textnook_fulfilled {% if not seller %}hide{%endif%}">
+                         {%if seller %}  {%if not seller.is_textnook_fulfilled%} Not {% endif %}{% endif %}
+                        </span>
+                           <input type="checkbox" id="is_textnook_fulfilled" name="is_textnook_fulfilled"
+                                  {%if seller.is_textnook_fulfilled%} checked="checked" {%endif%}  class=" {% if seller %}hide{%endif%}">
+                          <span class="check-label"> </span>
+
+		              </div>
+		            </div>
+
+                       <div class="form-group shipping_option {% if seller and seller.is_textnook_fulfilled %} hide {% endif %}">
+		              <label class="col-sm-4 control-label"> Shipping Fee  </label>
+		              <div class="col-sm-8 shipping_fee">
+                          <span class="seller_profile_value {% if not seller %}hide{%endif%}">
+                              {%if seller.shipping_fee%} {{seller.shipping_fee}} {% endif %}</span>
+                           <input type="text" name="shipping_fee"
+                                  value="{%if seller.shipping_fee%} {{seller.shipping_fee}} {% endif %}" class="form-control sf_input {% if seller %}hide{%endif%} ">
+                          <span class="sf_text"> Flat fee if more than </span>
+                          <input type="text" name="shipping_free_amount"
+                                 value="{%if seller.shipping_free_amount%} {{seller.shipping_free_amount}} {% endif %}" class="form-control sf_input {% if seller %}hide{%endif%} ">
+                          <span class="seller_profile_value shipping_free_amount {% if not seller %}hide{%endif%}">
+                                {%if seller.shipping_free_amount%} {{seller.shipping_free_amount}} {% endif %}</span>
+		              </div>
+		            </div>
+
+
+                      <div class="text-right">
+                        <button type="button" id="cancel_save_seller" class="btn btn-success btn-save hide">Cancel
+                        </button>
+		            	<button type="submit" id="save_seller_profile" data-id="{% if seller %}{{seller.id}}{% endif %}"
+                                data-method="{% if seller %}PUT{% else %}POST{% endif %}"
+                                class="btn btn-success btn-save {% if seller %}hide{%endif%}">Save
+                        </button>
+		            </div>
+
+		          </form>
+		        </div>
+                  {% if is_current_user %}
+                  <div class="profile_content change_pwd hide">
+                  <span class="error_display pull-right"></span>
+		          <form class="form-horizontal" id="change_password">
+                    <div class="form-group">
+		              <label class="col-sm-4 control-label">Email</label>
+		              <div class="col-sm-8">
+                          <span class="buyer_profile_value">{{user.email}}</span>
+
+		              </div>
+		            </div>
+		            <div class="form-group">
+		              <label class="col-sm-4 control-label">Old Password</label>
+		              <div class="col-sm-8">
+		                <input type="password" name="old_password" class="form-control">
+		              </div>
+		            </div>
+		            <div class="form-group">
+		              <label class="col-sm-4 control-label">New Password</label>
+		              <div class="col-sm-8">
+		                <input type="password" id="new_password" name="new_password" class="form-control">
+		              </div>
+		            </div>
+		            <div class="form-group">
+		              <label class="col-sm-4 control-label">Confirm New Password</label>
+		              <div class="col-sm-8">
+		                <input type="password" name="new_password1" class="form-control">
+		              </div>
+		            </div>
+		            <div class="text-right">
+
+		            	<button type="submit"  class="btn btn-success btn-save">Save</button>
+		            </div>
+		          </form>
+		        </div>
+                    {% endif %}
+
+                  <div class="profile_content seller_review hide">
+                      <span class="error_display pull-right"></span>
+                      <div class="notice-message {% if seller_reviews %} hide {% endif %}">
+                        <h4>No reviews yet.</h4>
+                    </div>
+                      <form class="form-horizontal " id="seller_review">
+
+                        <div class="form-group">
+                          <div class="col-sm-12">
+
+                            {% if not is_current_user and not seller_reviews %}
+                            <div class="seller-review-new">
+                            <h4>Submit a new review</h4>
+                                <span class="starRating sellerRating" data-type="seller">
+                                    <input id="rating_5" type="radio" name="rating" value="5">
+                                    <label for="rating_5">5</label>
+                                    <input id="rating_4" type="radio" name="rating" value="4">
+                                    <label for="rating_4">4</label>
+                                    <input id="rating_3" type="radio" name="rating" value="3">
+                                    <label for="rating_3">3</label>
+                                    <input id="rating_2" type="radio" name="rating" value="2">
+                                    <label for="rating_2">2</label>
+                                    <input id="rating_1" type="radio" name="rating" value="1">
+                                    <label for="rating_1">1</label>
+                                </span>
+                              <div class="form-group">
+                                <div class="col-sm-12">
+                                  <textarea class="form-control seller-review" rows="3"></textarea>
+                                </div>
+                              </div>
+                              <div class="text-right">
+                                <button class="btn btn-success btn-save submit-review" data-seller-id="{{seller_profile_id}}" type="button">Post</button>
+                              </div>
+                            </div>
+                            {%endif%}
+                            <div class="seller-review {% if not seller_reviews %} hide {% endif %}">
+                              <h4>Recent Reviews</h4>
+                                {%for review in seller_reviews %}
+                              <div class="comment-field">
+                                <div class="user-rating col-lg-3 col-md-3 col-sm-3 col-xs-5">
+                                  <span class="pull-left"><img src="{% if review.seller.profile_image_url %}{{review.seller.profile_image_url}}
+                            {%else%}/static/main/images/big-img.png{%endif%}" alt=""></span>
+                                  <div class="usernaeme pull-left">
+                                    <span>{{review.buyer.profile.first_name}}</span>
+                                      {%if review.rating %}
+                                    <ul class="list-unstyled user-rating">
+                                        {% for i in "x"|rjust:review.rating %}
+
+                                      <li><img src="/midway/static/main/images/star-small.png" alt=""></li>
+                                        {% endfor %}
+
+                                    </ul>
+                                      {%endif%}
+                                  </div>
+                                </div>
+                                <div class="user-comment col-lg-9 col-md-9 col-sm-9 col-xs-7">
+                                    {{review.review}}
+                                </div>
+                                <div class="clearfix"></div>
+                              </div>
+                                {%endfor%}
+                            </div>
+                          </div>
+                        </div>
+                      </form>
+                    </div>
+		      </div>
+		    </div>
+  		</div>
+	</section>
+    <script type="text/javascript" src="/midway/static/main/js/script.js"></script>
+    <script type="text/javascript" src="/midway/static/app/accounts/js/auth.js"></script>
+     <script type="text/javascript" src="/midway/static/app/books/js/search.js"></script>
+
+    <script src="/midway/static/app/accounts/js/profile.js"></script>
+     {% include 'partials/footer-home.html' %}
+
+          <!--{% include 'partials/footer-home.html' %}-->
+

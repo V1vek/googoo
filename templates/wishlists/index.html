@@ -1,0 +1,59 @@
+     {% include 'partials/header.html' %}
+<section id="profile">
+		<div class="container profile">
+            <div class="wishlist-wrapper">
+              <h5>My Wishlist</h5>
+
+
+                <div class="wishlist-content">
+
+                 {% if count %}
+                 {% for book in books %}
+
+                <div class="wishlist-item">
+                  <div class="check-bookImg">
+                    <a href="">
+                      <img src="{{book.image_url}}" alt="Mechanical"?>
+                    </a>
+                  </div>
+                  <div class="check-bookInfo">
+                    <div class="cBook-title">{{ book.title }}</div>
+
+						<div class="cBook-author">by {% for author in book.authors.all %}{{author.name}} | {% endfor %}</div>
+
+
+                    <div class="wh-cBook-rate"><i class="fa fa-rupee"></i> Rs {{ book.price }}
+                    </div>
+                    <div class="cBook-seller">Released: <span>{{ book.edition_and_year }}</span></div>
+                      {% for publisher in book.publishers.all %}
+
+                      <div class="cBook-seller">Publisher: <span>{{publisher.name}}</span></div>
+
+                      {% endfor %}
+                  </div>
+                  <div class="wh-add-Cart">
+                    <a href="/books/details/{{book.id}}"><button class="btn btn-addCart">Add to cart</button></a>
+                    <a class="remove_from_wishlist" data-user-id="{{user.id}}" data-book-id="{{book.id}}" href="#">Remove Item</a>
+                  </div>
+                </div>
+
+                    {% endfor %}
+                    {% else %}
+                    <H4> No Items are added to your wishlists yet !</H4>
+                    {%endif%}
+
+                </div>
+
+
+
+            </div>
+
+        </div>
+</section>
+
+<script type="text/javascript" src="/midway/static/main/js/script.js"></script>
+    <script type="text/javascript" src="/midway/static/app/accounts/js/auth.js"></script>
+        <script src="/midway/static/app/wishlists/js/index.js"></script>
+
+     {% include 'partials/footer.html' %}
+

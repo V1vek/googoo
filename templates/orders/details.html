@@ -1,0 +1,261 @@
+     {% include 'partials/header.html' %}
+     {% include 'orders/fulfill.html' %}
+
+<section id="profile">
+		<div class="container profile">
+			<div class="profile-box">
+                <div class="profile-header">
+					<div class="userProfile col-lg-4 col-md-4 col-sm-3 col-xs-12">
+						<div class="user-img">
+							<img src="{% if buyer.profile_image_url %}{{buyer.profile_image_url}}{% else %}/static/main/images/profile-pic.png{% endif %}" alt="Profile Image">
+                            <input type="file" class="hide" id="seller_pic_input">
+                        </div>
+						<div class="user-info">
+							<h4>{{ user.get_full_name}}</h4>
+							<p>Member since {{user.date_joined|date:"M d, Y"}}</p>
+						</div>
+					</div>
+                    <div class="col-lg-8 col-md-8 col-sm-9 col-xs-12">
+					<div class="bB-bR">
+						<div class="bBought">
+							<h3>{{books_bought}}</h3>
+							<p>Books Bought</p>
+						</div>
+						<!--<div class="uRatings hide">-->
+							<!--<span class="starRating">-->
+								<!--<input id="rating5" type="radio" name="rating" value="5">-->
+								<!--<label for="rating5">5</label>-->
+								<!--<input id="rating4" type="radio" name="rating" value="4">-->
+								<!--<label for="rating4">4</label>-->
+								<!--<input id="rating3" type="radio" name="rating" value="3">-->
+								<!--<label for="rating3">3</label>-->
+								<!--<input id="rating2" type="radio" name="rating" value="2">-->
+								<!--<label for="rating2">2</label>-->
+								<!--<input id="rating1" type="radio" name="rating" value="1">-->
+								<!--<label for="rating1">1</label>-->
+							<!--</span>-->
+							<!--<p>143 reviews</p>-->
+						<!--</div>-->
+					</div>
+					<div class="bSold">
+						<h3>{{books_sold}}</h3>
+						<p>Books Sold</p>
+					</div>
+					<div class="bCondition">
+						 {% ifequal seller.book_condition '1' %}
+                        <h3>NEW</h3>
+                        {%endifequal%}
+                        {% ifequal seller.book_condition '2' %}
+                        <h3>OLD</h3>
+                        {%endifequal%}
+                        {% ifequal seller.book_condition '3' %}
+                        <h3>NEW / OLD</h3>
+                        {%endifequal%}
+						<p>Books Condition</p>
+					</div>
+					<div class="bsellOptions">
+						{% ifequal seller.selling_option '1' %}
+                        <h3>SALE</h3>
+                        {%endifequal%}
+                        {% ifequal seller.selling_option '2' %}
+                        <h3>RENT</h3>
+                        {%endifequal%}
+                        {% ifequal seller.selling_option '3' %}
+                        <h3>SALE / RENT</h3>
+                        {%endifequal%}
+						<p>Selling Options</p>
+					</div>
+                    </div>
+					<div class="clearfix"></div>
+				</div>
+
+			</div>
+			<div class="profile-tabs">
+				<div class="p-tab col-xs-4">
+                    <a href="/buyers/dashboard">
+                            <p>Buyer Dashboard</p>
+                    </a>
+                </div>
+
+
+				<div class="p-tab col-xs-4  p-tab-active">
+                    <a href="/sellers/dashboard/">
+						<p>Seller Dashboard</p>
+                    </a>
+				</div>
+				<a href="/accounts/profile">
+					<div class="p-tab col-xs-4 ">
+						<p>My Profile</p>
+					</div>
+				</a>
+				<div class="clearfix"></div>
+			</div>
+
+            <a href="/sellers/dashboard/"><button class="btn btn-back">BACK</button></a>
+			<div class="order-details">
+				<p class="order-no">Order No : #OD0000{{order_seller.order.id}}</p>
+				<a href=""><span class="drop-menu"></span></a>
+				<ul class="order-qlinks">
+					<a href="#" id="order_details" class="order_tab selected-qlinks"><li>DETAILS</li></a>
+					<a href="#" id="add_note" class="order_tab"><li>ATTACH A NOTE</li></a>
+					<a href="#" id="email_buyer" class="order_tab"><li>EMAIL BUYER</li></a>
+					<a href="#"><li class="print_order_summary">PRINT</li></a>
+				</ul>
+			</div>
+			<div id="order_info" class="order-full-info">
+				<div class="order-left">
+					<dl class="order-info">
+						<dt>{{shipping_address.name}}</dt>
+						<!--<dd>santhosh.hugar@gmail.com</dd>-->
+						<dd>{{shipping_address.contact_number}}</dd>
+					</dl>
+					<dl class="order-info">
+						<dt>SHIPPING ADDRESS</dt>
+						<dd>{{shipping_address.name}} </dd>
+						<dd>{{shipping_address.address}} ,</dd>
+						<dd>{{shipping_address.address1}} </dd>
+						<dd>{{shipping_address.city}} ,</dd>
+						<dd>{{shipping_address.state}} , {{shipping_address.zip_code}} </dd>
+						<dd>India</dd>
+						<dd>Phone: {{shipping_address.contact_number}}</dd>
+					</dl>
+				</div>
+				<div class="order-right">
+                    <div class="right_container add_note hide">
+                        <h4 class="order-heading">Add a Note</h4>
+                          <div class="form-group margin-top-30">
+                            <div class="col-sm-12">
+                              <textarea class="form-control order_note" rows="3"></textarea>
+                            </div>
+                          </div>
+						<div class="clearfix"></div>
+                          <div class="text-right save_note">
+                            <button class="btn btn-success btn-save submit-notes" data-order-id="{{order_seller.order.id}}" type="button">Save</button>
+                          </div>
+                    </div>
+                    <div class="right_container email_buyer hide">
+                        <h4 class="order-heading">Email Buyer</h4>
+                          <div class="form-group margin-top-30">
+                            <div class="col-sm-12">
+                              <textarea class="form-control buyer-email" rows="3"></textarea>
+                            </div>
+                          </div>
+						<div class="clearfix"></div>
+                          <div class="text-right save_note">
+                            <button class="btn btn-success btn-save email_buyer" data-order-id="{{order_seller.order.id}}" type="button">Send Email</button>
+                          </div>
+                    </div>
+					<div class="right_container order_details order-status">
+						<h4 class="order-heading">ORDER DETAILS</h4>
+						<div class="pay-method">
+							<p class="order-title">PAYMENT METHOD</p>
+							<p class="order-desc">{% if order_seller.order.payment_status == '3'%} INSTAMOJO {%else %} COD {%endif%}</p>
+						</div>
+						<div class="pay-received">
+							<p class="order-title">PAYMENT RECEIVED</p>
+							<p class="order-desc">
+                                {% if order_seller.order.payment_status == '3'%}
+                                YOU HAVE BEEN PAID FOR THIS ORDER.
+                                {%else %}
+                                PAYMENT FOR THIS ORDER WILL BE DONE DURING DELIVERY
+                                {%endif%}
+                            </p>
+						</div>
+						<div class="clearfix"></div>
+						<div class="ship-method">
+							<p class="order-title">SHIPPING METHOD</p>
+                            {%if order_seller.shipping_status == '1'%}
+                          <p class="order-desc">YOU NEED TO FULL FILL ORDER</p>
+                            {% elif order_seller.shipping_status == '2'%}
+
+                            <p class="order-desc">ORDER HAS BEEN CANCELLED</p>
+                            {% elif order_seller.shipping_status == '3'%}
+                            <p class="order-desc">ORDER HAS BEEN SHIPPED</p>
+                            {%endif%}
+
+						</div>
+						<div class="order-btn">
+							<!--<button class="btn btn-order-can">CANCEL ORDER</button>-->
+
+                                {%if order_seller.shipping_status == '1'%}
+                               <button class="btn btn-order-full btn-fullfill-order"> FULLFILL ORDER </button>
+                                {% elif order_seller.shipping_status == '2'%}
+
+                                <button class="btn btn-order-full btn-fullfill-order" disabled="disabled"> ORDER CANCELLED </button>
+                                {% elif order_seller.shipping_status == '3'%}
+                                <button class="btn btn-order-full btn-fullfill-order" disabled="disabled"> ORDER FULFILLED </button>
+                                {%endif%}
+
+						</div>
+					</div>
+					<div class="right_container order_details clearfix"></div>
+					<div class="right_container order_details s-order-summary">
+						<h4 class="order-heading ml-11">ORDER SUMMARY</h4>
+						<table class="table order-table">
+							<th>Product</th>
+							<th class="txt-center">Condition</th>
+							<th class="txt-right">Type</th>
+							<th class="txt-right">Quantity</th>
+							<th class="txt-right">Pricing</th>
+							<th class="txt-right">Shipping Status</th>
+							{%for order_item in order_seller.order_seller_item.all %}
+                            <tr>
+								<td>{{order_item.seller_book_condition.seller_book.book.title}}</td>
+								<td>{{order_item.seller_book_condition.get_book_condition_display}}</td>
+								<td>{{order_item.get_renting_options_display}}</td>
+								<td class="txt-center">{{order_item.quantity}}</td>
+								<td class="txt-right">Rs {{order_item.seller_book_condition.selling_price}}</td>
+								<td class="txt-right order_status">{{order_item.get_order_status_display}}</td>
+                                {% if order_seller.shipping_status != '2'%}
+                                <td class="txt-right"><i data-order-item-id="{{order_item.id}}" class="fa fa-pencil edit_order_seller"></i></td>
+                                {%endif%}
+							</tr>
+                            {% endfor%}
+
+						</table>
+						<table class="table order-table">
+							<tr>
+								<td>Sub total</td>
+								<td class="txt-right">Rs {{order_seller.cart_total}}</td>
+							</tr>
+							<!--<tr>-->
+								<!--<td>Service Tax</td>-->
+								<!--<td class="txt-right">Rs 50</td>-->
+							<!--</tr>-->
+							<tr>
+								<td>Shipping Charge</td>
+								<td class="txt-right">Rs {{order_seller.shipping_price}}</td>
+							</tr>
+						</table>
+						<table class="table order-table order-table-last">
+							<tr>
+								<th>Total</th>
+								<th class="txt-right">Rs {{order_seller.total_price}}</th>
+							</tr>
+						</table>
+						<div class="clearfix"></div>
+					</div>
+                    <div class="right_container order_details order-history">
+						<h4 class="order-heading mar-b-20">ORDER NOTES</h4>
+                        <div class="order_notes">
+                        {% for note in order_notes %}
+						<div class="order-history-details">
+							<p>{{note.added_date}}</p>
+							<p>{{note.note}}</p>
+						</div>
+                        {%endfor %}
+                        </div>
+					</div>
+				</div>
+				<div class="clearfix"></div>
+			</div>
+
+        </div>
+
+     </section>
+
+      <script type="text/javascript" src="/midway/static/main/js/script.js"></script>
+     <script type="text/javascript" src="/midway/static/app/accounts/js/auth.js"></script>
+     <script type="text/javascript" src="/midway/static/app/books/js/search.js"></script>
+     <script type="text/javascript" src="/midway/static/app/checkout/js/order.js"></script>
+     {% include 'partials/footer-home.html' %}

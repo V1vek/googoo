@@ -1,0 +1,181 @@
+{% include 'partials/header.html' %}
+<section id="profile">
+    <div class="container profile">
+        <div class="profile-box">
+            <div class="profile-header">
+					<div class="userProfile col-lg-4 col-md-4 col-sm-3 col-xs-12">
+						<div class="user-img">
+							<img src="{% if buyer.profile_image_url %}{{buyer.profile_image_url}}{% else %}/static/main/images/profile-pic.png{% endif %}" alt="Profile Image">
+                            <input type="file" class="hide" id="seller_pic_input">
+                        </div>
+						<div class="user-info">
+							<h4>{{ user.get_full_name}}</h4>
+							<p>Member since {{user.date_joined|date:"M d, Y"}}</p>
+						</div>
+					</div>
+                <div class="col-lg-8 col-md-8 col-sm-9 col-xs-12">
+					<div class="bB-bR">
+						<div class="bBought ">
+							<h3>{{books_bought}}</h3>
+							<p>Books Bought</p>
+						</div>
+						<!--<div class="uRatings hide">-->
+							<!--<span class="starRating">-->
+								<!--<input id="rating5" type="radio" name="rating" value="5">-->
+								<!--<label for="rating5">5</label>-->
+								<!--<input id="rating4" type="radio" name="rating" value="4">-->
+								<!--<label for="rating4">4</label>-->
+								<!--<input id="rating3" type="radio" name="rating" value="3">-->
+								<!--<label for="rating3">3</label>-->
+								<!--<input id="rating2" type="radio" name="rating" value="2">-->
+								<!--<label for="rating2">2</label>-->
+								<!--<input id="rating1" type="radio" name="rating" value="1">-->
+								<!--<label for="rating1">1</label>-->
+							<!--</span>-->
+							<!--<p>143 reviews</p>-->
+						<!--</div>-->
+					</div>
+					<div class="bSold">
+						<h3>{{books_sold}}</h3>
+						<p>Books Sold</p>
+					</div>
+					<div class="bCondition">
+						 {% ifequal seller.book_condition '1' %}
+                        <h3>NEW</h3>
+                        {%endifequal%}
+                        {% ifequal seller.book_condition '2' %}
+                        <h3>OLD</h3>
+                        {%endifequal%}
+                        {% ifequal seller.book_condition '3' %}
+                        <h3>NEW / OLD</h3>
+                        {%endifequal%}
+                        <!--{% if not seller %}-->
+                        <!--<h3>-</h3>-->
+                        <!--{% endif %}-->
+						<p>Books Condition</p>
+					</div>
+					<div class="bsellOptions">
+						{% ifequal seller.selling_option '1' %}
+                        <h3>SALE</h3>
+                        {%endifequal%}
+                        {% ifequal seller.selling_option '2' %}
+                        <h3>RENT</h3>
+                        {%endifequal%}
+                        {% ifequal seller.selling_option '3' %}
+                        <h3>SALE / RENT</h3>
+                        {%endifequal%}
+                        <!--{% if not seller %}-->
+                        <!--<h3>-</h3>-->
+                        <!--{% endif %}-->
+						<p>Selling Options</p>
+					</div>
+                    </div>
+					<div class="clearfix"></div>
+				</div>
+        </div>
+        <div class="profile-tabs">
+
+
+            <a href="/buyers/dashboard">
+                <div class="p-tab col-xs-4  p-tab-active">
+                    <p>Buyer Dashboard</p>
+                </div>
+            </a>
+
+            <a href="/sellers/dashboard/">
+                <div class="p-tab col-xs-4">
+                   <p>Seller Dashboard</p>
+                 </div>
+            </a>
+
+            <a href="/accounts/profile">
+                <div class="p-tab col-xs-4 ">
+                    <p>My Profile</p>
+                </div>
+            </a>
+            <div class="clearfix"></div>
+        </div>
+        <div class="notice-message {% if buyer %} hide {% endif %}">
+                <h4>Please create your <a href="/accounts/profile/">buyer profile</a> to access dashboard features.</h4>
+            </div>
+        <div class="order_sum  {%if not buyer %}hide {%endif%}">
+            <div class="trace-header-accordion active" data-status="open">
+                <h4>ORDER SUMMARY</h4>
+        <span class="pull-right acc-arrow">
+          <img src="/midway/static/main/images/arrow-up.png">
+        </span>
+            </div>
+            <div class="os-display">
+                <table>
+                    <thead>
+                    <tr>
+                        <th>Order Id</th>
+                        <th>Order Date</th>
+                        <th>Cart Total</th>
+                        <th> Shipping Price</th>
+                        <th>Order Total</th>
+
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for order in orders %}
+                        <tr>
+                            <td>
+                                <a href="/orders/buyer/details/{{order.id}}">#{{order.id}}</a>
+                            </td>
+                            <td>
+                                <!--<a href="">#0611</a>-->
+                                {{order.ordered_date}}
+                            </td>
+                            <td>
+                                {{order.cart_total}}
+                            </td>
+
+                            <td>
+                                {{order.shipping_total}}
+                            </td>
+
+                            <td>
+                                {{order.order_total}}
+                            </td>
+                        </tr>
+                    {% endfor%}
+
+                    </tbody>
+                </table>
+                <!--<div class="os-load">-->
+                    <!--<button class="btn-load">Load more</button>-->
+                <!--</div>-->
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+    $(document).ready(function(){
+	$("#menu-toggle").click(function(e) {
+		e.preventDefault();
+		$("#wrapper").toggleClass("toggled");
+	});
+
+	$('.trace-header-accordion').on('click',function(){
+		if($(this).attr('data-status')=="close"){
+			$('.os-display').show("slide", { direction: "up" }, 1000);
+			$(this).attr('data-status','open')
+			$(this).addClass('active');
+		}else{
+			$('.os-display').hide("slide", { direction: "up" }, 1000);
+			$(this).attr('data-status','close')
+			$(this).removeClass('active');
+		}
+	})
+
+});
+
+
+</script>
+<script type="text/javascript" src="/midway/static/main/js/script.js"></script>
+     <script type="text/javascript" src="/midway/static/app/accounts/js/auth.js"></script>
+     <script type="text/javascript" src="/midway/static/app/books/js/search.js"></script>
+
+     {% include 'partials/footer-home.html' %}
