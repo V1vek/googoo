@@ -10,7 +10,7 @@ class BrandSerializer(serializers.ModelSerializer):
         fields = ('name',)
 
 class ProductBrandSerializer(serializers.ModelSerializer):
-    brand = BrandSerializer()
+    #brand = BrandSerializer(many=True)
 
     class Meta:
         model = Product
@@ -23,10 +23,10 @@ class ColourSerializer(serializers.ModelSerializer):
         fields = ('name',)
 
 class ProductColourSerializer(serializers.ModelSerializer):
-    colour = ColourSerializer()
+    #colour = ColourSerializer(many=True)
 
     class Meta:
-        model = Colour
+        model = Product
         fields = ('colour',)
 
 class SizeSerializer(serializers.ModelSerializer):

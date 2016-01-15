@@ -9,8 +9,23 @@ from app.categories.serializers import CategorySerializer
 @api_view(['GET'])
 def categories_list(request):
     categories = Category.objects.all()
-    categories_serializer = CategorySerializer(categories, many=True)
-    return Response(categories_serializer.data)
+    context = {}
+    for category in categories:
+        if not str(category.type) in context.keys():
+            context[str(category.type)] = {}
+        if not str(category.sub_type) in context[str(category.type)].keys():
+            context[str(category.type)][str(category.sub_type)] = []
+
+        context[str(category.type)][str(category.sub_type)].append(category.name)
+
+        if category.sub_type == 'Accessories':
+            if not str(category.sub_type) in context.keys():
+                context[str(category.sub_type)] = {}
+            if not str(category.type) in context[str(category.sub_type)].keys():
+                context[str(category.sub_type)][str(category.type)] = []
+
+            context[str(category.sub_type)][str(category.type)].append(category.name)
+    return Response(context)
 
 
 @api_view(['GET'])

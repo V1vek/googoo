@@ -33,7 +33,7 @@ class Product(models.Model):
     name = models.CharField(max_length=100)
     product_group_number = models.IntegerField(max_length=50, null=True)
     description = models.TextField()
-    category = models.OneToOneField('categories.Category', null=True)
+    category = models.ManyToManyField('categories.Category', null=True)
     sub_categories = models.ManyToManyField('sub_categories.SubCategory', null=True)
     unit_price = models.FloatField(max_length=5)
     size = models.ManyToManyField('products.Size')

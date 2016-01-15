@@ -52,10 +52,12 @@ INSTALLED_APPS = (
     'app.order_items',
     'app.discount_coupon',
     'social.apps.django_app.default',
+    'corsheaders',
 )
 
 MIDDLEWARE_CLASSES = (
     'django.middleware.csrf.CsrfViewMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -70,7 +72,7 @@ REST_FRAMEWORK = {
         'rest_framework.renderers.JSONRenderer',
     ),
     'DEFAULT_PERMISSION_CLASSES': (
-        'rest_framework.permissions.IsAuthenticated',
+#        'rest_framework.permissions.IsAuthenticated',
         'rest_framework.permissions.AllowAny',
     ),
     'DEFAULT_AUTHENTICATION_CLASSES': (
@@ -83,6 +85,7 @@ REST_FRAMEWORK = {
 JWT_AUTH = {
     'JWT_EXPIRATION_DELTA': datetime.timedelta(days=14)
 }
+
 JWT_ALLOW_REFRESH = True
 # Social Auth
 
@@ -121,6 +124,8 @@ SOCIAL_AUTH_PIPELINE = (
 
 
 LOGIN_URL = '/'
+
+CORS_ORIGIN_ALLOW_ALL = True
 
 SOCIAL_AUTH_LOGIN_REDIRECT_URL = '/'
 

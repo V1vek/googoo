@@ -4,18 +4,20 @@ from collections import defaultdict
 
 from django.http import HttpResponse
 
-from rest_framework.decorators import api_view
+from rest_framework.decorators import api_view, permission_classes
 from rest_framework.response import Response
+from rest_framework.permissions import AllowAny
 from rest_framework import status
-from app.products.models import Product, Size
-from app.products.serializers import ProductsListSerializer, ProductSerializer, SizeSerializer, ProductBrandSerializer, ProductColourSerializer
+from app.categories.models import Category
+from app.products.models import Product, Size, Brand, Colour
+from app.products.serializers import ProductsListSerializer, ProductSerializer, SizeSerializer, BrandSerializer, ColourSerializer
 from app.sub_categories.models import SubCategory
 from app.sub_categories.serializers import SubCategorySerializer
+from app.categories.serializers import CategorySerializer
 
 
 # Create your views here.
-
-
+@permission_classes((AllowAny,))
 @api_view(['GET', 'POST'])
 def products_list(request, product_type, product_category):
     if request.method == 'GET':
@@ -54,7 +56,7 @@ def products_list(request, product_type, product_category):
         return Response(product_serialized.data)
 
 
-
+@permission_classes((AllowAny,))
 @api_view(['GET'])
 def product_details(request, product_type, product_category, product_id):
     try:
@@ -65,34 +67,37 @@ def product_details(request, product_type, product_category, product_id):
     product_serializer = ProductSerializer(product_detail)
     return Response(product_serializer.data)
 
-
+@permission_classes((AllowAny,))
 @api_view(['GET'])
 def filter_list(request, product_type, category):
     try:
         catg = '{0} {1}'.format(category, product_type)
-        brand = Product.objects.filter(category__category_name=catg)
+        brand = Brand.objects.all()
+        color = Colour.objects.all()
+
         size = Size.objects.filter(category__category_name=catg)
-        print size
+        categories = Category.objects.filter(type=product_type)
 
         sub_catg = SubCategory.objects.filter(category__category_name=catg).values_list('type').distinct()
-        sub_catg1 = SubCategory.objects.filter(category__category_name=catg)
-        print sub_catg1
+        #sub_catg1 = SubCategory.objects.filter(category__category_name=catg)
+        #print sub_catg1
     except Product.DoesNotExist:
         return HttpResponse(status=status.HTTP_404_NOT_FOUND)
 
     size = SizeSerializer(size, many=True)
     sub_catg_serializer = SubCategorySerializer(sub_catg, many=True)
-    color = ProductColourSerializer(brand, many=True)
-    brand = ProductBrandSerializer(brand, many=True)
-    print brand.data
+    color = ColourSerializer(color, many=True)
+    brand = BrandSerializer(brand, many=True)
+    categories = CategorySerializer(categories, many=True)
+    print color.data
+    print brand.data[0]
     context = {}
-    context['Brand'] = brand.data[0]
-    context['Colour'] = color.data[0]
+    context['Brand'] = brand.data
+    context['Colour'] = color.data
     context['Size'] = size.data
+    context['Category'] = categories.data
     for sub in sub_catg:
-        print sub[0]
         sub_type = SubCategory.objects.filter(category__category_name=catg, type=sub[0])
-        print sub_type
         context[sub[0]] = SubCategorySerializer(sub_type, many=True).data
 
     return Response(context)

@@ -114,7 +114,9 @@ def get_token(request):
 @api_view(['POST'])
 @permission_classes((AllowAny,))
 def signup_user(request):
+    print request
     if request.method == 'POST':
+        print request.POST
         email = request.POST.get('email')
         username = email
         first_name = request.POST.get('first_name')
