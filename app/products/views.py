@@ -38,6 +38,7 @@ def products_list(request, product_type, product_category):
         category = '{0} {1}'.format(product_category, product_type)
         filter_dict['category__category_name'] = category
         for f in filters:
+            print "jjkhhhkj"
             if f is not None:
                 if f['key'] == 'sub_categories':
                     key = '{0}__sub_type__in'.format(f['key'].lower())

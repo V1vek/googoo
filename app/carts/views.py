@@ -1,5 +1,6 @@
 import logging
 from math import floor
+import json
 
 from django.http import HttpResponse
 from rest_framework import status
@@ -9,6 +10,9 @@ from django.contrib.auth.decorators import login_required
 from rest_framework.decorators import api_view, authentication_classes, permission_classes
 from rest_framework_jwt.authentication import JSONWebTokenAuthentication
 from rest_framework.permissions import IsAuthenticated
+from app.accounts.models import User
+from app.products.models import Product
+from app.carts.serializers import CartSerializer
 
 from app.carts.models import Cart
 from app.orders.helpers import get_cart_details
@@ -17,27 +21,37 @@ logging.basicConfig(level=logging.INFO)
 log = logging.getLogger(__name__)
 
 
-@login_required
-@authentication_classes((JSONWebTokenAuthentication,))
-@permission_classes((IsAuthenticated,))
+#@login_required
+#@authentication_classes((JSONWebTokenAuthentication,))
+#@permission_classes((IsAuthenticated,))
 @api_view(['POST'])
 def add_to_cart(request):
     if request.method == 'POST':
-        if request.user.is_authenticated():
-            log.info(request.user.id)
+        if not request.user.is_authenticated():
+            #log.info(request.user.id)
 
             data = JSONParser().parse(request)
             log.info(data)
             product_id = data['product_id']
+            size = data['size']
+            quantity = data['quantity']
 
-            user = request.user
+            user = User.objects.get(username='admin')
+            product = Product.objects.get(id=product_id)
+
+            price = float(quantity) * product.unit_price
+            print user
+
+            #user = request.user
             try:
                 cart = Cart.objects.get(product_id=product_id, user=user, is_ordered=False)
+                cart.quantity += 1
+                cart.price += product.unit_price
             except Cart.DoesNotExist:
-                cart = Cart.objects.create(product_id=product_id, user=user, is_ordered=False)
+                cart = Cart.objects.create(product_id=product_id, user=user, size=size, quantity=quantity, price=price, is_ordered=False)
 
             cart.save()
-            carts = Cart.objects.filter(user=request.user, is_ordered=False)
+            carts = Cart.objects.filter(user=user, is_ordered=False)
             cart_quantity = len(carts)
 
             if cart:
@@ -47,6 +61,14 @@ def add_to_cart(request):
                 return Response({'message': 'error'}, status=status.HTTP_400_BAD_REQUEST)
         else:
             return Response({'error': 'Authentication failed'})
+
+@api_view(['GET'])
+def cart_list(request):
+    if request.method == 'GET':
+        user = User.objects.get(username='admin')
+        cart_list = Cart.objects.filter(user=user)
+        cart_serialized = CartSerializer(cart_list, many=True)
+        return Response(cart_serialized.data)
 
 
 @login_required

@@ -18,18 +18,18 @@ urlpatterns = patterns('',
     url(r'^orders/', include('app.orders.urls')),
 
     # API URL's
+    url(r'^api/', include('app.carts.urls')),
     url(r'^api/', include('app.categories.urls')),
     url(r'^api/', include('app.sub_categories.urls')),
-    url(r'^api/', include('app.products.urls')),
     url(r'^api/', include('app.accounts.urls')),
     url(r'^api/', include('app.retailer.urls')),
     url(r'^api/', include('app.customer.urls')),
     url(r'^api/', include('app.wishlists.urls')),
-    url(r'^api/', include('app.carts.urls')),
     url(r'^api/', include('app.order_shipping_address.urls')),
     url(r'^api/', include('app.orders.urls')),
     url(r'^api/', include('app.discount_coupon.urls')),
     url(r'^api/', include('app.order_items.urls')),
+    url(r'^api/', include('app.products.urls')),
 
 
 )
